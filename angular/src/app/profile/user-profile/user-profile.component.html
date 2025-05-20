@@ -1,0 +1,221 @@
+<div class="container">
+  <div class="card">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="user-div">
+          <div class="img-div">
+            <!-- <img src="../../../../../assets/images/image/user-profile.png" alt=""> -->
+            <img [src]="'../../../../../assets/images/image/' + profileimage" alt="">
+            <button class="file-upload-button">
+              <!-- <input type="file" /> -->
+              <input type="file" #fileInput (change)="onFileSelect($event)" accept="image/png, image/jpeg" />
+            </button>
+          </div>
+          <h1>{{profileresult.firstname}} {{profileresult.lastname}}</h1>
+          <p><i class="fa-solid fa-envelope"></i> {{profileresult.email}}</p>
+          <p><i class="fa-solid fa-phone"></i> {{profileresult.contact}}</p>
+        </div>
+      </div>
+      <div class="col-sm-8 bg-white">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+              type="button" role="tab" aria-controls="profile" aria-selected="true">Edit Profile</button>
+            <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password" type="button"
+              role="tab" aria-controls="password" aria-selected="false">Change Password</button>
+            <!-- <button class="nav-link" id="Upload-tab" data-bs-toggle="tab" data-bs-target="#Upload" type="button"
+              role="tab" aria-controls="Upload" aria-selected="false">Upload Documents</button> -->
+          </div>
+        </nav>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="edit-profile">
+              <form [formGroup]="editProfileForm" (ngSubmit)="updateProfile()">
+                <div class="input-div">
+                  <label for="">First Name</label>
+                  <input type="text" formControlName="firstname">
+                </div>
+                <!-- <span *ngIf="h.firstname.invalid && (h.firstname.touched || submitted || h.firstname.dirty)"
+                class="text-danger">
+                <span *ngIf="h.firstname.errors.required">First name is required</span>
+              </span> -->
+                <div class="input-div">
+                  <label for="">Last Name</label>
+                  <input type="text" formControlName="lastname">
+                </div>
+                <!-- <span *ngIf="h.lastname.invalid && (h.lastname.touched || submitted || h.lastname.dirty)"
+                class="text-danger">
+                <span *ngIf="h.lastname.errors.required">Last name is required</span>
+              </span> -->
+                <div class="input-div">
+                  <label for="">Email </label>
+                  <input type="email" formControlName="email">
+                </div>
+                <!-- <span *ngIf="h.email.invalid && (h.email.touched || submitted || h.email.dirty)" class="text-danger">
+                <span *ngIf="h.email.errors.required">Email is required</span>
+              </span> -->
+                <div class="input-div">
+                  <label for="">Mobile No</label>
+                  <input type="tel" formControlName="contact" (keydown)="onKeyDown($event)">
+                </div>
+                <!-- <span *ngIf="h.contact.invalid && (h.contact.touched || submitted || h.contact.dirty)" class="text-danger">
+                <span *ngIf="h.contact.errors.required">Contact number is required</span>
+              </span> -->
+                <div class="button-div mt-4 text-right" style="text-align: right;">
+                  <!-- <button class="btn btn-danger px-4 py-2">Reset</button> -->
+                  <button type="submit" class="btn btn-primary px-4 py-2 ms-2">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+            <div class="change-password">
+              <form [formGroup]="changePasswordForm" >
+                <div class="input-group">
+                  <label for="">Old Password</label>
+                  <div class="pass">
+                    <input [type]="password" formControlName="oldpassword" maxlength="20">
+                    <button class="eye-btn" (click)="oldPass()">
+                      <i class="fa fa-eye" aria-hidden="true" *ngIf="show"></i>
+                      <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="!show"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label for="">New Password</label>
+                  <div class="pass">
+                    <input [type]="newpassword" formControlName="password" maxlength="20" >
+
+                    <!-- <button (click)="newpassclick()" class="eye-btn"> -->
+                    <button class="eye-btn" (click)="newPass()">
+
+                      <i class="fa fa-eye" aria-hidden="true" *ngIf="passwordshow"></i>
+                      <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="!passwordshow"></i>
+                      <!-- <i class="fa fa-eye" aria-hidden="true" ></i>
+                                <i class="fa fa-eye-slash" aria-hidden="true" ></i> -->
+                    </button>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label for="">Confirm Password</label>
+                  <div class="pass">
+                    <input [type]="conpassword" formControlName="confirmpassword" maxlength="20">
+
+                    <!-- <button (click)="conPassword()" class="eye-btn"> -->
+                    <button class="eye-btn" (click)="conPass()">
+
+                      <i class="fa fa-eye" aria-hidden="true" *ngIf="show2"></i>
+                      <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="!show2"></i>
+                      <!-- <i class="fa fa-eye" aria-hidden="true" ></i>
+                                <i class="fa fa-eye-slash" aria-hidden="true" ></i> -->
+                    </button>
+                  </div>
+                </div>
+                <div class="button-div mt-4 text-right" style="text-align: right;">
+                  <button type="button" class="btn btn-primary px-4 py-2 ms-2" (click)="changepass()" >Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- <div class="tab-pane fade" id="Upload" role="tabpanel" aria-labelledby="Upload-tab">
+            <div>
+              <div class="input-group upl-doc">
+                <label for="">Company Certificate </label>
+                <input type="file" accept="image/*">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#certificateModal">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div>
+              <div class="input-group upl-doc">
+                <label for="">Company Pan Card </label>
+                <input type="file" accept="image/*">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div>
+              <div class="input-group upl-doc">
+                <label for="">Director Pan Card </label>
+                <input type="file" accept="image/*">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pancardModal">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Company certificate -->
+<div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Preview Image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container1">
+          <div class="preview-container">
+            <img src="../../../../../assets/companydocs/sample-certificate.jpg" alt="Selected Image">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-cls" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Company Pan Card -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Preview Image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container1">
+          <div class="preview-container">
+            <img src="../../../../../assets/companydocs/sample-pancard.jpg" alt="Selected Image">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-cls" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Director Pan Card -->
+<div class="modal fade" id="pancardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Preview Image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container1">
+          <div class="preview-container">
+            <img src="../../../../../assets/companydocs/sample-dir-pancard.jpg" alt="Selected Image">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-cls" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

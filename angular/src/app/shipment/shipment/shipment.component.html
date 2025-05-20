@@ -1,0 +1,62 @@
+<section>
+  <div class="container">
+    <!-- <div class="row style-heading">
+      <div class="col-sm-12">
+        <div class="d-flex justify-content-between">
+          <h4>Booking</h4>
+          <a class="btn btn-primarys mb-2" (click)="openClientModal()"><i
+              class="feather icon-plus icon-md items-plus"></i> Add Booking</a>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="row style-heading">
+      <div class="col-sm-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h4 class="app-primary-color fw-bold mb-2">Booking</h4>
+            <a class="btn btn-primarys" (click)="openClientModal()"><i class="feather icon-plus icon-md items-plus"></i>
+              Add</a>
+          </div>
+        </div>
+      </div>
+    </div> &nbsp;
+    <div class="card bg-white">
+      <div class="row" style="overflow-x: auto;">
+        <table id="campainPassbookTable" class="table table-responsive" style="width:100%">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>AWB No.</th>
+              <th>Client</th>
+              <th>Booking Date</th>
+              <th>Pincode</th>
+              <th>State</th>
+              <th>Mobile No.</th>
+              <th>Volumetric Weight</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td style="font-weight: bold; color: #2c7be5; padding: 4px;">{{ item.awb_no }}</td>
+              <td>{{ item.client }}</td>
+              <td>{{ item.booking_date | date:'dd/MM/yyyy' }}</td>
+              <td>{{ item.pin_code }}</td>
+              <td>{{ item.state }}</td> <!-- or item.country if more appropriate -->
+              <td>{{ item.mobile_no }}</td>
+              <td>{{ item.volumetric_weight }}</td>
+              <td>
+                <i class="feather icon-edit me-2 items-icon text-primary" ngbTooltip="Edit" container="body"
+                  (click)="onEdit(item.id)"></i>
+                <i class="feather icon-trash me-2 items-icon text-danger" ngbTooltip="Delete" container="body"
+                  (click)="onDelete(item.id)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

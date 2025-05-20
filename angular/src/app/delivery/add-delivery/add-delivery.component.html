@@ -1,0 +1,73 @@
+  <!-- <div class="container custom-form-container"> -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-outline-secondary me-3 rounded-pill shadow-sm" (click)="onBack();onCancel()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <h3 class="text-primary fw-bold mb-0">Delivery</h3>
+        </div>
+    </div>
+    
+    <div class="custom-card p-4 shadow-sm">
+        <form [formGroup]="deliveryForm">
+    
+          <div class="form-row">
+            <label>Tracking Number:</label>
+            <input formControlName="tracking_number" class="form-control form-control-sm rounded-pill" placeholder="Enter tracking number" />
+            <label>Origin:</label>
+            <input formControlName="origin" class="form-control form-control-sm rounded-pill" placeholder="Enter origin" />
+          </div>
+    
+          <div class="form-row">
+            <label>Booked On:</label>
+            <input formControlName="booked_on" class="form-control form-control-sm rounded-pill" placeholder="Select date" />
+            <label>Shipper:</label>
+            <input formControlName="shipper" class="form-control form-control-sm rounded-pill" placeholder="Enter shipper name" />
+          </div>
+    
+          <div class="form-row">
+            <label>Forwarding No:</label>
+            <input formControlName="forwarding_no" class="form-control form-control-sm rounded-pill" placeholder="Enter forwarding number" />
+            <label>Consignee Name:</label>
+            <input formControlName="consignee_name" class="form-control form-control-sm rounded-pill" placeholder="Enter consignee name" />
+          </div>
+    
+          <div class="form-row">
+            <label>Status:</label>
+            <select id="status" formControlName="status" class="form-select form-select-sm rounded-pill">
+                <option value="" disabled selected>Select status</option>
+                <option value="Pending">Pending</option>
+                <option value="Delivered">Delivered</option>
+                <option value="RTO">RTO</option>
+                <option value="Intransit">In-Transit</option>
+                <option value="Misroute">Mis-Route</option>
+            </select>
+            <label>Delivery Date:</label>
+            <input formControlName="delivery_date" class="form-control form-control-sm rounded-pill" placeholder="Select delivery date" />
+          </div>
+    
+         
+    
+          <div class="form-row">
+            <label>Delivery Time:</label>
+            <input formControlName="delivery_time" class="form-control form-control-sm rounded-pill" placeholder="Enter delivery time" />
+            <label>Received By:</label>
+            <input formControlName="received_by" class="form-control form-control-sm rounded-pill" placeholder="Enter receiver name" />
+          </div>
+    
+          <div class="form-row">
+            <label>Relation:</label>
+            <input formControlName="relation" class="form-control form-control-sm rounded-pill" placeholder="Enter relation" />
+            <label>Mobile Number:</label>
+            <input formControlName="mobile_number" class="form-control form-control-sm rounded-pill" placeholder="Enter mobile number" />
+          </div>
+    
+          <div class="d-flex justify-content-start mt-4">
+            
+            <button type="submit" class="btn btn-primary rounded-pill shadow-sm" [disabled]="deliveryForm.invalid" (click)="onSubmit()">
+              <i class="fas fa-save me-1"></i> Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    <!-- </div> -->

@@ -1,0 +1,276 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex align-items-center">
+      <button type="button" class="btn btn-outline-secondary me-3 rounded-pill shadow-sm" (click)="onBack();onCancel()">
+        <i class="fas fa-arrow-left"></i> Back
+      </button>
+      <h3 class="app-primary-color fw-bold mb-0">User - Code: UC000001 </h3>
+    </div>
+  </div>
+  
+  <div class="custom-card p-4 shadow-sm">
+    <form [formGroup]="memberForm" >
+
+      <div class="form-row">
+        <label>First Name:</label>
+        <input formControlName="firstName" class="form-control form-control-sm rounded-pill" placeholder="Enter first name" />
+        <label>Last Name:</label>
+        <input formControlName="lastName" class="form-control form-control-sm rounded-pill" placeholder="Enter last name" />
+      </div>
+      <div *ngIf="memberForm.get('firstName')?.invalid && memberForm.get('firstName')?.touched" class="text-danger small ms-4 mb-2">
+        First Name is required
+      </div>
+      <div *ngIf="memberForm.get('lastName')?.invalid && memberForm.get('lastName')?.touched" class="text-danger small ms-4 mb-2">
+        Last Name is required
+      </div>
+
+      <div class="form-row">
+        <label>Email:</label>
+        <input formControlName="email" class="form-control form-control-sm rounded-pill" placeholder="Enter email" />
+        <label>User Name:</label>
+        <input formControlName="userName" class="form-control form-control-sm rounded-pill" placeholder="Enter User Name" />
+      </div>
+      <div *ngIf="memberForm.get('email')?.invalid && memberForm.get('email')?.touched" class="text-danger small ms-4 mb-2">
+        {{ emailError }}
+      </div>
+      <div *ngIf="memberForm.get('userName')?.invalid && memberForm.get('userName')?.touched" class="text-danger small ms-4 mb-2">
+        User Name is required
+      </div>
+
+      <div class="form-row">
+        <label>Password:</label>
+        <input type="password" formControlName="password" class="form-control form-control-sm rounded-pill" placeholder="Enter password" />
+        <label>Confirm Password:</label>
+        <input type="password" formControlName="confirmPassword" class="form-control form-control-sm rounded-pill" placeholder="Confirm password" />
+      </div>
+      <div *ngIf="memberForm.get('password')?.invalid && memberForm.get('password')?.touched" class="text-danger small ms-4 mb-2">
+        Password is required
+      </div>
+      <div *ngIf="memberForm.get('confirmPassword')?.invalid && memberForm.get('confirmPassword')?.touched" class="text-danger small ms-4 mb-2">
+        <span *ngIf="memberForm.get('confirmPassword')?.errors?.['required']">Confirm password is required</span>
+        <span *ngIf="passwordMatchError">Passwords do not match</span>
+      </div>
+
+      <div class="form-row">
+        <label>Address:</label>
+        <input formControlName="address" class="form-control form-control-sm rounded-pill" placeholder="Enter address" />
+        <label>Address2:</label>
+        <input formControlName="address2" class="form-control form-control-sm rounded-pill" placeholder="Enter address line 2" />
+      </div>
+      <div *ngIf="memberForm.get('address')?.invalid && memberForm.get('address')?.touched" class="text-danger small ms-4 mb-2">
+        Address is required
+      </div>
+
+      <div class="form-row">
+        <label>City:</label>
+        <select formControlName="city" class="form-control form-control-sm rounded-pill" [disabled]="!memberForm.get('state')?.value">
+          <option value="">Select city</option>
+          <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+        </select>
+        <label>State:</label>
+        <select formControlName="state" class="form-control form-control-sm rounded-pill">
+          <option value="">Select state</option>
+          <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Country:</label>
+        <select formControlName="country" class="form-control form-control-sm rounded-pill" [disabled]="true">
+          <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+        </select>
+        <label>Pin code:</label>
+        <input formControlName="pincode" class="form-control form-control-sm rounded-pill" placeholder="Enter pin code" />
+      </div>
+
+      <div class="form-row">
+        <label>Mobile No:</label>
+        <input formControlName="mobileNo" class="form-control form-control-sm rounded-pill" placeholder="Enter mobile number" />
+      </div>
+      <div *ngIf="memberForm.get('mobileNo')?.invalid && memberForm.get('mobileNo')?.touched" class="text-danger small ms-4 mb-2">
+        Mobile number is required
+      </div>
+
+      <hr class="my-4">
+      <h5 class="app-primary-color mb-3">Bank Details</h5>
+
+      <div class="form-row">
+        <label>Bank Name:</label>
+        <input formControlName="bank_name" class="form-control form-control-sm rounded-pill" placeholder="Enter bank name" />
+        <label>Account Number:</label>
+        <input formControlName="account_number" class="form-control form-control-sm rounded-pill" placeholder="Enter account number" />
+      </div>
+
+      <div class="form-row">
+        <label>Account Name:</label>
+        <input formControlName="account_name" class="form-control form-control-sm rounded-pill" placeholder="Enter account name" />
+        <label>IFSC Code:</label>
+        <input formControlName="ifsc_code" class="form-control form-control-sm rounded-pill" placeholder="Enter IFSC code" />
+      </div>
+      <div *ngIf="memberForm.get('ifsc_code')?.invalid && memberForm.get('ifsc_code')?.touched" class="text-danger small ms-4 mb-2">
+        Please enter a valid IFSC code (format: AAAA0123456)
+      </div>
+
+      <div class="form-row">
+        <label>City:</label>
+        <input formControlName="bank_city" class="form-control form-control-sm rounded-pill" placeholder="Enter bank city" />
+        <label>State:</label>
+        <input formControlName="bank_state" class="form-control form-control-sm rounded-pill" placeholder="Enter bank state" />
+      </div>
+
+      <div class="form-row">
+        <label>Country:</label>
+        <input formControlName="bank_country" class="form-control form-control-sm rounded-pill" placeholder="Enter bank country" />
+        <label>Pincode:</label>
+        <input formControlName="bank_pincode" class="form-control form-control-sm rounded-pill" placeholder="Enter bank pincode" />
+      </div>
+
+      <div class="form-row">
+        <label>Email:</label>
+        <input formControlName="bank_email" class="form-control form-control-sm rounded-pill" placeholder="Enter bank email" />
+      </div>
+
+      <div class="d-flex justify-content-start mt-4">
+        <button type="button" class="btn app-primary-button rounded-pill shadow-sm" (click)="onSubmit()">
+          <i class="fas fa-save me-1"></i> Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <section>
+
+
+
+  <div class="col-sm-12">
+    <form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" class="form-control" formControlName="firstName"
+              placeholder="First Name" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" class="form-control" formControlName="lastName" placeholder="Last Name" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" formControlName="email" placeholder="Email" />
+            <small *ngIf="memberForm.get('email')?.hasError('email')" class="text-danger">Invalid email</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="mobileNo">Mobile No</label>
+            <input type="text" id="mobileNo" class="form-control" formControlName="mobileNo" placeholder="Mobile No" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" formControlName="password"
+              placeholder="Password" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword"
+              placeholder="Confirm Password" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" class="form-control" formControlName="address" placeholder="Address" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input type="text" id="zipCode" class="form-control" formControlName="zipCode" placeholder="Zip Code" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country" class="form-control" formControlName="country">
+              <option value="">Select country</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="state">State</label>
+            <select id="state" class="form-control" formControlName="state">
+              <option value="">Select state</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="city">City</label>
+            <select id="city" class="form-control" formControlName="city">
+              <option value="">Select city</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="role">Role</label>
+            <select id="role" class="form-control" formControlName="role">
+              <option value="">Select Role</option>
+              <option value="Admin">Admin</option>
+              <option value="Member">Member</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mt-4">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" >Cancel</button>
+      </div>
+    </form>
+  </div>
+
+</section> -->

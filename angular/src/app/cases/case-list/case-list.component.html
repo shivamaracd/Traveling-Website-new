@@ -1,0 +1,104 @@
+<section>
+    <div class="container">
+      <div class="row style-heading">
+        <div class="col-sm-12">
+          <div class="d-flex justify-content-between">
+            <h4>Case</h4>
+            <a  class="btn btn-primarys mb-2" (click)="openClientModal()" ><i
+              class="feather icon-plus icon-md items-plus"></i> Add Case</a>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-4">
+        <!-- Date Filter Section -->
+        <div class="row mb-3">
+
+        <div class="col-md-3">
+            <input type="date" class="form-control" placeholder="From Next Date" >
+          </div>
+          <div class="col-md-3">
+            <input type="date" class="form-control" placeholder="To Next Date"  >
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-danger mx-4" (click)="clearDates()">Clear</button>
+            <button class="btn btn-success" (click)="searchCases()">Search</button>
+
+
+          </div>
+        </div>
+      
+        <!-- Case Tabs -->
+        <ul class="nav nav-tabs case-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#runningCases">Running Cases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#importantCases">Important Cases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#noBoardCases">No Board Cases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#archivedCases">Archived Cases</a>
+          </li>
+        </ul>
+      
+        <!-- Tab Content -->
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="runningCases">
+            <!-- Running Cases Table -->
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Client & Case Detail</th>
+                    <th>Court Detail</th>
+                    <th>Petitioner vs Respondent</th>
+                    <th>Next Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let case of cases; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>
+                      <span class="important-case" *ngIf="case.isImportant">★</span>
+                      <strong>{{ case.clientName }}</strong><br>
+                      No: {{ case.caseNumber }}<br>
+                      Case: {{ case.caseType }} - {{ case.caseSubType }}
+                    </td>
+                    <td>
+                      Court: {{ case.courtName }}<br>
+                      No: {{ case.courtNumber }}<br>
+                      Magistrate: {{ case.magistrate }}
+                    </td>
+                    <td>{{ case.petitioner }} <strong>VS</strong> {{ case.respondent }}</td>
+                    <td>{{ case.nextDate }}</td>
+                    <td>
+                      <span class="badge bg-danger">{{ case.status }}</span><br>
+                      <small class="case-status">Super Admin</small>
+                    </td>
+                    <td>
+                      <div class="assign-to">
+                        Assign To <span>{{ case.assignToInitial }}</span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+      
+          <!-- Other Tabs (for demonstration, no data binding) -->
+          <div class="tab-pane fade" id="importantCases">Important Cases</div>
+          <div class="tab-pane fade" id="noBoardCases">No Board Cases</div>
+          <div class="tab-pane fade" id="archivedCases">Archived Cases</div>
+        </div>
+      </div>
+      
+    </div>
+  
+  </section>
+  

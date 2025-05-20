@@ -1,0 +1,374 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="d-flex align-items-center">
+    <button type="button" class="btn btn-outline-secondary me-3 rounded-pill shadow-sm" (click)="onBack();onCancel()">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+    <h3 class="text-primary fw-bold mb-0">Booking</h3>
+  </div>
+</div>
+
+<div class="custom-card p-4 shadow-sm">
+  <!-- <form [formGroup]="shipmentForm" class="needs-validation" novalidate>
+
+    <div class="form-row">
+      <label>Tracking Number:</label>
+      <div class="w-100">
+        <input formControlName="tracking_number" class="form-control form-control-sm rounded-pill" placeholder="Enter tracking number"/>
+        <div *ngIf="tracking_number?.invalid && (tracking_number?.dirty || tracking_number?.touched)" class="text-danger small">
+          <div *ngIf="tracking_number?.errors?.['required']">Tracking number is required</div>
+          <div *ngIf="tracking_number?.errors?.['pattern']">Tracking number should contain only letters and numbers</div>
+        </div>
+      </div>
+      <label>Booking Date:</label>
+      <div class="w-100">
+        <input formControlName="order_date" type="date" class="form-control form-control-sm rounded-pill" />
+        <div *ngIf="order_date?.invalid && (order_date?.dirty || order_date?.touched)" class="text-danger small">
+          <div *ngIf="order_date?.errors?.['required']">Booking date is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Client Name:</label>
+      <div class="w-100">
+        <input formControlName="client" class="form-control form-control-sm rounded-pill" placeholder="Enter client name"/>
+        <div *ngIf="client?.invalid && (client?.dirty || client?.touched)" class="text-danger small">
+          <div *ngIf="client?.errors?.['required']">Client name is required</div>
+          <div *ngIf="client?.errors?.['minlength']">Client name must be at least 2 characters</div>
+        </div>
+      </div>
+      <label>Department:</label>
+      <div class="w-100">
+        <input formControlName="client_department" class="form-control form-control-sm rounded-pill" placeholder="Enter department"/>
+        <div *ngIf="client_department?.invalid && (client_department?.dirty || client_department?.touched)" class="text-danger small">
+          <div *ngIf="client_department?.errors?.['required']">Department is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Destination:</label>
+      <div class="w-100">
+        <input formControlName="destinations" class="form-control form-control-sm rounded-pill" placeholder="Enter destination"/>
+        <div *ngIf="destinations?.invalid && (destinations?.dirty || destinations?.touched)" class="text-danger small">
+          <div *ngIf="destinations?.errors?.['required']">Destination is required</div>
+        </div>
+      </div>
+      <label>Pincode:</label>
+      <div class="w-100">
+        <input formControlName="destination_pincode" class="form-control form-control-sm rounded-pill" placeholder="Enter pincode"/>
+        <div *ngIf="destination_pincode?.invalid && (destination_pincode?.dirty || destination_pincode?.touched)" class="text-danger small">
+          <div *ngIf="destination_pincode?.errors?.['required']">Pincode is required</div>
+          <div *ngIf="destination_pincode?.errors?.['pattern']">Pincode must be 6 digits</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Consignor:</label>
+      <div class="w-100">
+        <input formControlName="configurations_name" class="form-control form-control-sm rounded-pill" placeholder="Enter consignor name"/>
+        <div *ngIf="configurations_name?.invalid && (configurations_name?.dirty || configurations_name?.touched)" class="text-danger small">
+          <div *ngIf="configurations_name?.errors?.['required']">Consignor name is required</div>
+        </div>
+      </div>
+      <label>Mobile Number:</label>
+      <div class="w-100">
+        <input formControlName="configurations_mobile_number" class="form-control form-control-sm rounded-pill" placeholder="Enter mobile number"/>
+        <div *ngIf="configurations_mobile_number?.invalid && (configurations_mobile_number?.dirty || configurations_mobile_number?.touched)" class="text-danger small">
+          <div *ngIf="configurations_mobile_number?.errors?.['required']">Mobile number is required</div>
+          <div *ngIf="configurations_mobile_number?.errors?.['pattern']">Mobile number must be 10 digits</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Address Line 1:</label>
+      <div class="w-100">
+        <input formControlName="configurations_address" class="form-control form-control-sm rounded-pill" placeholder="Enter address line 1"/>
+        <div *ngIf="configurations_address?.invalid && (configurations_address?.dirty || configurations_address?.touched)" class="text-danger small">
+          <div *ngIf="configurations_address?.errors?.['required']">Address line 1 is required</div>
+        </div>
+      </div>
+      <label>Address Line 2:</label>
+      <div class="w-100">
+        <input formControlName="configurations_address1" class="form-control form-control-sm rounded-pill" placeholder="Enter address line 2"/>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Landmark:</label>
+      <div class="w-100">
+        <input formControlName="destination_landmark" class="form-control form-control-sm rounded-pill" placeholder="Enter landmark"/>
+      </div>
+      <label>State:</label>
+      <div class="w-100">
+        <input  type="number" formControlName="shipping_cost" class="form-control form-control-sm rounded-pill" placeholder="Enter state"/>
+        <div *ngIf="shipping_cost?.invalid && (shipping_cost?.dirty || shipping_cost?.touched)" class="text-danger small">
+          <div *ngIf="shipping_cost?.errors?.['required']">Shipping cost is required</div>
+          <div *ngIf="shipping_cost?.errors?.['min']">Shipping cost must be greater than 0</div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="form-row">
+      <label>Remark:</label>
+      <div class="w-100">
+        <input formControlName="remark" class="form-control form-control-sm rounded-pill" placeholder="Enter remark"/>
+      </div>
+      <label>Remark 2:</label>
+      <div class="w-100">
+        <input formControlName="remark2" class="form-control form-control-sm rounded-pill" placeholder="Enter additional remark"/>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-start mt-4">
+      <button type="submit" class="btn btn-primary rounded-pill shadow-sm"  (click)="onSubmit()">
+        <i class="fas fa-save me-1"></i> Submit
+      </button>
+    </div>
+  </form> -->
+
+  <form [formGroup]="shipmentForm" class="needs-validation" novalidate>
+
+    <div class="form-row">
+      <!-- <div class="w-100 d-flex align-items-center gap-2">
+        <input formControlName="awb_no" class="form-control form-control-sm rounded-pill" placeholder="AWB Number" />
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" formControlName="awb_checkbox" id="awbCheckbox" />
+          <label class="form-check-label" for="awbCheckbox">
+            Confirm
+          </label>
+        </div>
+      </div> -->
+
+      <label>AWB No./Traking:</label>
+      <div class="w-100">
+        <input formControlName="awb_no" class="form-control form-control-sm rounded-pill" placeholder="AWB Number" />
+      </div>
+      <label>Booking Date:</label>
+      <div class="w-100">
+        <input formControlName="booking_date" type="date" class="form-control form-control-sm rounded-pill" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Ref No.:</label>
+      <div class="w-100">
+        <input formControlName="ref_no" class="form-control form-control-sm rounded-pill" placeholder="REF Number" />
+      </div>
+      <label>P.O No:</label>
+      <div class="w-100">
+        <input formControlName="po_no" class="form-control form-control-sm rounded-pill" placeholder="P.O Number" />
+      </div>
+      <!-- <label>Booking Date:</label>
+      <div class="w-100">
+        <input formControlName="booking_date" type="date" class="form-control form-control-sm rounded-pill" />
+      </div> -->
+    </div>
+
+    <div class="form-row">
+      <label>Client:</label>
+      <div class="w-100">
+        <!-- <input formControlName="client" class="form-control form-control-sm rounded-pill" placeholder="Client Name" /> -->
+         <select formControlName="client" class="form-control form-control-sm rounded-pill">
+          <option value="" disabled selected>Select Service</option>
+          <option [value]="item.client_name" *ngFor="let item of clientData">{{item.client_name}}</option>
+        </select>
+      </div>
+      <label>Service:</label>
+      <!-- <div class="w-100">
+        <input formControlName="billing_service" class="form-control form-control-sm rounded-pill" placeholder="Billing Service" />
+      </div> -->
+      <div class="w-100">
+        <select formControlName="billing_service" class="form-control form-control-sm rounded-pill">
+          <option value="" disabled selected>Select Service</option>
+          <option value="Air">Air</option>
+          <option value="Surface">Surface</option>
+          <option value="Express">Express</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="form-row">
+      <label>Indent No.:</label>
+      <div class="w-100">
+        <input formControlName="indent_no" class="form-control form-control-sm rounded-pill"
+          placeholder="Indent Number" />
+      </div>
+      <label>Pickup Point:</label>
+      <div class="w-100">
+        <input formControlName="pickup_point" class="form-control form-control-sm rounded-pill"
+          placeholder="Pickup Point" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Consignor Name:</label>
+      <div class="w-100">
+        <input formControlName="consignor_name" class="form-control form-control-sm rounded-pill"
+          placeholder="New Consignor Name" />
+      </div>
+      <label>Company Name:</label>
+      <div class="w-100">
+        <input formControlName="company_name" class="form-control form-control-sm rounded-pill"
+          placeholder="Company Name" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Origin/City:</label>
+      <div class="w-100">
+        <input formControlName="origin_city" class="form-control form-control-sm rounded-pill"
+          placeholder="Origin City" />
+      </div>
+      <label>State:</label>
+      <div class="w-100">
+        <input formControlName="state" class="form-control form-control-sm rounded-pill" placeholder="State" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Country:</label>
+      <div class="w-100">
+        <input formControlName="country" class="form-control form-control-sm rounded-pill" placeholder="Country" />
+      </div>
+      <label>Pin Code:</label>
+      <div class="w-100">
+        <input formControlName="pin_code" class="form-control form-control-sm rounded-pill" placeholder="Pin Code" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Mobile No:</label>
+      <div class="w-100">
+        <input formControlName="mobile_no" class="form-control form-control-sm rounded-pill"
+          placeholder="Mobile Number" />
+      </div>
+      <label>Alt. Mobile No:</label>
+      <div class="w-100">
+        <input formControlName="alt_mobile_no" class="form-control form-control-sm rounded-pill"
+          placeholder="Alternate Mobile Number" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Email ID:</label>
+      <div class="w-100">
+        <input formControlName="email_id" class="form-control form-control-sm rounded-pill" placeholder="Email ID" />
+      </div>
+      <label>GSTIN:</label>
+      <div class="w-100">
+        <input formControlName="gstin" class="form-control form-control-sm rounded-pill" placeholder="GSTIN" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Aadhaar No:</label>
+      <div class="w-100">
+        <input formControlName="aadhaar_no" class="form-control form-control-sm rounded-pill"
+          placeholder="Aadhaar Number" />
+      </div>
+      <label>Warehousing Receipt No:</label>
+      <div class="w-100">
+        <input formControlName="warehousing_receipt_no" class="form-control form-control-sm rounded-pill"
+          placeholder="Warehousing Receipt No" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Challan No:</label>
+      <div class="w-100">
+        <input formControlName="challan_no" class="form-control form-control-sm rounded-pill"
+          placeholder="Challan Number" />
+      </div>
+      <label>Delivery No:</label>
+      <div class="w-100">
+        <input formControlName="delivery_no" class="form-control form-control-sm rounded-pill"
+          placeholder="Delivery Number" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Uploads Document:</label>
+      <div class="w-100">
+        <input class="form-control form-control-sm rounded-pill" placeholder="files"  type="file"/>
+      </div>
+       <label>Remark:</label>
+      <div class="w-100">
+        <input class="form-control form-control-sm rounded-pill" placeholder="remark"  formControlName="remark" type="input"/>
+      </div>
+    </div>
+
+    <!-- Weight Details Section -->
+    <div class="form-group row align-items-center mt-3">
+      <label class="col-sm-2 col-form-label font-weight-bold">Weight Details</label>
+      <div class="col-sm-3">
+        <div class="form-check">
+          <input type="checkbox" formControlName="volumetric_weight" class="form-check-input" id="volumetricWeight">
+          <label class="form-check-label" for="volumetricWeight">Volumetric Weight</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Pkgs*</label>
+      <div class="col-sm-2">
+        <input type="number" formControlName="pkgs" class="form-control form-control-sm rounded-pill" />
+      </div>
+
+      <label class="col-sm-2 col-form-label text-right">Actual Wt</label>
+      <div class="col-sm-2">
+        <input type="number" formControlName="actual_weight" class="form-control form-control-sm rounded-pill"
+          step="0.001" />
+      </div>
+
+      <div class="col-sm-2">
+        <select formControlName="weight_unit" class="form-control form-control-sm rounded-pill">
+          <!-- <option value="GM">GM(1000Mg)</option> -->
+          <option value="KG">KG(1000Gm)</option>
+          <option value="T">T(1000Kg)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Volumetric Dimensions (Visible Only When Checkbox is Checked) -->
+    <div *ngIf="shipmentForm.get('volumetric_weight')?.value">
+      <div class="form-group row mt-2">
+        <label class="col-sm-1 col-form-label font-weight-bold">Length:</label>
+        <div class="col-sm-2">
+          <input type="number" formControlName="length"
+            class="form-control form-control-sm rounded-pill text-center font-weight-bold" />
+        </div>
+
+        <label class="col-sm-1 col-form-label font-weight-bold">Width:</label>
+        <div class="col-sm-2">
+          <input type="number" formControlName="width"
+            class="form-control form-control-sm rounded-pill text-center font-weight-bold" />
+        </div>
+
+        <label class="col-sm-1 col-form-label font-weight-bold">Height:</label>
+        <div class="col-sm-2">
+          <input type="number" formControlName="height"
+            class="form-control form-control-sm rounded-pill text-center font-weight-bold" />
+        </div>
+        <label class="col-sm-1 col-form-label font-weight-bold">Divisor:</label>
+        <div class="col-sm-2">
+          <input type="text" formControlName="divisor"
+            class="form-control form-control-sm rounded-pill text-center font-weight-bold" />
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="d-flex justify-content-start mt-4">
+      <button type="submit" class="btn btn-primary rounded-pill shadow-sm" (click)="onSubmit()">
+        <i class="fas fa-save me-1"></i> Submit
+      </button>
+    </div>
+  </form>
+
+</div>

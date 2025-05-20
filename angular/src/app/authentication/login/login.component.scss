@@ -1,0 +1,187 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 2rem;
+}
+
+.login-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+}
+
+.login-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.logo-container {
+  background: #2c3e50;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  
+  .delivery-truck {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    margin: 0 auto 1.5rem;
+    
+    .truck-icon {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      color: #fff;
+      animation: truckBounce 2s infinite;
+    }
+    
+    .wheels {
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 5px;
+      
+      .wheel {
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-radius: 50%;
+        animation: wheelRotate 1s linear infinite;
+      }
+    }
+  }
+  
+  .company-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    color: #fff;
+  }
+  
+  .company-tagline {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0.5rem 0 0;
+  }
+}
+
+@keyframes truckBounce {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-5px);
+  }
+}
+
+@keyframes wheelRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.login-form-container {
+  padding: 2rem;
+  
+  .login-title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin: 0 0 0.5rem;
+  }
+  
+  .login-subtitle {
+    color: #7f8c8d;
+    margin: 0 0 2rem;
+    font-size: 0.9rem;
+  }
+}
+
+.login-form {
+  .form-group {
+    margin-bottom: 1.5rem;
+    
+    .form-label {
+      display: flex;
+      align-items: center;
+      color: #2c3e50;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      
+      .icon {
+        margin-right: 0.5rem;
+        width: 16px;
+        height: 16px;
+      }
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+      
+      &:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+      }
+      
+      &::placeholder {
+        color: #bdc3c7;
+      }
+    }
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    
+    &:hover {
+      background: #34495e;
+    }
+    
+    .icon {
+      margin-left: 0.5rem;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.invalid-feedback {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+  

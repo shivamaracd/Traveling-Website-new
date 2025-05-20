@@ -1,0 +1,97 @@
+// Plugin: ngx-sweetalert2
+// github: https://github.com/sweetalert2/ngx-sweetalert2
+
+// .swal2-container {
+//   .swal2-popup {
+//     font-size: $font-size-base;
+//     background: lighten($card-bg, 5%);
+//     box-shadow: $card-box-shadow;
+
+//     &.swal2-toast {
+//       box-shadow: $card-box-shadow;
+//       background: lighten($card-bg, 5%);
+//     }
+
+//     .swal2-title {
+//       font-size: 25px;
+//       line-height: 1;
+//       font-weight: 500;
+//       color: $body-color;
+//       margin-bottom: 0;
+//     }
+
+//     .swal2-html-container {
+//       color: #000;
+//       padding: 15px 20px;
+//       display: flex !important;
+//       justify-content: start;
+//       // font-size: $font-size-base;
+//       // color: $text-muted;
+//       font-weight: initial;
+//       margin-top: 33px;
+//       text-decoration: none;
+//     }
+
+//     .swal2-actions {
+//       button {
+//         @extend .btn;
+
+//         &.swal2-confirm {
+//           @extend .btn-primary;
+
+//           &:focus {
+//             box-shadow: none;
+//           }
+//         }
+
+//         &.swal2-cancel {
+//           @extend .btn-danger;
+//           @extend .border-danger;
+//         }
+
+//         svg {
+//           width: 16px;
+//           height: 16px;
+//         }
+//       }
+//     }
+
+//     .swal2-close {
+//       font-size: 22px;
+
+//       &:focus {
+//         box-shadow: none;
+//       }
+//     }
+
+//     .swal2-timer-progress-bar {
+//       background: $secondary;
+//     }
+
+//   }
+// }
+
+// h2#swal2-title {
+//   display: flex !important;
+//   padding: 15px;
+//   font-size: 20px;
+//   background: #f75520 !important;
+//   border-radius: 5px 5px 0 0;
+//   color: #fff !important;
+// }
+.swal2-actions{
+  width: 100% !important;
+    display: flex !important;
+    justify-content: end !important;
+    padding-right: 15px !important;
+}
+button.swal2-cancel.btn.btn-outline-warning.swal2-styled {
+  background: transparent !important;
+  /* color: red; */
+  color: #e15f35 !important;
+  padding: 6px 19px !important;
+  border-color: #e15f35 !important;
+}
+button.swal2-confirm.btn.btn-primary.swal2-styled{
+  padding: 6px 19px !important;
+}

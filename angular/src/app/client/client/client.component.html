@@ -1,0 +1,60 @@
+<section>
+  <div class="container">
+    <div class="row style-heading">
+      <div class="col-sm-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h4 class="app-primary-color fw-bold mb-2">Client</h4>
+            <a class="btn btn-primarys" (click)="openClientModal()"><i
+              class="feather icon-plus icon-md items-plus"></i> Add</a>
+          </div>
+        </div>
+      </div>
+    </div> &nbsp;
+    <div class="card bg-white">
+      <div class="row" style="overflow-x: auto;">
+        <table id="myTable1" class="table table-responsive" style="width:100%">
+          <thead >
+            <tr>
+              <th>S.No</th>
+              <th>Client Name</th>
+              <th>Mobile No</th>
+              <th>City</th>
+              <th>Pincode</th>
+              <th>GST No</th>
+              <th>Email</th>
+              <th>Bank Name</th>
+              <th>Account Name</th>
+              <th>IFSC Code</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.client_name }}</td>
+              <td>{{ item.mobile_no }}</td>
+              <td>{{ item.city }}</td>
+              <td>{{ item.pincode }}</td>
+              <td>{{ item.gst_no }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.bank_name }}</td>
+              <td>{{ item.account_name }}</td>
+              <td>{{ item.ifsc_code }}</td>
+              <td>
+                <i class="feather icon-edit me-2 items-icon text-primary"
+                   ngbTooltip="Edit" container="body" (click)="onEdit(item.id)">
+                </i>
+                <i class="feather icon-trash me-2 items-icon text-danger"
+                   ngbTooltip="Delete" container="body" (click)="onDelete(item.id)">
+                </i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+  </div>
+
+</section>

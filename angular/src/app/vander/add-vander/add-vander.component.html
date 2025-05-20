@@ -1,0 +1,131 @@
+  <!-- <div class="container custom-form-container"> -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-outline-secondary me-3 rounded-pill shadow-sm" (click)="onBack();onCancel()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <h3 class="text-primary fw-bold mb-0">Vendor - {{GeneratedVendorId}}</h3>
+        </div>
+    </div>
+    
+    <div class="custom-card p-4 shadow-sm">
+      <form [formGroup]="vendorForm">
+    
+        <div class="form-row">
+          <label>Vendor Name:</label>
+          <input formControlName="vandor_name" class="form-control form-control-sm rounded-pill" placeholder="Enter vendor name" />
+          <label>Vendor Description:</label>
+          <input formControlName="vander_description" class="form-control form-control-sm rounded-pill" placeholder="Enter vendor description" />
+        </div>
+    
+        <div class="form-row">
+          <label>Branch:</label>
+          <input formControlName="branch" class="form-control form-control-sm rounded-pill" placeholder="Enter branch" />
+          <label>Contact Person: <span class="text-danger">*</span></label>
+          <input formControlName="contact_person" class="form-control form-control-sm rounded-pill" placeholder="Enter contact person" />
+          <span *ngIf="vendorForm.get('contact_person')?.invalid && vendorForm.get('contact_person')?.touched" class="text-danger small">
+            Contact person is required
+          </span>
+        </div>
+    
+        <div class="form-row">
+          <label>Vendor Address1:</label>
+          <input formControlName="vander_address" class="form-control form-control-sm rounded-pill" placeholder="Enter vendor address" />
+          <label>Vendor Address 2: <span class="text-danger">*</span></label>
+          <input formControlName="vander_address2" class="form-control form-control-sm rounded-pill" placeholder="Enter additional address" />
+          <span *ngIf="vendorForm.get('vander_address2')?.invalid && vendorForm.get('vander_address2')?.touched" class="text-danger small">
+            Vendor Address 2 is required
+          </span>
+        </div>
+    
+        <div class="form-row">
+          <label>Country: <span class="text-danger">*</span></label>
+          <input formControlName="country" class="form-control form-control-sm rounded-pill" placeholder="Enter country" />
+          <span *ngIf="vendorForm.get('country')?.invalid && vendorForm.get('country')?.touched" class="text-danger small">
+            Country is required
+          </span>
+    
+          <label>State:</label>
+          <input formControlName="state" class="form-control form-control-sm rounded-pill" placeholder="Enter state" />
+        </div>
+    
+        <div class="form-row">
+          <label>City:</label>
+          <input formControlName="city" class="form-control form-control-sm rounded-pill" placeholder="Enter city" />
+          <label>Pincode:</label>
+          <input formControlName="pincode" class="form-control form-control-sm rounded-pill" placeholder="Enter pincode" />
+        </div>
+    
+        <div class="form-row">
+          <label>Email ID:</label>
+          <input formControlName="email" class="form-control form-control-sm rounded-pill" placeholder="Enter email address" />
+          <span *ngIf="vendorForm.get('email')?.invalid && vendorForm.get('email')?.touched" class="text-danger small">
+            Please enter a valid email address
+          </span>
+    
+          <label>Mobile No.:</label>
+          <input 
+            formControlName="mobile_no" 
+            class="form-control form-control-sm rounded-pill" 
+            placeholder="Enter mobile number"
+            [ngClass]="{'is-invalid': vendorForm.get('mobile_no')?.invalid && vendorForm.get('mobile_no')?.touched}" />
+          <div *ngIf="vendorForm.get('mobile_no')?.invalid && vendorForm.get('mobile_no')?.touched" class="invalid-feedback">
+            <span *ngIf="vendorForm.get('mobile_no')?.errors?.['required']">Mobile number is required</span>
+            <span *ngIf="vendorForm.get('mobile_no')?.errors?.['pattern']">Please enter numbers only</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>GST No.:</label>
+          <input formControlName="gst_no" class="form-control form-control-sm rounded-pill" placeholder="Enter GST number" />
+        </div>
+    
+        <hr class="my-4">
+      <h5 class="app-primary-color mb-3">Bank Details</h5>
+
+      <div class="form-row">
+        <label>Bank Name:</label>
+        <input formControlName="bank_name" class="form-control form-control-sm rounded-pill" placeholder="Enter bank name" />
+        <label>Account Number:</label>
+        <input formControlName="account_number" class="form-control form-control-sm rounded-pill" placeholder="Enter account number" />
+      </div>
+
+      <div class="form-row">
+        <label>Account Name:</label>
+        <input formControlName="account_name" class="form-control form-control-sm rounded-pill" placeholder="Enter account name" />
+        <label>IFSC Code:</label>
+        <input formControlName="ifsc_code" class="form-control form-control-sm rounded-pill" placeholder="Enter IFSC code" />
+      </div>
+    
+
+      <div class="form-row">
+        <label>City:</label>
+        <input formControlName="bank_city" class="form-control form-control-sm rounded-pill" placeholder="Enter bank city" />
+        <label>State:</label>
+        <input formControlName="bank_state" class="form-control form-control-sm rounded-pill" placeholder="Enter bank state" />
+      </div>
+
+      <div class="form-row">
+        <label>Country:</label>
+        <input formControlName="bank_country" class="form-control form-control-sm rounded-pill" placeholder="Enter bank country" />
+        <label>Pincode:</label>
+        <input formControlName="bank_pincode" class="form-control form-control-sm rounded-pill" placeholder="Enter bank pincode" />
+      </div>
+
+      <div class="form-row">
+        <label>Email:</label>
+        <input formControlName="bank_email" class="form-control form-control-sm rounded-pill" placeholder="Enter bank email" />
+      </div>
+      <div *ngIf="vendorForm.get('ifsc_code')?.invalid && vendorForm.get('ifsc_code')?.touched" class="text-danger small ms-4 mb-2">
+        Please enter a valid IFSC code (format: AAAA0123456)
+      </div>
+    
+        <div class="d-flex justify-content-start mt-4">
+          <button type="submit" class="btn btn-primary rounded-pill shadow-sm" (click)="onSubmit()">
+            <i class="fas fa-save me-1"></i> Submit
+          </button>
+        </div>
+    
+      </form>
+    </div>
+    
+  <!-- </div> -->

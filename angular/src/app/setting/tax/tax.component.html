@@ -1,0 +1,94 @@
+<section>
+    <div class="container">
+      <div class="row style-heading">
+        <div class="col-sm-12">
+          <div class="d-flex justify-content-between">
+            <h4>Tax</h4>
+            <a class="btn btn-primarys mb-2" (click)="openDialog()" >
+              <i class="feather icon-plus icon-md items-plus"></i> Add Tax</a>
+          </div>
+        </div>
+      </div>
+      <div class="card bg-white">
+        <div class="row" style="overflow-x: scroll">
+          <table id="exectiveagent" class="table table-responsive" style="width: 100%">
+            <thead>
+              <tr>
+                <th>Mobile no</th>
+                <th>Email</th>
+                <th>first name</th>
+                <th>annual income</th>
+                <th>taxable income</th>
+                <th>tax due</th>
+                <!-- <th>Action</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data; let i = index">
+                <td>{{item.mobile_no}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.first_name}}</td>
+                <td>{{item.annual_income}}</td>
+                <td>{{item.taxable_income}}</td>
+                <td>{{item.tax_due}}</td>
+                <!-- <td>
+                  <div class="form-check form-switch switch-cls">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckchecked" />
+                  </div>
+                </td> -->
+                <!-- <td>
+                  <i class="feather icon-edit me-2 items-icon text-primary" ngbTooltip="Edit" container="body"
+                    (click)="onEdit(item.id)" (click)="openDialog()">
+                  </i>
+                  <i class="feather icon-trash me-2 items-icon text-danger" ngbTooltip="Delete" container="body"
+                    (click)="onDelete(item.id)">
+                  </i>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+    <ng-template #contentgroup let-modal>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row style-heading">
+            <div class="col-12">
+              <div class="d-flex justify-content-between">
+                <h4 class="mt-2 my-3">{{title}}</h4>
+                <button type="button" class="close text-danger" aria-label="Close" (click)="close()"
+                  (click)="modal.dismiss(contentgroup)">
+                  X
+                </button>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <form [formGroup]="taxForm">
+                <div class="row mx-1">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="Case Status" formControlName="case_status"
+                      oninput="this.value = this.value.replace(/(^ |[^a-zA-Z0-9\s])|\s{2,}/g, '');" />
+                    <!-- <span *ngIf="f.name.invalid && (f.name.touched ||submitted)">
+                      <p *ngIf="f.name.errors.required" class="text-danger mt-1">Group Name is Required</p>
+                    </span> -->
+                    <label for="floatingInput">Tax</label>
+                  </div>
+                  
+                  <div class="btn-div">
+                    <button type="button" (click)="onsubmit()" class="btn btn-primary">
+                      {{btn}}</button>&nbsp;
+                    <button type="button" class="btn btn-danger me-2" id="cancelmodalsa"
+                      (click)="modal.dismiss(contentgroup)" (click)="close()">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </section>

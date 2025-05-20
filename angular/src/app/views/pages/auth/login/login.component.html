@@ -1,0 +1,54 @@
+<div class="row w-100 mx-0 auth-page">
+  <div class="col-md-8 col-xl-6 mx-auto">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-4 pe-md-0">
+          <div class="auth-side-wrapper bg-dark">
+            <div class="img_box">
+              <img src="./assets/images/image/celetel_white.svg" alt="Celetel">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 ps-md-0">
+          <div class="auth-form-wrapper px-4 py-5">
+            <a routerLink="." class="nobleui-logo d-block mb-2"><img src="./assets/images/image/main_logo.svg"
+                alt=""></a>
+            <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
+            <form class="forms-sample" [formGroup]="loginForm">
+              <div class="form-group py-1 px-3 form-field mb-0">
+                <input type="text" formControlName="username" class="form-control" placeholder="Username" required />
+              </div>
+              <div class="form-group py-1 px-3 form-field mb-0">
+                <div class="d-flex">
+                  <div class="input-group">
+                    <input [type]="password" required [type]="showPassword ? 'text' : 'password'"
+                      formControlName="password" class="form-control pwd-control" id="password-field"
+                      placeholder="Password">
+                      <!-- <button (click)="onClick()" class="eye-btn">
+                        <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
+                        <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
+                      </button> -->
+                      <div class="eye">
+                        <i alt="show" class="far fa-eye eye-show" (click)="showPassword = !showPassword"
+                          [class.hide]="showPassword"></i>
+                        <i alt="hide" class="far fa-eye-slash eye-hide" (click)="showPassword = !showPassword"
+                          [class.hide]="!showPassword"></i>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <a routerLink="/auth/forgetpassword" class="d-block mt-3 text-muted">Forget Password ?</a>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" (click)="onLogin()">{{btn}}</button>
+                <!-- <span *ngIf="this.isLoading" class="text-danger">Loading...</span> -->
+              </div>
+              <!-- <a routerLink="/auth/register" class="d-block mt-3 text-muted">Not a user? Sign up</a> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

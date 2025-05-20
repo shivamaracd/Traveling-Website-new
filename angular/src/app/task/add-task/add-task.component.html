@@ -1,0 +1,127 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <h3 class="mb-0 text-secondary">Add Task</h3>
+    <button type="button" class="btn btn-success" (click)="onBack()">Back</button>
+  </div>
+  <div class="card bg-white">
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Subject -->
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="subject">Subject *</label>
+              <input
+                id="subject"
+                formControlName="subject"
+                class="form-control"
+                placeholder="Enter Subject"
+              />
+              <div *ngIf="taskForm.get('subject')?.invalid && taskForm.get('subject')?.touched" class="text-danger">
+                Subject is required
+              </div>
+            </div>
+
+            <!-- Start Date -->
+            <div class="col-md-4 mb-3">
+              <label for="startDate">Start Date *</label>
+              <input
+                type="date"
+                id="startDate"
+                formControlName="startDate"
+                class="form-control"
+                placeholder="Enter Start Date"
+              />
+              <div *ngIf="taskForm.get('startDate')?.invalid && taskForm.get('startDate')?.touched" class="text-danger">
+                Start Date is required
+              </div>
+            </div>
+
+            <!-- Deadline -->
+            <div class="col-md-4 mb-3">
+              <label for="deadline">Deadline *</label>
+              <input
+                id="deadline"
+                formControlName="deadline"
+                type="date"
+                class="form-control"
+                placeholder="Enter Deadline"
+              />
+              <div *ngIf="taskForm.get('deadline')?.invalid && taskForm.get('deadline')?.touched" class="text-danger">
+                Deadline is required
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Status -->
+            <div class="col-md-4 mb-3">
+              <label for="status">Select Status *</label>
+              <select id="status" formControlName="status" class="form-control">
+                <option value="">Select Status</option>
+                <option value="Good">Good</option>
+                <option value="Bad">Bad</option>
+              </select>
+              <div *ngIf="taskForm.get('status')?.invalid && taskForm.get('status')?.touched" class="text-danger">
+                Status is required
+              </div>
+            </div>
+
+            <!-- Priority -->
+            <div class="col-md-4 mb-3">
+              <label for="priority">Priority *</label>
+              <select id="priority" formControlName="priority" class="form-control">
+                <option value="">Select Priority</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+              <div *ngIf="taskForm.get('priority')?.invalid && taskForm.get('priority')?.touched" class="text-danger">
+                Priority is required
+              </div>
+            </div>
+
+            <!-- Related To -->
+            <div class="col-md-4 mb-3">
+              <label for="relatedTo">Related To *</label>
+              <input
+                id="relatedTo"
+                formControlName="relatedTo"
+                class="form-control"
+                placeholder="Enter related entity"
+              />
+              <div *ngIf="taskForm.get('relatedTo')?.invalid && taskForm.get('relatedTo')?.touched" class="text-danger">
+                Related entity is required
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Description -->
+            <div class="col-md-12 mb-3">
+              <label for="description">Description *</label>
+              <textarea
+                id="description"
+                formControlName="decripations"
+                class="form-control"
+                placeholder="Enter description"
+                rows="4"
+              ></textarea>
+              <div *ngIf="taskForm.get('description')?.invalid && taskForm.get('description')?.touched" class="text-danger">
+                Description is required
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit, Cancel, and Back buttons -->
+      <div class="row mt-3">
+        <div class="col-md-12 text-end">
+          <button type="button" class="btn btn-danger me-2" (click)="onCancel()">Cancel</button>
+          <button type="submit" class="btn btn-primary" >Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

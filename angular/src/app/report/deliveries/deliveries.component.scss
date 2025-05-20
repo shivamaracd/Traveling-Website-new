@@ -1,0 +1,53 @@
+ 
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .filter-bar select,
+  .filter-bar input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-width: 200px;
+  }
+  
+  .export-btn {
+    background: #d6481a;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .export-btn i {
+    margin-right: 6px;
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0d6efd;
+    border-bottom: 1px solid #dcdcdc;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+  }
+  
+  .info-row {
+    margin-bottom: 10px;
+  }
+  
+  .info-row div {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  
+  .info-row span {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  

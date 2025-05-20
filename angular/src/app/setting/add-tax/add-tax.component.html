@@ -1,0 +1,131 @@
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h3 class="mb-0 text-secondary">Add Tax</h3>
+        <button type="button" class="btn btn-success" (click)="onBack()">Back</button>
+    </div>
+    <div class="card bg-white">
+        <form [formGroup]="taxForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Personal Information -->
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label>First Name *</label>
+                            <input formControlName="first_name" class="form-control" placeholder="Enter first name" />
+                            <div *ngIf="taxForm.get('first_name')?.invalid && taxForm.get('first_name')?.touched"
+                                class="text-danger">
+                                First Name is required
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label>Middle Name *</label>
+                            <input formControlName="middle_name" class="form-control" placeholder="Enter middle name" />
+                            <div *ngIf="taxForm.get('middle_name')?.invalid && taxForm.get('middle_name')?.touched"
+                                class="text-danger">
+                                Middle Name is required
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label>Last Name *</label>
+                            <input formControlName="last_name" class="form-control" placeholder="Enter last name" />
+                            <div *ngIf="taxForm.get('last_name')?.invalid && taxForm.get('last_name')?.touched"
+                                class="text-danger">
+                                Last Name is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Email -->
+                        <div class="col-md-4 mb-3">
+                            <label>Email *</label>
+                            <input formControlName="email" class="form-control" placeholder="Enter email" />
+                            <div *ngIf="taxForm.get('email')?.invalid && taxForm.get('email')?.touched"
+                                class="text-danger">
+                                {{ emailError }}
+                            </div>
+                        </div>
+
+                        <!-- Mobile Number -->
+                        <div class="col-md-4 mb-3">
+                            <label>Mobile No *</label>
+                            <input formControlName="mobile_no" class="form-control" placeholder="Enter mobile number" />
+                            <div *ngIf="taxForm.get('mobile_no')?.invalid && taxForm.get('mobile_no')?.touched"
+                                class="text-danger">
+                                Mobile number is required
+                            </div>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="col-md-4 mb-3">
+                            <label>Gender *</label>
+                            <input type="radio" formControlName="gender" value="male" id="male" />
+                            <label for="male">Male</label>
+                            <input type="radio" formControlName="gender" value="female" id="female" />
+                            <label for="female">Female</label>
+                            <input type="radio" formControlName="gender" value="other" id="other" />
+                            <label for="other">Other</label>
+                            <div *ngIf="taxForm.get('gender')?.invalid && taxForm.get('gender')?.touched"
+                                class="text-danger">
+                                Gender is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Address -->
+                        <div class="col-md-8 mb-3">
+                            <label>Address *</label>
+                            <textarea formControlName="address" class="form-control" placeholder="Enter address" rows="1"></textarea>
+                            <div *ngIf="taxForm.get('address')?.invalid && taxForm.get('address')?.touched"
+                                class="text-danger">
+                                Address is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tax Information Section -->
+                    <h4 class="text-secondary mt-3">Tax Information</h4>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label>Annual Income (in USD) *</label>
+                            <input formControlName="annual_income" class="form-control" placeholder="Enter annual income" />
+                            <div *ngIf="taxForm.get('annual_income')?.invalid && taxForm.get('annual_income')?.touched"
+                                class="text-danger">
+                                Annual Income is required
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label>Taxable Income (in USD) *</label>
+                            <input formControlName="taxable_income" class="form-control" placeholder="Enter taxable income" />
+                            <div *ngIf="taxForm.get('taxable_income')?.invalid && taxForm.get('taxable_income')?.touched"
+                                class="text-danger">
+                                Taxable Income is required
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label>Tax Due (in USD) *</label>
+                            <input formControlName="tax_due" class="form-control" placeholder="Enter tax due amount" />
+                            <div *ngIf="taxForm.get('tax_due')?.invalid && taxForm.get('tax_due')?.touched"
+                                class="text-danger">
+                                Tax Due is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit, Cancel, and Back buttons -->
+            <div class="row mt-3">
+                <div class="col-md-12 text-end">
+                    <button type="button" class="btn btn-danger me-2" (click)="onCancel()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="taxForm.invalid">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

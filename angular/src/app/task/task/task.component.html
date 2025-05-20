@@ -1,0 +1,66 @@
+<section>
+  <div class="container">
+    <div class="row style-heading">
+      <div class="col-sm-12">
+        <div class="d-flex justify-content-between">
+          <h4>Task</h4>
+          <a class="btn btn-primarys mb-2" (click)="openClientModal()"><i class="feather icon-plus icon-md items-plus"></i> Add Task</a>
+        </div>
+      </div>
+    </div>
+    <div class="card bg-white">
+      <div class="row" style="overflow-x: scroll;">
+        <table id="myTable2" class="table table-responsive" style="width:100%">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Task Name</th>
+              <th>Related To</th>
+              <th>Start Date </th>
+              <th>Deadline</th>
+              <th>Members</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of taskValue; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{item.subject}}</td>
+              <td>Other</td>
+              <td>{{item.startDate | date:"dd:MM:yyyy"}}</td>
+              <td>{{item.deadline | date:"dd:MM:yyyy"}}</td>
+              <td>
+                <p>
+                  <span class="active badge">J</span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <span class="active">In Progress</span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  <span class="actived">High</span>
+                </p>
+              </td>
+              <td> <i class="feather icon-edit me-2 items-icon text-primary" ngbTooltip="Edit" container="body" (click)="onEdit(item.id)">
+                  <!-- <span>Edit</span> -->
+                </i>
+                <!-- <i class="feather icon-plus-circle me-2 items-icon text-dark"
+                   ngbTooltip="Add Executive" container="body"> -->
+                <!-- <span>Add Executive</span> -->
+                <!-- </i> -->
+                <i class="feather icon-trash me-2 items-icon text-danger" ngbTooltip="Delete" container="body" (click)="onDelete(item.id)">
+                  <!-- <span>Delete</span> -->
+                </i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

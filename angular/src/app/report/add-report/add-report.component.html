@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Courier Receipt</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .receipt-container {
+      width: 100%;
+      border: 2px solid #1f3f9e;
+      padding: 10px;
+      color: #1f3f9e;
+    }
+    .header, .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #1f3f9e;
+      padding-bottom: 10px;
+    }
+    .footer {
+      border-top: 2px solid #1f3f9e;
+      border-bottom: none;
+      padding-top: 10px;
+    }
+    .logo {
+      width: 120px;
+      height: auto;
+    }
+    .section {
+      margin-top: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .box {
+      border: 1px solid #1f3f9e;
+      padding: 5px;
+    }
+    .title-bar {
+      background: #1f3f9e;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      padding: 5px;
+      margin-top: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table td, table th {
+      border: 1px solid #1f3f9e;
+      padding: 5px;
+      text-align: left;
+    }
+    .signature-section {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .terms {
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    .contact {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="receipt-container">
+    <div class="header">
+      <div>
+        <h2>RV COURIER & LOGISTICS</h2>
+        <p>Office No. 301/1, Sec-37, Khandsa Dhani, Gurugram, Haryana 122008<br>
+        GSTIN: 06ABIFR8568B1ZY<br>
+        <strong>Contact us:</strong> +91 9654162328<br>
+        <a href="https://rvcourierlogistics.com">rvcourierlogistics.com</a></p>
+      </div>
+      <div>
+        <table>
+          <tr><td>AWB No.</td><td></td></tr>
+          <tr><td>Destination</td><td></td></tr>
+          <tr><td>Date</td><td></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="box">
+        <strong>Consigner Details:</strong><br><br>
+      </div>
+      <div class="box">
+        <strong>Consignee Details:</strong><br><br>
+        Mobile No:
+      </div>
+      <div class="box">
+        <table>
+          <tr><td>Origin</td><td></td></tr>
+          <tr><td>Destination</td><td></td></tr>
+          <tr><td>DOX</td><td>Pcs</td></tr>
+          <tr><td>Weight</td><td></td></tr>
+          <tr><td>Courier Charges</td><td></td></tr>
+          <tr><td>GST</td><td></td></tr>
+          <tr><td>Total</td><td></td></tr>
+          <tr><td>Cash</td><td></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="box">
+        <strong>Mode (✓):</strong><br>
+        □ Surface □ Air Cargo □ Express
+      </div>
+      <div class="box">
+        <strong>Weight:</strong>
+      </div>
+      <div class="box">
+        <strong>Amount:</strong>
+      </div>
+    </div>
+
+    <div class="signature-section">
+      <div>
+        <strong>Sender's Signature & Seal</strong><br>
+        <small>I have read and understood terms & conditions printed overleaf of this consignment note. I agree to the same.</small>
+      </div>
+      <div>
+        <strong>Authorized Sign.</strong>
+      </div>
+    </div>
+
+    <div class="title-bar">
+      FOR YOUR PERSONAL AND VALUABLE ITEMS, USE OUR EXPRESS SERVICE
+    </div>
+
+    <div class="terms">
+      <strong>Terms & Conditions:</strong><br>
+      I/We declare that this consignment does not contain contraband, illegal drugs, or any prohibited items and commodities which can cause safety hazards while transporting.
+    </div>
+
+    <div class="contact">
+      <div>📞 Customer Care No: +91 9654162328</div>
+    </div>
+  </div>
+</body>
+</html>

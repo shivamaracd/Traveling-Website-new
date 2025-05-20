@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600&display=swap');
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bs-stepper/dist/css/bs-stepper.min.css';
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+// Your custom imports and styles
+@import "assets/scss/style.scss";
+// Global icon font
+@import "./assets/fonts/feather/style.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+// // 3rd party plugins
+@import "@mdi/font/css/materialdesignicons.min.css";
+@import "perfect-scrollbar/css/perfect-scrollbar.css";
+@import "highlight.js/styles/googlecode.css";
+@import "ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css";
+@import "ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css";
+@import "animate.css/animate.min.css";
+@import "@ng-select/ng-select/themes/default.theme.css";
+@import "../node_modules/metismenujs/dist/metismenujs.css";
+@import "dropzone/dist/min/dropzone.min.css";
+@import "quill/dist/quill.snow.css";
+@import "angular-archwizard/styles/archwizard.css";
+@import "simple-datatables/dist/style.css";
+@import "@swimlane/ngx-datatable/index.css";
+@import "@swimlane/ngx-datatable/themes/bootstrap.css";
+@import "@swimlane/ngx-datatable/assets/icons.css";
+
+
+// NobleUI styles for LTR
+@import "./assets/scss/style";
+
+*{
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+  font-family: 'Mulish', sans-serif;
+}
+// NobleUI styles For RTL
+// @import "./assets/scss/style.rtl.css";
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0px !important;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+}
+
+.page-link, .dataTable-bottom .dataTable-pagination ul li a{
+  color: #111 !important;
+}
+.page-item.active .page-link {
+  z-index: 0;
+  color: #fff !important;
+  background-color: #d4491d;
+  border-color: #d4491d;
+}
+div#example_info, div#example1_info, div#example2_info, div#example4_info, div#example5_info, div#example6_info, div#example7_info, div#example11_info, div#example21_info, div#example22_info{
+    display: none;
+}
+div#example_length, div#example1_length, div#example2_length, div#example4_length, div#example5_length, div#example6_length, div#example7_length, div#example8_length, div#example11_length, div#example21_length, div#example22_length {
+    display: none;
+}
+div#example_filter, div#example1_filter, div#example2_filter, div#example4_filter, div#example5_filter, div#example6_filter, div#example7_filter, div#example8_filter, div#example11_filter, div#example12_filter, div#example21_filter, div#example22_filter {
+    display: none;
+}
+.dataTables_paginate{
+  margin-top: 16px;
+}
+.modal-dialog{
+    // max-width: max-content !important;
+    z-index: 999999999 !important;
+}
+.modal-content{
+    border-radius: 0px !important;
+}
+
+
+// .dataTables_wrapper{
+//   overflow: scroll;
+// }
+.dataTables_wrapper::-webkit-scrollbar{
+  display: none !important;
+}
+
+// table#example th,
+//  table#example1 th,
+// table#example2 th,
+// table#example4 th,
+// table#myTable th,
+// table#myTable2 th,
+// table#myTable3 th,
+// table#myTable4 th,
+// #myTable5 th{
+//   text-transform: capitalize !important;
+//   font-size: 14px !important;
+//   font-weight: 400 !important;
+//   color: #111 !important;
+// }
+div.dataTables_wrapper div.dataTables_filter input{
+  min-height: 20px !important;
+}
+select.custom-select.custom-select-sm.form-control.form-control-sm {
+  min-height: 20px !important;
+}
+
+.dataTables_wrapper a.page-link {
+  padding: 3px 7px;
+}
+tbody td{
+  font-size: 13px;
+  font-weight: 300;
+  padding-top: 15px !important;
+}
+input[type="date"] {
+  outline: none;
+}
+ngx-dropzone-preview{
+  ngx-dropzone-remove-badge{
+    z-index: 9999999999 !important;
+  }
+}
+
+
+.modal-dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // overflow-y: auto;
+  // min-height: calc(100vh - 60px);
+}
+
+@media (max-width: 767px) {
+  .modal-dialog {
+    min-height: calc(100vh - 20px);
+  }
+}
+
+ .toast-container {
+  --bs-toast-zindex: 1090;
+  position: fixed !important;
+  z-index: var(--bs-toast-zindex);
+  width: max-content;
+  max-width: 100%;
+  pointer-events: none;
+}
+::-ms-reveal {
+  display: none !important;
+}
+table.dataTable thead>tr>th.sorting:before, table.dataTable thead>tr>th.sorting:after, table.dataTable thead>tr>th.sorting_asc:before, table.dataTable thead>tr>th.sorting_asc:after, table.dataTable thead>tr>th.sorting_desc:before, table.dataTable thead>tr>th.sorting_desc:after, table.dataTable thead>tr>th.sorting_asc_disabled:before, table.dataTable thead>tr>th.sorting_asc_disabled:after, table.dataTable thead>tr>th.sorting_desc_disabled:before, table.dataTable thead>tr>th.sorting_desc_disabled:after, table.dataTable thead>tr>td.sorting:before, table.dataTable thead>tr>td.sorting:after, table.dataTable thead>tr>td.sorting_asc:before, table.dataTable thead>tr>td.sorting_asc:after, table.dataTable thead>tr>td.sorting_desc:before, table.dataTable thead>tr>td.sorting_desc:after, table.dataTable thead>tr>td.sorting_asc_disabled:before, table.dataTable thead>tr>td.sorting_asc_disabled:after, table.dataTable thead>tr>td.sorting_desc_disabled:before, table.dataTable thead>tr>td.sorting_desc_disabled:after {
+  position: absolute;
+  display: block;
+  opacity: .125;
+  right: 0px;
+  left: 0px;
+  line-height: 9px;
+  font-size: .8em;
+}
+.add_profile{
+  position: absolute;
+  top: 46%;
+  right: 10%;
+}
+
+/* Custom color classes */
+.app-primary-color {
+  color: #d4491d !important;
+}
+
+.app-primary-button {
+  background-color: #d4491d !important;
+  color: white !important;
+  border-color: #d4491d !important;
+}
+
+.app-outline-primary-button {
+  color: #d4491d !important;
+  border-color: #d4491d !important;
+  background-color: transparent !important;
+}
+
+/* Override Bootstrap's primary button color */
+.btn-primary {
+  background-color: #d4491d !important;
+  border-color: #d4491d !important;
+}
+
+.text-primary {
+  color: #d4491d !important;
+}

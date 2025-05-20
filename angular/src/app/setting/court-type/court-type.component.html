@@ -1,0 +1,96 @@
+<section>
+    <div class="container">
+      <div class="row style-heading">
+        <div class="col-sm-12">
+          <div class="d-flex justify-content-between">
+            <h4>Court Type</h4>
+            <a  class="btn btn-primarys mb-2"   (click)="openDialog(contentgroup)"  ><i
+              class="feather icon-plus icon-md items-plus"></i> Add Court Type</a>
+          </div>
+        </div>
+      </div>
+      <div class="card bg-white">
+        <div class="row" style="overflow-x: scroll;">
+          <table id="myTable5" class="table table-responsive" style="width:100%">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Court Type</th>
+                <th>Status</th>
+                <th >Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data; let i = index">
+                <td>{{i + 1 }}</td>
+                <td>{{item.court_type}}</td>
+                <td>
+                  <div class="form-check form-switch switch-cls">
+                    <input class="form-check-input" type="checkbox" role="switch"
+                      id="flexSwitchCheckchecked" >
+                  </div>
+                </td>
+                <td> <i class="feather icon-edit me-2 items-icon text-primary"
+                     ngbTooltip="Edit" container="body" (click)="openDialog(contentgroup)" (click)="onEdit(item.id)">
+                  </i>
+                  <i class="feather icon-trash me-2 items-icon text-danger"
+                     ngbTooltip="Delete" container="body" (click)="onDelete(item.id)">
+                  </i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #contentgroup let-modal>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row style-heading">
+            <div class="col-12">
+              <div class="d-flex justify-content-between">
+                <h4 class="mt-2 my-3">Add Court Type</h4>
+                <button type="button" class="close text-danger" aria-label="Close" 
+                  (click)="modal.dismiss(contentgroup);close()">
+                  X
+                </button>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <form [formGroup]="courtTypeForm">
+                <div class="row mx-1">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="Court Type" formControlName="court_type"
+                      oninput="this.value = this.value.replace(/(^ |[^a-zA-Z0-9\s])|\s{2,}/g, '');" />
+                    <!-- <span *ngIf="f.name.invalid && (f.name.touched ||submitted)">
+                      <p *ngIf="f.name.errors.required" class="text-danger mt-1">Group Name is Required</p>
+                    </span> -->
+                    <label for="floatingInput">Court Type</label>
+                  </div>
+                  <!-- <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="Cash Sub Type" formControlName="cash_sub_type"
+                      oninput="this.value = this.value.replace(/(^ |[^a-zA-Z0-9\s])|\s{2,}/g, '');" /> -->
+                    <!-- <span *ngIf="f.description.invalid && (f.description.touched ||submitted)">
+                      <p *ngIf="f.description.errors.required" class="text-danger mt-1">Group Description is Required</p>
+                    </span> -->
+                    <!-- <label for="floatingInput">Cash Sub Type</label>
+                  </div> -->
+                  <div class="btn-div">
+                    <button type="button" (click)="onsubmit()" class="btn btn-primary">
+                      Save</button>&nbsp;
+                    <button type="button" class="btn btn-danger me-2" id="cancelmodalsa"
+                      (click)="modal.dismiss(contentgroup);close()" >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  
+  </section>
+  

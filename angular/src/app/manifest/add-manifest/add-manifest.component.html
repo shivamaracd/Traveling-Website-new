@@ -1,0 +1,205 @@
+<!-- <div class="container custom-form-container"> -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="d-flex align-items-center">
+    <button type="button" class="btn btn-outline-secondary me-3 rounded-pill shadow-sm" (click)="onBack();onCancel()">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+    <h3 class="text-primary fw-bold mb-0">Manifest</h3>
+  </div>
+</div>
+
+<div class="custom-card p-4 shadow-sm">
+  <form [formGroup]="manifestForm" class="needs-validation" novalidate>
+    <h5 class="text-primary mb-3 border-bottom pb-2 fw-bold">
+      <i class="fas fa-file-alt me-2"></i>Manifest Details
+    </h5>
+    <div class="form-row">
+      <label>Tracking Number:</label>
+      <div class="w-100">
+        <input formControlName="tracking_number" class="form-control form-control-sm rounded-pill"
+          placeholder="Enter tracking number" />
+      </div>
+      <label>Origin:</label>
+      <div class="w-100">
+        <input formControlName="origin" class="form-control form-control-sm rounded-pill" placeholder="Enter origin" />
+        <div *ngIf="origin?.invalid && (origin?.dirty || origin?.touched)" class="text-danger small">
+          <div *ngIf="origin?.errors?.['required']">Origin is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label>Manifest Number:</label>
+      <div class="w-100">
+        <input formControlName="manifest_number" class="form-control form-control-sm rounded-pill"
+          placeholder="Enter manifest number" />
+        <div *ngIf="manifest_number?.invalid && (manifest_number?.dirty || manifest_number?.touched)"
+          class="text-danger small">
+          <div *ngIf="manifest_number?.errors?.['required']">Manifest number is required</div>
+          <div *ngIf="manifest_number?.errors?.['pattern']">Manifest number should contain only letters and numbers
+          </div>
+        </div>
+      </div>
+      <label>Date:</label>
+      <div class="w-100">
+        <input formControlName="date" type="date" class="form-control form-control-sm rounded-pill" />
+        <div *ngIf="date?.invalid && (date?.dirty || date?.touched)" class="text-danger small">
+          <div *ngIf="date?.errors?.['required']">Date is required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Branch/Vendor:</label>
+      <div class="w-100">
+        <select formControlName="destination" class="form-control form-control-sm rounded-pill">
+          <option value="Vendor">Vendor</option>
+          <option value="Branch">Branch</option>
+        </select>
+      </div>
+
+      <!-- Show only when Branch is selected -->
+      <label *ngIf="manifestForm.get('destination')?.value === 'Branch'">Branch:</label>
+      <div class="w-100" *ngIf="manifestForm.get('destination')?.value === 'Branch'">
+        <select formControlName="branch" class="form-control form-control-sm rounded-pill">
+          <option value="">Select Branch</option>
+          <!-- <option *ngFor="let branch of branchList" [value]="branch">{{ branch }}</option> -->
+        </select>
+      </div>
+
+      <!-- Show only when Vendor is selected -->
+      <label *ngIf="manifestForm.get('destination')?.value === 'Vendor'">Vendor:</label>
+      <div class="w-100" *ngIf="manifestForm.get('destination')?.value === 'Vendor'">
+        <select formControlName="vendor" class="form-control form-control-sm rounded-pill">
+          <option value="">Select Vendor</option>
+          <option *ngFor="let vendor of vendorList" [value]="vendor.vandor_name">{{ vendor.vandor_name }}</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="form-row">
+      <label>Status:</label>
+      <div class="w-100">
+        <select formControlName="status" class="form-control form-control-sm rounded-pill">
+          <option value="Pending">Pending</option>
+          <option value="In Transit">In Transit</option>
+          <option value="Completed">Completed</option>
+        </select>
+        <div *ngIf="status?.invalid && (status?.dirty || status?.touched)" class="text-danger small">
+          <div *ngIf="status?.errors?.['required']">Status is required</div>
+        </div>
+      </div>
+      <label>Remarks:</label>
+      <div class="w-100">
+        <input formControlName="remarks" class="form-control form-control-sm rounded-pill"
+          placeholder="Enter remarks" />
+      </div>
+
+    </div>
+
+
+
+    <!-- <div class="mt-4">
+      <h5>Packages</h5>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <select class="form-control form-control-sm rounded-pill" #packageSelect
+            (change)="addPackage(packageSelect.value)">
+            <option value="">Select Package</option>
+            <option *ngFor="let shipment of availableShipments" [value]="shipment.tracking_number">
+              {{shipment.tracking_number}} ({{shipment.weight}} kg)
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Tracking Number</th>
+              <th>Weight (kg)</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pkg of packages">
+              <td>{{pkg.tracking_number}}</td>
+              <td>{{pkg.weight}}</td>
+              <td>{{pkg.status}}</td>
+              <td>
+                <button type="button" class="btn btn-sm btn-danger" (click)="removePackage(pkg.tracking_number)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div> -->
+
+    <div class="form-row">
+      <label>Driver Contact:</label>
+      <div class="w-100">
+        <input formControlName="driver_contact" class="form-control form-control-sm rounded-pill"
+          placeholder="Enter driver contact" />
+        <div *ngIf="driver_contact?.invalid && (driver_contact?.dirty || driver_contact?.touched)"
+          class="text-danger small">
+          <div *ngIf="driver_contact?.errors?.['required']">Driver contact is required</div>
+          <div *ngIf="driver_contact?.errors?.['pattern']">Driver contact must be 10 digits</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-row">
+      <label>Total Packages:</label>
+      <div class="w-100">
+        <input formControlName="total_packages" type="number" class="form-control form-control-sm rounded-pill"
+          readonly />
+        <div *ngIf="total_packages?.invalid && (total_packages?.dirty || total_packages?.touched)"
+          class="text-danger small">
+          <div *ngIf="total_packages?.errors?.['required']">Total packages is required</div>
+          <div *ngIf="total_packages?.errors?.['min']">Total packages must be at least 1</div>
+        </div>
+      </div>
+      <label>Total Weight:</label>
+      <div class="w-100">
+        <input formControlName="total_weight" type="number" class="form-control form-control-sm rounded-pill"
+          readonly />
+        <div *ngIf="total_weight?.invalid && (total_weight?.dirty || total_weight?.touched)" class="text-danger small">
+          <div *ngIf="total_weight?.errors?.['required']">Total weight is required</div>
+          <div *ngIf="total_weight?.errors?.['min']">Total weight must be greater than 0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Vehicle Number:</label>
+      <div class="w-100">
+        <input formControlName="vehicle_number" class="form-control form-control-sm rounded-pill"
+          placeholder="Enter vehicle number" />
+        <div *ngIf="vehicle_number?.invalid && (vehicle_number?.dirty || vehicle_number?.touched)"
+          class="text-danger small">
+          <div *ngIf="vehicle_number?.errors?.['required']">Vehicle number is required</div>
+          <div *ngIf="vehicle_number?.errors?.['pattern']">Vehicle number should contain only letters and numbers</div>
+        </div>
+      </div>
+      <label>Driver Name:</label>
+      <div class="w-100">
+        <input formControlName="driver_name" class="form-control form-control-sm rounded-pill"
+          placeholder="Enter driver name" />
+        <div *ngIf="driver_name?.invalid && (driver_name?.dirty || driver_name?.touched)" class="text-danger small">
+          <div *ngIf="driver_name?.errors?.['required']">Driver name is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-start mt-4">
+      <button type="submit" class="btn btn-primary rounded-pill shadow-sm" (click)="onSubmit()">
+        <i class="fas fa-save me-1"></i> Submit
+      </button>
+    </div>
+  </form>
+</div>
+<!-- </div> -->

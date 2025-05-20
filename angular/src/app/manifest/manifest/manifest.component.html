@@ -1,0 +1,136 @@
+<section>
+    <div class="container">
+      <div class="row style-heading">
+        <div class="col-sm-12">
+          <div class="d-flex justify-content-between">
+            <h4>Manifest</h4>
+            <a class="btn btn-primarys mb-2" (click)="openClientModal()"><i
+                class="feather icon-plus icon-md items-plus"></i> Add Manfest</a>
+          </div>
+        </div>
+      </div>
+      <div class="card bg-white">
+        <div class="row" style="overflow-x: auto;">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Manifest Number</th>
+                <th>Date</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Vehicle Number</th>
+                <th>Total Packages</th>
+                <th>Total Weight</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data">
+                <td>{{item.manifest_number}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.origin}}</td>
+                <td>{{item.destination}}</td>
+                <td>{{item.vehicle_number}}</td>
+                <td>{{item.total_packages}}</td>
+                <td>{{item.total_weight}} kg</td>
+                <td>
+                  <span [ngClass]="{
+                    'badge bg-warning': item.status === 'Pending',
+                    'badge bg-info': item.status === 'In Transit',
+                    'badge bg-success': item.status === 'Completed'
+                  }">
+                    {{item.status}}
+                  </span>
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-info me-2" (click)="viewManifest(item)">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                  <button class="btn btn-sm btn-primary me-2" (click)="editManifest(item.id)">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger" (click)="deleteManifest(item.id)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+  
+    </div>
+  
+  </section>
+
+<!-- View Manifest Modal -->
+<div class="modal fade" [class.show]="showViewModal" [style.display]="showViewModal ? 'block' : 'none'" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Manifest Details</h5>
+        <button type="button" class="close" (click)="showViewModal = false" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="selectedManifest">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Manifest Number:</strong> {{selectedManifest.manifest_number}}</p>
+            <p><strong>Date:</strong> {{selectedManifest.date}}</p>
+            <p><strong>Origin:</strong> {{selectedManifest.origin}}</p>
+            <p><strong>Destination:</strong> {{selectedManifest.destination}}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Vehicle Number:</strong> {{selectedManifest.vehicle_number}}</p>
+            <p><strong>Driver Name:</strong> {{selectedManifest.driver_name}}</p>
+            <p><strong>Driver Contact:</strong> {{selectedManifest.driver_contact}}</p>
+            <p><strong>Status:</strong> 
+              <span [ngClass]="{
+                'badge bg-warning': selectedManifest.status === 'Pending',
+                'badge bg-info': selectedManifest.status === 'In Transit',
+                'badge bg-success': selectedManifest.status === 'Completed'
+              }">
+                {{selectedManifest.status}}
+              </span>
+            </p>
+          </div>
+        </div>
+        
+        <div class="mt-4">
+          <h6>Packages</h6>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Tracking Number</th>
+                  <th>Weight (kg)</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pkg of selectedManifest.packages">
+                  <td>{{pkg.tracking_number}}</td>
+                  <td>{{pkg.weight}}</td>
+                  <td>{{pkg.status}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <p><strong>Total Packages:</strong> {{selectedManifest.total_packages}}</p>
+          <p><strong>Total Weight:</strong> {{selectedManifest.total_weight}} kg</p>
+          <p><strong>Remarks:</strong> {{selectedManifest.remarks}}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="showViewModal = false">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade" [class.show]="showViewModal" [style.display]="showViewModal ? 'block' : 'none'"></div>

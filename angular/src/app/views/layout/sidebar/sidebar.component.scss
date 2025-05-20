@@ -1,0 +1,31 @@
+.nav-item-logout{
+  position: relative !important;
+  top: 40px;
+}
+// .nav-item-logout {
+//   // position: relative !important;
+//     //  bottom: -190px !important;
+//       // padding-top: 300px !important;
+// }
+.sidebar .sidebar-body .sidebar-nav.sub-menu .nav-item .nav-link{
+   margin-left: 15px !important;
+}
+svg.feather.icons {
+   margin-left: -23px !important;
+}
+a.nav-link.nav-link-ref.active {
+   color: red !important;
+}
+
+.icon-log
+{
+  margin-left: -24px;
+}
+
+// @media only screen and (max-width:1025px) and (min-width: 760px)  {
+//   .nav-item-logout {
+//     position: relative !important;
+//     // bottom: -120px !important;
+//     top: 100px;
+// }
+// }
