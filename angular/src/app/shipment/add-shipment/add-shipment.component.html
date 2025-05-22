@@ -173,7 +173,7 @@
       <label>Client:</label>
       <div class="w-100">
         <!-- <input formControlName="client" class="form-control form-control-sm rounded-pill" placeholder="Client Name" /> -->
-         <select formControlName="client" class="form-control form-control-sm rounded-pill">
+        <select formControlName="client" class="form-control form-control-sm rounded-pill">
           <option value="" disabled selected>Select Service</option>
           <option [value]="item.client_name" *ngFor="let item of clientData">{{item.client_name}}</option>
         </select>
@@ -295,11 +295,12 @@
     <div class="form-row">
       <label>Uploads Document:</label>
       <div class="w-100">
-        <input class="form-control form-control-sm rounded-pill" placeholder="files"  type="file"/>
+        <input class="form-control form-control-sm rounded-pill" placeholder="files" type="file" />
       </div>
-       <label>Remark:</label>
+      <label>Remark:</label>
       <div class="w-100">
-        <input class="form-control form-control-sm rounded-pill" placeholder="remark"  formControlName="remark" type="input"/>
+        <input class="form-control form-control-sm rounded-pill" placeholder="remark" formControlName="remark"
+          type="input" />
       </div>
     </div>
 
@@ -337,7 +338,7 @@
 
     <!-- Volumetric Dimensions (Visible Only When Checkbox is Checked) -->
     <div *ngIf="shipmentForm.get('volumetric_weight')?.value">
-      <div class="form-group row mt-2">
+      <!-- <div class="form-group row mt-2">
         <label class="col-sm-1 col-form-label font-weight-bold">Length:</label>
         <div class="col-sm-2">
           <input type="number" formControlName="length"
@@ -360,8 +361,44 @@
           <input type="text" formControlName="divisor"
             class="form-control form-control-sm rounded-pill text-center font-weight-bold" />
         </div>
+      </div> -->
+
+      <div class="form-group row mt-2">
+        <label class="col-sm-1 col-form-label font-weight-bold">Length:</label>
+        <div class="col-sm-2">
+          <input type="number" formControlName="length"
+            class="form-control form-control-sm rounded-pill text-center font-weight-bold" (input)="calculate()" />
+        </div>
+
+        <label class="col-sm-1 col-form-label font-weight-bold">Width:</label>
+        <div class="col-sm-2">
+          <input type="number" formControlName="width"
+            class="form-control form-control-sm rounded-pill text-center font-weight-bold" (input)="calculate()" />
+        </div>
+
+        <label class="col-sm-1 col-form-label font-weight-bold">Height:</label>
+        <div class="col-sm-2">
+          <input type="number" formControlName="height"
+            class="form-control form-control-sm rounded-pill text-center font-weight-bold" (input)="calculate()" />
+        </div>
+
+        <label class="col-sm-1 col-form-label font-weight-bold">Divisor:</label>
+        <div class="col-sm-2">
+          <input type="number" formControlName="divisor"
+            class="form-control form-control-sm rounded-pill text-center font-weight-bold" (input)="calculate()" />
+        </div>
       </div>
-      
+
+      <!-- Result Display -->
+      <div class="row mt-2">
+        <label class="col-sm-2 col-form-label font-weight-bold">Final Result:</label>
+        <div class="col-sm-4">
+          <span class="form-control form-control-sm rounded-pill bg-light text-center font-weight-bold">
+            {{ finalResult }}
+          </span>
+        </div>
+      </div>
+
     </div>
 
     <div class="d-flex justify-content-start mt-4">

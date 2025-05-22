@@ -18,6 +18,7 @@ export class AddShipmentComponent implements OnInit {
   profilePic: string | null = null;
   defaultPic: string = '../../../assets/images/image/user-profile.png';
   clientData: any
+  finalResult: number = 0;
   constructor(
     private toest: NgToastService,
     private ngxLoader: NgxUiLoaderService,
@@ -84,10 +85,22 @@ export class AddShipmentComponent implements OnInit {
       length: [''],
       width: [''],
       height: [''],
-      divisor: [''],
-      remark: ['Yes']
+      divisor: [1],
+      remark: ['Yes'],
+      final_volumetric_weight : []
     });
 
+  }
+
+  calculate(): void {
+    const length = +this.shipmentForm.value.length || 0;
+    const width = +this.shipmentForm.value.width || 0;
+    const height = +this.shipmentForm.value.height || 0;
+    const divisor = +this.shipmentForm.value.divisor || 1;
+
+    const total = length + width + height; // or use length * width * height if you want volume
+    this.finalResult = divisor ? total / divisor : 0;
+    this.shipmentForm.value.final_volumetric_weight = this.finalResult 
   }
   data: any;
   idds: any;
