@@ -68,11 +68,11 @@ export const MENU: MenuItem[] = [
     icon: 'file-text',
     link: '/manifest/manifest',
   },
-  // {
-  //   label: 'Delivery',
-  //   icon: 'truck',
-  //   link: '/delivery/delivery',
-  // },
+  {
+    label: 'Delivery',
+    icon: 'truck',
+    link: '/delivery/delivery',
+  },
   // {
   //   label: 'Views',
   //   icon: 'eye',
