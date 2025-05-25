@@ -1,72 +1,60 @@
 <section>
-    <div class="container">
-      <div class="row style-heading">
-        <div class="col-sm-12">
-          <div class="d-flex justify-content-between">
-            <h4>Manifest</h4>
-            <a class="btn btn-primarys mb-2" (click)="openClientModal()"><i
-                class="feather icon-plus icon-md items-plus"></i> Add Manfest</a>
-          </div>
+  <div class="container">
+    <div class="row style-heading">
+      <div class="col-sm-12">
+        <div class="d-flex justify-content-between">
+          <h4>Manifest</h4>
+          <a class="btn btn-primarys mb-2" (click)="openClientModal()"><i
+              class="feather icon-plus icon-md items-plus"></i> Add Manfest</a>
         </div>
       </div>
-      <div class="card bg-white">
-        <div class="row" style="overflow-x: auto;">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Manifest Number</th>
-                <th>Date</th>
-                <th>Origin</th>
-                <th>Destination</th>
-                <th>Vehicle Number</th>
-                <th>Total Packages</th>
-                <th>Total Weight</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of data">
-                <td>{{item.manifest_number}}</td>
-                <td>{{item.date}}</td>
-                <td>{{item.origin}}</td>
-                <td>{{item.destination}}</td>
-                <td>{{item.vehicle_number}}</td>
-                <td>{{item.total_packages}}</td>
-                <td>{{item.total_weight}} kg</td>
-                <td>
-                  <span [ngClass]="{
-                    'badge bg-warning': item.status === 'Pending',
-                    'badge bg-info': item.status === 'In Transit',
-                    'badge bg-success': item.status === 'Completed'
-                  }">
-                    {{item.status}}
-                  </span>
-                </td>
-                <td>
-                  <button class="btn btn-sm btn-info me-2" (click)="viewManifest(item)">
-                    <i class="fas fa-eye"></i>
-                  </button>
-                  <button class="btn btn-sm btn-primary me-2" (click)="editManifest(item.id)">
-                    <i class="fas fa-edit"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger" (click)="deleteManifest(item.id)">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-  
-  
     </div>
-  
-  </section>
+    <div class="card bg-white">
+      <div class="row" style="overflow-x: auto;">
+        <table id="myTable1" class="table table-responsive" style="width:100%">
+          <thead>
+            <tr>
+              <th>Manifest Number</th>
+              <th>Date</th>
+              <th>Origin</th>
+              <th>Destination</th>
+              <th>Vehicle Number</th>
+              <th>Total Packages</th>
+              <th>Total Weight</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data">
+              <td>{{ item.manifest_number }}</td>
+              <td>{{ item.created_at | date:'dd/MM/yyyy' }}</td>
+              <td>{{ item.origin }}</td>
+              <td>{{ item.destination }}</td>
+              <td>{{ item.vehicle_number }}</td>
+              <td>{{ item.total_packages }}</td>
+              <td>{{ item.total_weight }}</td>
+              <td>{{ item.status }}</td>
+              <td>
+                <i class="feather icon-edit me-2 items-icon text-primary" ngbTooltip="Edit" container="body"
+                  (click)="editManifest(item.id)">
+                </i>
+                <i class="feather icon-trash me-2 items-icon text-danger" ngbTooltip="Delete" container="body"
+                  (click)="deleteManifest(item.id)">
+                </i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</section>
 
 <!-- View Manifest Modal -->
-<div class="modal fade" [class.show]="showViewModal" [style.display]="showViewModal ? 'block' : 'none'" tabindex="-1" role="dialog">
+<div class="modal fade" [class.show]="showViewModal" [style.display]="showViewModal ? 'block' : 'none'" tabindex="-1"
+  role="dialog">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -87,7 +75,7 @@
             <p><strong>Vehicle Number:</strong> {{selectedManifest.vehicle_number}}</p>
             <p><strong>Driver Name:</strong> {{selectedManifest.driver_name}}</p>
             <p><strong>Driver Contact:</strong> {{selectedManifest.driver_contact}}</p>
-            <p><strong>Status:</strong> 
+            <p><strong>Status:</strong>
               <span [ngClass]="{
                 'badge bg-warning': selectedManifest.status === 'Pending',
                 'badge bg-info': selectedManifest.status === 'In Transit',
@@ -98,7 +86,7 @@
             </p>
           </div>
         </div>
-        
+
         <div class="mt-4">
           <h6>Packages</h6>
           <div class="table-responsive">

@@ -16,8 +16,10 @@
     <div class="form-row">
       <label>Tracking Number:</label>
       <div class="w-100">
-        <input formControlName="tracking_number" class="form-control form-control-sm rounded-pill"
-          placeholder="Enter tracking number" />
+        <select formControlName="tracking_number" class="form-control form-control-sm rounded-pill">
+          <option value="" disabled>Select Tracking number</option>
+          <option [value]="item.awb_no" *ngFor="let item of trackingOptions">{{item.awb_no}}</option>
+        </select>
       </div>
       <label>Origin:</label>
       <div class="w-100">
@@ -49,6 +51,21 @@
     </div>
 
     <div class="form-row">
+      <label>Forwarding No:</label>
+      <div class="w-100">
+        <input formControlName="forwarding_number" class="form-control form-control-sm rounded-pill"
+          placeholder="Enter forwarding number" />
+      </div>
+      <label>Forwording By:</label>
+      <div class="w-100">
+        <select formControlName="forwarding_by" class="form-control form-control-sm rounded-pill">
+          <option value="" disabled>Select Forwording</option>
+          <option value="Vendor">Forwarding1</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
       <label>Branch/Vendor:</label>
       <div class="w-100">
         <select formControlName="destination" class="form-control form-control-sm rounded-pill">
@@ -76,7 +93,6 @@
       </div>
     </div>
 
-
     <div class="form-row">
       <label>Status:</label>
       <div class="w-100">
@@ -94,10 +110,67 @@
         <input formControlName="remarks" class="form-control form-control-sm rounded-pill"
           placeholder="Enter remarks" />
       </div>
+    </div>
+
+    <div class="form-row">
+      <label>Driver Contact:</label>
+      <div class="w-100">
+        <input formControlName="driver_contact" class="form-control form-control-sm rounded-pill"
+          placeholder="Enter driver contact" />
+        <div *ngIf="driver_contact?.invalid && (driver_contact?.dirty || driver_contact?.touched)"
+          class="text-danger small">
+          <div *ngIf="driver_contact?.errors?.['required']">Driver contact is required</div>
+          <div *ngIf="driver_contact?.errors?.['pattern']">Driver contact must be 10 digits</div>
+        </div>
+      </div>
 
     </div>
 
+    <div class="form-row">
+      <label>Total Packages:</label>
+      <div class="w-100">
+        <input formControlName="total_packages" type="number" class="form-control form-control-sm rounded-pill" />
+        <div *ngIf="total_packages?.invalid && (total_packages?.dirty || total_packages?.touched)"
+          class="text-danger small">
+          <div *ngIf="total_packages?.errors?.['required']">Total packages is required</div>
+          <div *ngIf="total_packages?.errors?.['min']">Total packages must be at least 1</div>
+        </div>
+      </div>
+      <label>Total Weight:</label>
+      <div class="w-100">
+        <input formControlName="total_weight" type="number" class="form-control form-control-sm rounded-pill" />
+        <div *ngIf="total_weight?.invalid && (total_weight?.dirty || total_weight?.touched)" class="text-danger small">
+          <div *ngIf="total_weight?.errors?.['required']">Total weight is required</div>
+          <div *ngIf="total_weight?.errors?.['min']">Total weight must be greater than 0</div>
+        </div>
+      </div>
+    </div>
 
+    <div class="form-row">
+      <label>Vehicle Number:</label>
+      <div class="w-100">
+        <input formControlName="vehicle_number" class="form-control form-control-sm rounded-pill"
+          placeholder="Enter vehicle number" />
+        <div *ngIf="vehicle_number?.invalid && (vehicle_number?.dirty || vehicle_number?.touched)"
+          class="text-danger small">
+          <div *ngIf="vehicle_number?.errors?.['required']">Vehicle number is required</div>
+          <div *ngIf="vehicle_number?.errors?.['pattern']">Vehicle number should contain only letters and numbers</div>
+        </div>
+      </div>
+      <label>Driver Name:</label>
+      <div class="w-100">
+        <input formControlName="driver_name" class="form-control form-control-sm rounded-pill"
+          placeholder="Enter driver name" />
+        <div *ngIf="driver_name?.invalid && (driver_name?.dirty || driver_name?.touched)" class="text-danger small">
+          <div *ngIf="driver_name?.errors?.['required']">Driver name is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-start mt-4">
+      <button type="submit" class="btn btn-primary rounded-pill shadow-sm" (click)="onSubmit()">
+        <i class="fas fa-save me-1"></i> Submit
+      </button>
+    </div>
 
     <!-- <div class="mt-4">
       <h5>Packages</h5>
@@ -138,68 +211,8 @@
       </div>
 
     </div> -->
-
-    <div class="form-row">
-      <label>Driver Contact:</label>
-      <div class="w-100">
-        <input formControlName="driver_contact" class="form-control form-control-sm rounded-pill"
-          placeholder="Enter driver contact" />
-        <div *ngIf="driver_contact?.invalid && (driver_contact?.dirty || driver_contact?.touched)"
-          class="text-danger small">
-          <div *ngIf="driver_contact?.errors?.['required']">Driver contact is required</div>
-          <div *ngIf="driver_contact?.errors?.['pattern']">Driver contact must be 10 digits</div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="form-row">
-      <label>Total Packages:</label>
-      <div class="w-100">
-        <input formControlName="total_packages" type="number" class="form-control form-control-sm rounded-pill"
-          readonly />
-        <div *ngIf="total_packages?.invalid && (total_packages?.dirty || total_packages?.touched)"
-          class="text-danger small">
-          <div *ngIf="total_packages?.errors?.['required']">Total packages is required</div>
-          <div *ngIf="total_packages?.errors?.['min']">Total packages must be at least 1</div>
-        </div>
-      </div>
-      <label>Total Weight:</label>
-      <div class="w-100">
-        <input formControlName="total_weight" type="number" class="form-control form-control-sm rounded-pill"
-          readonly />
-        <div *ngIf="total_weight?.invalid && (total_weight?.dirty || total_weight?.touched)" class="text-danger small">
-          <div *ngIf="total_weight?.errors?.['required']">Total weight is required</div>
-          <div *ngIf="total_weight?.errors?.['min']">Total weight must be greater than 0</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <label>Vehicle Number:</label>
-      <div class="w-100">
-        <input formControlName="vehicle_number" class="form-control form-control-sm rounded-pill"
-          placeholder="Enter vehicle number" />
-        <div *ngIf="vehicle_number?.invalid && (vehicle_number?.dirty || vehicle_number?.touched)"
-          class="text-danger small">
-          <div *ngIf="vehicle_number?.errors?.['required']">Vehicle number is required</div>
-          <div *ngIf="vehicle_number?.errors?.['pattern']">Vehicle number should contain only letters and numbers</div>
-        </div>
-      </div>
-      <label>Driver Name:</label>
-      <div class="w-100">
-        <input formControlName="driver_name" class="form-control form-control-sm rounded-pill"
-          placeholder="Enter driver name" />
-        <div *ngIf="driver_name?.invalid && (driver_name?.dirty || driver_name?.touched)" class="text-danger small">
-          <div *ngIf="driver_name?.errors?.['required']">Driver name is required</div>
-        </div>
-      </div>
-    </div>
-    <div class="d-flex justify-content-start mt-4">
-      <button type="submit" class="btn btn-primary rounded-pill shadow-sm" (click)="onSubmit()">
-        <i class="fas fa-save me-1"></i> Submit
-      </button>
-    </div>
   </form>
+
+
 </div>
 <!-- </div> -->

@@ -62,7 +62,7 @@ export const MENU: MenuItem[] = [
     icon: 'calendar',
     link: '/shipment/shipment',
   },
-  
+
   {
     label: 'Manifest',
     icon: 'file-text',
@@ -73,28 +73,47 @@ export const MENU: MenuItem[] = [
     icon: 'truck',
     link: '/delivery/delivery',
   },
-  // {
-  //   label: 'Views',
-  //   icon: 'eye',
-  //   link: '/report/deliveries',
-  // },
-  // {
-  //   label: 'Report',
-  //   icon: 'bar-chart-2',
-  //   subItems: [
-  //     {
-  //       label: 'Tracking Report',
-  //       icon: 'map',
-  //       link: '/report/report',
-  //     },
-      // {
-      //   label: 'Views',
-      //   icon: 'file-text',
-      //   link: '/report/deliveries'
-      // }
-    // ]
+  {
+    label: 'Views',
+    icon: 'eye',
+    link: '/report/deliveries',
+  },
+  {
+    label: 'Report',
+    icon: 'bar-chart-2',
+    subItems: [
+      {
+        label: 'Tracking Report',
+        link: '/report/report',
+      },
+      {
+        label: 'Views',
+        link: '/report/deliveries'
+      }
+    ]
     // link: '/report/report',
-  // },
+  },
+  {
+    label: 'Setting',
+    icon: 'settings',
+    subItems: [
+      {
+        label: 'Forword By',
+        // icon: 'edit',
+        link: '/setting/for',
+      },
+      // {
+      //   label: 'Webhook',
+      //   icon: 'file-text',
+      //   link: '/setting/webhook'
+      // },
+      // {
+      //   label: 'SMS',
+      //   icon: 'file-text',
+      //   link: '/setting/sms'
+      // }
+    ]
+  },
   // {
   //   label: 'Credit',
   //   icon: 'credit-card',

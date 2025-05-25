@@ -108,7 +108,7 @@ export class modData {
         { table: "shipment2", fields: ["id", "iduser", "awb_no", "ref_no", "booking_date", "client", "billing_service", "indent_no", "pickup_point", "consignor_name", "company_name", "origin_city", "state", "country", "pin_code", "mobile_no", "alt_mobile_no", "email_id", "gstin", "aadhaar_no", "warehousing_receipt_no", "challan_no","delivery_no", "po_no", "volumetric_weight", "pkgs","actual_weight", "weight_unit", "length","width", "height","divisor", "remark"], session: { "iduser": "id" }, path: "/shipment", type: "shipment" },
         /**************************************manifest member module***************************************/
 
-        { table: "manifest", fields: ["id", "iduser", "tracking_number", "mode", "forword_by", "forwarding_number", "created_at"], session: { "iduser": "id" }, path: "/manifest", type: "manifest" },
+        { table: "manifests", fields: ["id", "iduser", "tracking_number", "origin", "manifest_number", "date", "forwarding_number", "forwarding_by", "destination", "branch", "vendor", "status", "remarks", "driver_contact", "total_packages", "total_weight", "vehicle_number", "driver_name", "created_at"], session: { "iduser": "id" }, path: "/manifest", type: "manifest" },
 
 
         { table: "delivery", fields: ["id", "iduser", "tracking_number", "origin", "booked_on", "shipper", "forwarding_no", "consignee_name", "status", "delivery_date", "delivery_time", "received_by", "relation", "mobile_number", "created_at", "updated_at"], session: { "iduser": "id" }, path: "/delivery", type: "delivery" },

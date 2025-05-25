@@ -78,12 +78,12 @@ export class ManifestComponent implements OnInit {
   }
 
   editManifest(id: number) {
-    this.router.navigate(['/manifest/add-manifest', id]);
+    this.router.navigate(['/manifest/edit', id]);
   }
 
   deleteManifest(id: number) {
     if (confirm('Are you sure you want to delete this manifest?')) {
-      this.service.deleteManifest(id).subscribe({
+      this.service.deleteService(id).subscribe({
         next: (res) => {
           this.toast.success({ detail: 'Manifest deleted successfully', summary: 'Success' });
           this.loadManifests();

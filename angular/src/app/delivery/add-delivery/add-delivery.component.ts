@@ -35,7 +35,7 @@ export class AddDeliveryComponent implements OnInit {
       shipper: [''],
       forwarding_no: ['', [Validators.required]],
       consignee_name: [''],
-      status: ['Pending'],
+      status: ['Intransit'],
       delivery_date: [''],
       delivery_time: [''],
       received_by: [''],

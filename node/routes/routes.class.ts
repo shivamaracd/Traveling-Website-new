@@ -20,11 +20,6 @@ export const type = upload.single('filename');
 
 module.exports = function (app: any) {
 
-
-
-
-
-
   // Executive class and method
   const ca = new cases();
   app.post('/saveCase', ca.saveCase);
@@ -46,6 +41,7 @@ module.exports = function (app: any) {
   app.post("/saveClient", client.saveClient);
   app.post("/editData", client.editData);
   app.post("/editDataShipment", client.editDataShipment); 
+  app.post("/getEditValuemanifest", client.getEditValuemanifest); 
   app.post("/editDataVendor", client.editDataVendor);
   app.post("/updateVendorData", client.updateVendorData);
   app.post("/getShipemntdata", client.getShipemntdata);
