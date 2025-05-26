@@ -110,9 +110,6 @@ export class modData {
 
         { table: "manifests", fields: ["id", "iduser", "tracking_number", "origin", "manifest_number", "date", "forwarding_number", "forwarding_by", "destination", "branch", "vendor", "status", "remarks", "driver_contact", "total_packages", "total_weight", "vehicle_number", "driver_name", "created_at"], session: { "iduser": "id" }, path: "/manifest", type: "manifest" },
 
-
-        { table: "delivery", fields: ["id", "iduser", "tracking_number", "origin", "booked_on", "shipper", "forwarding_no", "consignee_name", "status", "delivery_date", "delivery_time", "received_by", "relation", "mobile_number", "created_at", "updated_at"], session: { "iduser": "id" }, path: "/delivery", type: "delivery" },
-
         /**************************************client member module***************************************/
 
         { table: "task", fields: ["id", "subject", "decripations", "priority", "status", "startDate", "deadline", "relatedTo"], session: { "iduser": "id" }, path: "/task", type: "main" },

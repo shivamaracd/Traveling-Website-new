@@ -39,7 +39,11 @@ module.exports = function (app: any) {
 
   const client = new Client();
   app.post("/saveClient", client.saveClient);
+  app.post("/saveDeliverydata", client.saveDeliverydata);
   app.post("/editData", client.editData);
+  app.get("/getDeliveryData", client.getDeliveryData)
+  app.post("/deleteDelivery", client.deleteDelivery)
+  app.post("/getDataTracking", client.getDataTracking)
   app.post("/editDataShipment", client.editDataShipment); 
   app.post("/getEditValuemanifest", client.getEditValuemanifest); 
   app.post("/editDataVendor", client.editDataVendor);

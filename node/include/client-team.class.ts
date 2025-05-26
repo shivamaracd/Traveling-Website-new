@@ -36,6 +36,34 @@ export class Client {
     // });
   }
 
+  public saveDeliverydata(req: Request, res: Response, next: NextFunction) {
+    let sdata = req.body.data;
+    console.log("value", sdata);
+    let session = new SessionManagment(req, res, next);
+    session.GetSession((error: any, sessdata: any) => {
+      if (error == 1) {
+        let objs = new ModelRawNonQuery(req, res);
+        objs.nonqrysql = `INSERT INTO delivery (iduser, tracking_number, origin, booked_on, destination, shipper, forwarding_no, forwarding_by, delivery_date, delivery_time,received_by,relation,mobile_number, remark, created_at) VALUES ( '${sessdata.iduser}', '${sdata.tracking_number}', '${sdata.origin}', '${sdata.booked_on}', '${sdata.destination}', '${sdata.shipper}', '${sdata.forwarding_no}', '${sdata.forwarding_by}', '${sdata.delivery_date}', '${sdata.delivery_time}', '${sdata.received_by}', '${sdata.relation}', '${sdata.mobile_number}', '${sdata.remark}','${sdata.created_at}')`;
+        objs.prepare();
+        objs.execute((error: any, result: any) => {
+          if (error == 1) {
+            let objv = new RawView(res);
+            objv.prepare({ status: error, message: "Delivery Create Successfully!" });
+            objv.execute();
+          } else {
+            let objv = new RawView(res);
+            objv.prepare({ status: error, message: result.sqlMessage });
+            objv.execute();
+          }
+        });
+      } else {
+        let objv = new Res406(res);
+        objv.prepare("No seesion found!");
+        objv.execute();
+      }
+    });
+  }
+
   public editData(req: Request, res: Response, next: NextFunction) {
     let sdata = req.body.data;
     console.log("value", sdata);
@@ -53,6 +81,89 @@ export class Client {
               message: "Data Get Successfully!",
               data: result,
             });
+            objv.execute();
+          } else {
+            let objv = new RawView(res);
+            objv.prepare({ status: error, message: result.sqlMessage });
+            objv.execute();
+          }
+        });
+      } else {
+        let objv = new Res406(res);
+        objv.prepare("No seesion found!");
+        objv.execute();
+      }
+    });
+  }
+
+  public getDeliveryData(req: Request, res: Response, next: NextFunction) {
+    let sdata = req.body.data;
+    let session = new SessionManagment(req, res, next);
+    session.GetSession((error: any, sessdata: any) => {
+      if (error == 1) {
+        let objs = new ModelRawQuery(req, res);
+        objs.qrysql = `SELECT * FROM delivery WHERE iduser='${sessdata.id}'`;
+        objs.prepare();
+        objs.execute((error: any, result: any) => {
+          if (error == 1) {
+            let objv = new RawView(res);
+            objv.prepare({status: error, message: "Data Get Successfully!",data: result,});
+            objv.execute();
+          } else {
+            let objv = new RawView(res);
+            objv.prepare({ status: error, message: result.sqlMessage });
+            objv.execute();
+          }
+        });
+      } else {
+        let objv = new Res406(res);
+        objv.prepare("No seesion found!");
+        objv.execute();
+      }
+    });
+  }
+
+  public deleteDelivery(req: Request, res: Response, next: NextFunction) {
+    let sdata = req.body;
+    console.log(sdata.data)
+    let session = new SessionManagment(req, res, next);
+    session.GetSession((error: any, sessdata: any) => {
+      if (error == 1) {
+        let objs = new ModelRawQuery(req, res);
+        objs.qrysql = `DELETE FROM delivery WHERE id='${sdata.data}'`;
+        objs.prepare();
+        objs.execute((error: any, result: any) => {
+          if (error == 1) {
+            let objv = new RawView(res);
+            objv.prepare({status: error, message: "Data Delete Successfully!"});
+            objv.execute();
+          } else {
+            let objv = new RawView(res);
+            objv.prepare({ status: error, message: result.sqlMessage });
+            objv.execute();
+          }
+        });
+      } else {
+        let objv = new Res406(res);
+        objv.prepare("No seesion found!");
+        objv.execute();
+      }
+    });
+  }
+
+  public getDataTracking(req: Request, res: Response, next: NextFunction) {
+    let sdata = req.body;
+    console.log(sdata.data)
+    let session = new SessionManagment(req, res, next);
+    session.GetSession((error: any, sessdata: any) => {
+      if (error == 1) {
+        let objs = new ModelRawQuery(req, res);
+        objs.qrysql = `SELECT s.awb_no, s.booking_date, m.origin, m.destination, s.consignor_name, m.forwarding_number, m.forwarding_by  FROM shipment2 s INNER JOIN manifests m  ON s.awb_no = m.tracking_number WHERE s.iduser='${sessdata.id}' AND awb_no='${sdata.data}'`;
+        objs.prepare();
+        objs.execute((error: any, result: any) => {
+          if (error == 1) {
+            let objv = new RawView(res);
+            objv.prepare({status: error, message: "Data Delete Successfully!",data:result});
             objv.execute();
           } else {
             let objv = new RawView(res);

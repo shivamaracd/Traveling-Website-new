@@ -17,11 +17,11 @@ export class DeliveryComponent implements OnInit {
   }
   getData(){
     this.ngxLoader.start();
-    this.service.getService().subscribe(res=>{
+    this.service.getDeliveryData().subscribe(res=>{
       console.log(res)
     $('#myTable8').DataTable().clear();
     $('#myTable8').DataTable().destroy();
-    this.data = res;
+    this.data = res.data;
     $.getScript('/assets/table/table.js');
     this.ngxLoader.stop();
   }, err => {
@@ -57,7 +57,7 @@ export class DeliveryComponent implements OnInit {
       return ;
     }
     if (id) {
-      this.service.deleteService(id).subscribe(res => {
+      this.service.deleteDelivery(id).subscribe(res => {
         if (res.error == 0) {
           // alert(res.message)
           this.getData();

@@ -14,7 +14,7 @@ import { DeliveryService } from '../delivery.service';
 export class AddDeliveryComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
   deliveryForm!: FormGroup;
-  trackingOptions:any
+  trackingOptions: any
   emailError: string = '';
   profilePic: string | null = null;
   defaultPic: string = '../../../assets/images/image/user-profile.png';
@@ -26,23 +26,26 @@ export class AddDeliveryComponent implements OnInit {
     private router: Router,
     private service: DeliveryService,
     private shipment: ShipmentService
-    
+
   ) {
     this.deliveryForm = this.fb.group({
-      tracking_number: [''],
-      origin: [''],
-      booked_on: [''],
-      shipper: [''],
-      forwarding_no: ['', [Validators.required]],
-      consignee_name: [''],
-      status: ['Intransit'],
+      tracking_number: ['',],
+      booked_on: ['',],
+      origin: ['',],
+      destination: ['',],
+      consignee_name: ['',],
+      shipper: ['',],
+      forwarding_no: [''],
+      forwarding_by: [''],
+      status: ['Intransit',],
       delivery_date: [''],
       delivery_time: [''],
       received_by: [''],
       relation: [''],
-      mobile_number: ['']
+      mobile_number: [''],
+      remark: ['']
     });
-    
+
   }
   data: any;
 
@@ -74,27 +77,47 @@ export class AddDeliveryComponent implements OnInit {
 
     this.getData();
     this.getSepment();
-    this.deliveryForm.valueChanges.subscribe(()=>{
+    this.deliveryForm.valueChanges.subscribe(() => {
       this.matchTracking()
     })
   }
 
-  matchTrack : boolean = false;
-  matchTracking(){
-    const oldMatch = this.trackingOptions.find((v:any) => v.tracking_number === this.deliveryForm.value.tracking_number)
+  matchTrack: boolean = false;
+  matchTracking() {
+    const oldMatch = this.trackingOptions.find((v: any) => v.tracking_number === this.deliveryForm.value.tracking_number)
     this.matchTrack = oldMatch
   }
 
-  getSepment(){
-    this.shipment.getService().subscribe(res=>{
+  getSepment() {
+    this.shipment.getService().subscribe(res => {
       console.log(res)
       this.trackingOptions = res
     })
   }
-  getData(){
-    this.service.getService().subscribe(res=>{
+  getData() {
+    this.service.getService().subscribe(res => {
       console.log(res)
       this.data = res
+    })
+  }
+
+  onTrack(data:any){
+    console.log(data.target.value)
+    this.service.getDataTracking(data.target.value).subscribe(res=>{
+      console.log(res)
+      let patchData = res.data[0]
+      let data = new Date(patchData.booking_date)
+      let ndate = data.toISOString().split('T')[0]
+      this.deliveryForm.patchValue({
+        tracking_number: patchData.awb_no,
+        booked_on: ndate,
+        origin: patchData.origin,
+        destination:patchData.destination ,
+        consignee_name: patchData.consignor_name,
+        shipper: patchData.awb_no,
+        forwarding_no: patchData.forwarding_by,
+        forwarding_by: patchData.forwarding_number,
+      })
     })
   }
 
@@ -116,41 +139,14 @@ export class AddDeliveryComponent implements OnInit {
 
   onSubmit() {
     console.log('Form Data:', this.deliveryForm.value);
-    if (this.deliveryForm.valid) {
-      // if (this.data) {
-      //   console.log('edit', this.data, this.deliveryForm.value);
-      //   let value = { id: this.data, data: this.deliveryForm.value };
-      //   this.ngxLoader.start();
-      //   // this.service.editClient(value).subscribe((res) => {
-      //   //   console.log(res);
-      //   //   this.toest.success({
-      //   //     detail: res.message,
-      //   //     summary: 'Post Successfully',
-      //   //   });
-      //   //   this.router.navigate(['client/client']);
-      //   //   this.ngxLoader.stop();
-      //   // });
-      // } else {
-        // let dubicateTrack = this.data.find((v:any) => v.tracking_number === this.deliveryForm.value.tracking_number)
-        // console.log(dubicateTrack)
-        // if(dubicateTrack == undefined){
-          this.ngxLoader.start();
-          this.service.saveService(this.deliveryForm.value).subscribe((res) => {
-            this.ngxLoader.stop();
-            console.log(res);
-            this.toest.success({
-              detail: res.message,
-              summary: 'Post Successfully',
-            });
-            this.router.navigate(['delivery/delivery']);
-          });
-        // }else{
-        //   this.toest.error({detail:"Tracking Number is Dublicate", summary: 'Post Successfully',})
-        // }
-      }
-    // } else {
-    //   this.validateAllFormFields(this.deliveryForm); // Show error messages for invalid fields
-    // }
+    if (this.deliveryForm.invalid) {
+      this.deliveryForm.markAllAsTouched();
+      return;
+    }
+
+    this.service.saveDeliverydata(this.deliveryForm.value).subscribe(res => {
+      console.log(res)
+    })
   }
 
   validateAllFormFields(formGroup: FormGroup) {
