@@ -16,6 +16,7 @@ export class AddDeliveryComponent implements OnInit {
   deliveryForm!: FormGroup;
   trackingOptions: any
   emailError: string = '';
+  nidds : any
   profilePic: string | null = null;
   defaultPic: string = '../../../assets/images/image/user-profile.png';
   constructor(
@@ -106,6 +107,7 @@ export class AddDeliveryComponent implements OnInit {
     this.service.getDataTracking(data.target.value).subscribe(res=>{
       console.log(res)
       let patchData = res.data[0]
+      this.nidds = patchData.id
       let data = new Date(patchData.booking_date)
       let ndate = data.toISOString().split('T')[0]
       this.deliveryForm.patchValue({
@@ -144,9 +146,15 @@ export class AddDeliveryComponent implements OnInit {
       return;
     }
 
-    this.service.saveDeliverydata(this.deliveryForm.value).subscribe(res => {
+    if(this.nidds.length > 0){
+      console.log("update")
+    }else{
+      console.log("save")
+      this.service.saveDeliverydata(this.deliveryForm.value).subscribe(res => {
       console.log(res)
+      this.router.navigate(['/delivery/delivery'])
     })
+    }
   }
 
   validateAllFormFields(formGroup: FormGroup) {

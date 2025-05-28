@@ -86,10 +86,10 @@ export const MENU: MenuItem[] = [
         label: 'Tracking Report',
         link: '/report/report',
       },
-      {
-        label: 'Views',
-        link: '/report/deliveries'
-      }
+      // {
+      //   label: 'Views',
+      //   link: '/report/deliveries'
+      // }
     ]
     // link: '/report/report',
   },
@@ -100,7 +100,7 @@ export const MENU: MenuItem[] = [
       {
         label: 'Forword By',
         // icon: 'edit',
-        link: '/setting/for',
+        link: '/setting/forword-by',
       },
       // {
       //   label: 'Webhook',

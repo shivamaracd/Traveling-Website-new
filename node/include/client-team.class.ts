@@ -43,7 +43,7 @@ export class Client {
     session.GetSession((error: any, sessdata: any) => {
       if (error == 1) {
         let objs = new ModelRawNonQuery(req, res);
-        objs.nonqrysql = `INSERT INTO delivery (iduser, tracking_number, origin, booked_on, destination, shipper, forwarding_no, forwarding_by, delivery_date, delivery_time,received_by,relation,mobile_number, remark, created_at) VALUES ( '${sessdata.iduser}', '${sdata.tracking_number}', '${sdata.origin}', '${sdata.booked_on}', '${sdata.destination}', '${sdata.shipper}', '${sdata.forwarding_no}', '${sdata.forwarding_by}', '${sdata.delivery_date}', '${sdata.delivery_time}', '${sdata.received_by}', '${sdata.relation}', '${sdata.mobile_number}', '${sdata.remark}','${sdata.created_at}')`;
+        objs.nonqrysql = `INSERT INTO delivery (iduser, tracking_number, origin, booked_on, destination, shipper, forwarding_no, forwarding_by, delivery_date, delivery_time,received_by,relation,mobile_number, remark, created_at) VALUES ( '${sessdata.id}', '${sdata.tracking_number}', '${sdata.origin}', '${sdata.booked_on}', '${sdata.destination}', '${sdata.shipper}', '${sdata.forwarding_no}', '${sdata.forwarding_by}', '${sdata.delivery_date}', '${sdata.delivery_time}', '${sdata.received_by}', '${sdata.relation}', '${sdata.mobile_number}', '${sdata.remark}','${sdata.created_at}')`;
         objs.prepare();
         objs.execute((error: any, result: any) => {
           if (error == 1) {

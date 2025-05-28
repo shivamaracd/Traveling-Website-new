@@ -1,0 +1,69 @@
+<section>
+    <div class="container">
+        <div class="row style-heading">
+            <div class="col-sm-12">
+                <div class="d-flex justify-content-between">
+                    <h4>Forword By</h4>
+                    <a class="btn btn-primarys mb-2" (click)="openForwordModal()"><i
+                            class="feather icon-plus icon-md items-plus"></i> Add Forword</a>
+                </div>
+            </div>
+        </div>
+        <div class="card bg-white">
+            <div class="row" style="overflow-x: auto;">
+                <table id="myTable1" class="table table-responsive" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>S.no</th>
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data">
+                            <td>{{ item.manifest_number }}</td>
+                            <td>{{ item.created_at | date:'dd/MM/yyyy' }}</td>
+                            <td>
+                                <i class="feather icon-edit me-2 items-icon text-primary" ngbTooltip="Edit"
+                                    container="body" (click)="editManifest(item.id)">
+                                </i>
+                                <i class="feather icon-trash me-2 items-icon text-danger" ngbTooltip="Delete"
+                                    container="body" (click)="deleteManifest(item.id)">
+                                </i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Forword Modal -->
+<div class="modal fade" id="forwordModal" tabindex="-1" role="dialog" aria-labelledby="forwordModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forwordModalLabel">Add Forword</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeForwordModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your form content here -->
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name"  name="name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeForwordModal()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveForword()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CourtComponent } from './court.component';
+import { ForwordByComponent } from './forword-by.component';
 
-describe('CourtComponent', () => {
-  let component: CourtComponent;
-  let fixture: ComponentFixture<CourtComponent>;
+describe('ForwordByComponent', () => {
+  let component: ForwordByComponent;
+  let fixture: ComponentFixture<ForwordByComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourtComponent ]
+      declarations: [ ForwordByComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CourtComponent);
+    fixture = TestBed.createComponent(ForwordByComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
