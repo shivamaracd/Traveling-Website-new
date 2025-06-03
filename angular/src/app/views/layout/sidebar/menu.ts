@@ -73,47 +73,51 @@ export const MENU: MenuItem[] = [
     icon: 'truck',
     link: '/delivery/delivery',
   },
-  {
-    label: 'Views',
-    icon: 'eye',
-    link: '/report/deliveries',
-  },
+  // {
+  //   label: 'Views',
+  //   icon: 'eye',
+  //   link: '/report/deliveries',
+  // },
   {
     label: 'Report',
     icon: 'bar-chart-2',
     subItems: [
       {
-        label: 'Tracking Report',
-        link: '/report/report',
+        label: 'Pickup Report',
+        link: '/report/picup-report',
       },
-      // {
-      //   label: 'Views',
-      //   link: '/report/deliveries'
-      // }
+      {
+        label: 'MIS Report',
+        link: '/report/mis-report'
+      },
+      {
+        label: 'Status Report',
+        link: '/report/status-report'
+      }
     ]
     // link: '/report/report',
   },
-  {
-    label: 'Setting',
-    icon: 'settings',
-    subItems: [
-      {
-        label: 'Forword By',
-        // icon: 'edit',
-        link: '/setting/forword-by',
-      },
-      // {
-      //   label: 'Webhook',
-      //   icon: 'file-text',
-      //   link: '/setting/webhook'
-      // },
-      // {
-      //   label: 'SMS',
-      //   icon: 'file-text',
-      //   link: '/setting/sms'
-      // }
-    ]
-  },
+  // {
+  //   label: 'Setting',
+  //   icon: 'settings',
+  //   subItems: [
+  //     {
+  //       label: 'Forword By',
+  //       // icon: 'edit',
+  //       link: '/setting/forword-by',
+  //     },
+  //     // {
+  //     //   label: 'Webhook',
+  //     //   icon: 'file-text',
+  //     //   link: '/setting/webhook'
+  //     // },
+  //     // {
+  //     //   label: 'SMS',
+  //     //   icon: 'file-text',
+  //     //   link: '/setting/sms'
+  //     // }
+  //   ]
+  // },
   // {
   //   label: 'Credit',
   //   icon: 'credit-card',

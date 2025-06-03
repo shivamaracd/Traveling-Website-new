@@ -98,4 +98,32 @@ export class Task {
       }
     });
   }
+
+  getDataPicupReport(req: Request, res: Response, next: NextFunction) {
+    let sdata = req.body.data;
+    console.log("value", sdata);
+    let session = new SessionManagment(req, res, next);
+    session.GetSession((error: any, sessdata: any) => {
+      if (error == 1) {
+        let objs = new ModelRawQuery(req, res);
+        objs.qrysql = "SELECT s.`client`, s.awb_no`tracking_number`, m.`destination`, m.`status`, s.created_at`order_date`, s.pin_code`destination_pincode`, s.consignor_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`, s.mobile_no`consignee_mobile_number`, s.actual_weight`weight` FROM `shipment2` s inner join `manifests` m on  m.`tracking_number`=s.`awb_no` where s.`awb_no`='"+ sdata  +"'";
+        objs.prepare();
+        objs.execute((error: any, result: any) => {
+          if (error == 1) {
+            let objv = new RawView(res);
+            objv.prepare({status: error,message: "Data Get Successfully!", data: result});
+            objv.execute();
+          } else {
+            let objv = new RawView(res);
+            objv.prepare({ status: error, message: "Something went wrong!" });
+            objv.execute();
+          }
+        });
+      } else {
+        let objv = new Res406(res);
+        objv.prepare("No seesion found!");
+        objv.execute();
+      }
+    });
+  }
 }

@@ -6,13 +6,21 @@ import { ReportComponent } from './report/report.component';
 import { AddReportComponent } from './add-report/add-report.component';
 import { DeliveriesComponent } from './deliveries/deliveries.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReciptComponent } from './recipt/recipt.component';
+import { PickupComponent } from './pickup/pickup.component';
+import { MisReportComponent } from './mis-report/mis-report.component';
+import { StatusReportComponent } from './status-report/status-report.component';
 
 
 @NgModule({
   declarations: [
     ReportComponent,
     AddReportComponent,
-    DeliveriesComponent
+    DeliveriesComponent,
+    ReciptComponent,
+    PickupComponent,
+    MisReportComponent,
+    StatusReportComponent
   ],
   imports: [
     CommonModule,

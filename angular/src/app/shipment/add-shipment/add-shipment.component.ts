@@ -19,42 +19,13 @@ export class AddShipmentComponent implements OnInit {
   defaultPic: string = '../../../assets/images/image/user-profile.png';
   clientData: any
   finalResult: number = 0;
-  constructor(
-    private toest: NgToastService,
-    private ngxLoader: NgxUiLoaderService,
-    private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private router: Router,
-    private service: ShipmentService,
-    private clientService: ClientService
+  constructor(private toest: NgToastService,private ngxLoader: NgxUiLoaderService,private route: ActivatedRoute,private fb: FormBuilder,private router: Router,private service: ShipmentService,private clientService: ClientService
   ) {
-
     this.clientService.getService().subscribe(res => {
       console.log(res)
       this.clientData = res
     })
-    // this.shipmentForm = this.fb.group({
-    //   client: ['', [Validators.required, Validators.minLength(2)]],
-    //   client_department: ['', [Validators.required]],
-    //   tracking_number: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9]+$')]],
-    //   order_date: ['', [Validators.required]],
-    //   destination_pincode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
-    //   destinations: ['', [Validators.required]],
-    //   configurations_name: ['', [Validators.required]],
-    //   configurations_address: ['', [Validators.required]],
-    //   configurations_address1: [''],
-    //   destination_landmark: [''],
-    //   configurations_mobile_number: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-    //   remark: [''],
-    //   remark2: [''],
-    //   volumetric_weight: ['', [Validators.required, Validators.min(0)]],
-    //   weight: ['', [Validators.required, Validators.min(0)]],
-    //   height: ['', [Validators.required, Validators.min(0)]],
-    //   lenght: ['', [Validators.required, Validators.min(0)]],
-    //   width: ['', [Validators.required, Validators.min(0)]],
-    //   weight2: ['', [Validators.min(0)]],
-    //   shipping_cost: ['', [Validators.required, Validators.min(0)]],
-    // });
+   
     this.shipmentForm = this.fb.group({
       awb_no: [''],
       ref_no: [''],
@@ -87,7 +58,7 @@ export class AddShipmentComponent implements OnInit {
       height: [''],
       divisor: [1],
       remark: ['Yes'],
-      final_volumetric_weight : []
+      final_volumetric_weight: []
     });
 
   }
@@ -100,7 +71,7 @@ export class AddShipmentComponent implements OnInit {
 
     const total = length + width + height; // or use length * width * height if you want volume
     this.finalResult = divisor ? total / divisor : 0;
-    this.shipmentForm.value.final_volumetric_weight = this.finalResult 
+    this.shipmentForm.value.final_volumetric_weight = this.finalResult
   }
   data: any;
   idds: any;
@@ -233,11 +204,16 @@ export class AddShipmentComponent implements OnInit {
           },
           error: (err) => {
             console.error(err);
-            this.toest.error({
-              detail: 'Failed to save shipment',
-              summary: 'Error'
-            });
-            this.ngxLoader.stop();
+            if (err.error.message == 'Duplicate Record') {
+              this.toest.error({
+                detail: 'Tracking Number/AWB Already exists',
+              });
+            } else {
+              this.toest.error({
+                detail: 'Failed to save shipment',
+                summary: 'Error'
+              });
+            }
           }
         });
         // } else {

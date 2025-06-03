@@ -1,0 +1,56 @@
+<section>
+  <div class="container">
+    <div class="row style-heading">
+      <div class="col-sm-12 col-md-4">
+        <h4>Pickup Report</h4>
+      </div>
+      <div class="col-sm-12 col-md-8">
+        <div class="row">
+          <div class="col-sm-12 col-md-4"></div>
+          <div class="col-sm-12 col-md-4 d-flex justify-content-end">
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <select class="form-select" aria-label="Default select example" (click)="getDataPicupReport($event)">
+              <option value="">Select Tracking Number</option>
+              <option *ngFor="let item of trackingOptions" [value]="item.awb_no">{{item.awb_no}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card bg-white">
+      <div class="row" style="overflow-x: auto;">
+        <table id="summary1" class="table table-responsive" style="width:100%">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Tracking Number</th>
+              <th>Destination</th>
+              <th>Status</th>
+              <th>Order Date</th>
+              <th>Destination Pincode</th>
+              <th>Consignor Name</th>
+              <th>Consignee Address</th>
+              <th>Consignee Mobile Number</th>
+              <th>Weight</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data">
+              <td>{{ item.client || '-' }}</td>
+              <td>{{ item.tracking_number || '-' }}</td>
+              <td>{{ item.destination || '-' }}</td>
+              <td>{{ item.status || '-' }}</td>
+              <td>{{ item.order_date !== '0000-00-00' ? (item.order_date | date:'dd/MM/yyyy') : '-' }}</td>
+              <td>{{ item.destination_pincode }}</td>
+              <td>{{ item.consignor_name }}</td>
+              <td>{{ item.consignee_address }}</td>
+              <td>{{ item.consignee_mobile_number }}</td>
+              <td>{{ item.weight }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

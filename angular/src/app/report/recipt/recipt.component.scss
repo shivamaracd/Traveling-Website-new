@@ -1,0 +1,268 @@
+body {
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.receipt {
+  border: 3px solid #233a8c;
+  margin: 20px auto;
+  padding: 0;
+  max-width: 1400px;
+  background: #fff;
+  color: #233a8c;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+.row {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+.header-row {
+  border-bottom: 2px solid #233a8c;
+  padding: 10px 10px 0 10px;
+}
+.header-left {
+  display: flex;
+  flex: 2.5;
+}
+.logo-box {
+  width: 70px;
+  display: flex;
+  align-items: flex-start;
+  margin-right: 10px;
+}
+.logo-circle {
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border: 2px solid #233a8c;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+.company-info {
+  font-size: 15px;
+}
+.company-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+.company-address {
+  font-size: 0.95em;
+  margin-bottom: 2px;
+}
+.company-address .sub {
+  font-size: 0.9em;
+}
+.company-contact {
+  font-size: 1em;
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.company-contact .website {
+  font-size: 0.95em;
+  margin-left: 10px;
+}
+.company-gstin {
+  font-size: 0.95em;
+  margin-bottom: 2px;
+}
+.header-right {
+  flex: 1.5;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.header-cell {
+  border: 1.5px solid #233a8c;
+  padding: 8px 18px;
+  min-width: 110px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1em;
+  margin-left: 2px;
+}
+.details-row {
+  border-bottom: 2px solid #233a8c;
+  padding: 0 10px;
+  min-height: 120px;
+  position: relative;
+}
+.details-left, .details-right {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+.details-label {
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 5px 0 2px 0;
+}
+.details-box {
+  border: 1.5px solid #233a8c;
+  height: 60px;
+  margin-bottom: 5px;
+  background: #fff;
+}
+.mobile-label {
+  margin-top: 5px;
+}
+.charges-table {
+  flex: 1.2;
+  border-left: 2px solid #233a8c;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  margin-left: 10px;
+}
+.charges-header {
+  display: flex;
+  border-bottom: 1.5px solid #233a8c;
+  font-weight: bold;
+  text-align: center;
+}
+.charges-header > div {
+  flex: 1;
+  border-right: 1.5px solid #233a8c;
+  padding: 4px 0;
+}
+.charges-header > div:last-child {
+  border-right: none;
+}
+.charges-row {
+  display: flex;
+  border-bottom: 1.5px solid #233a8c;
+  font-size: 0.98em;
+}
+.charges-row > div {
+  flex: 1;
+  border-right: 1.5px solid #233a8c;
+  padding: 4px 0 4px 8px;
+}
+.charges-row > div:last-child {
+  border-right: none;
+}
+.mode-row {
+  border-bottom: 2px solid #233a8c;
+  padding: 0 10px;
+  min-height: 60px;
+  align-items: stretch;
+}
+.mode-box {
+  flex: 2.2;
+  display: flex;
+  align-items: center;
+  border-right: 1.5px solid #233a8c;
+  font-size: 1em;
+  padding: 10px 0;
+  gap: 10px;
+}
+.mode-square {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid #233a8c;
+  margin-left: 3px;
+  vertical-align: middle;
+}
+.weight-box, .amount-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1.5px solid #233a8c;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+.amount-box {
+  border-right: none;
+}
+.signature-box {
+  flex: 2.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 10px;
+  font-size: 1em;
+}
+.signature-note {
+  font-size: 0.85em;
+  color: #233a8c;
+  margin-top: 5px;
+}
+.highlight-row {
+  background: #233a8c;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  padding: 10px 0 8px 0;
+  letter-spacing: 1px;
+  margin-bottom: 0;
+}
+.terms-row {
+  border-bottom: 2px solid #233a8c;
+  padding: 0 10px;
+  align-items: flex-end;
+}
+.terms-box {
+  flex: 3;
+  font-size: 1em;
+  padding: 10px 0 5px 0;
+}
+.terms-title {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2px;
+}
+.terms-text {
+  text-align: center;
+  font-size: 0.98em;
+}
+.for-box {
+  flex: 1.5;
+  text-align: right;
+  font-size: 1em;
+  padding-bottom: 10px;
+}
+.auth-sign {
+  margin-top: 20px;
+}
+.footer-row {
+  padding: 0 10px 10px 10px;
+  align-items: center;
+}
+.footer-left {
+  flex: 2;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.phone-icon {
+  font-size: 1.3em;
+  color: #233a8c;
+  margin-right: 5px;
+}
+.footer-right {
+  flex: 2;
+  text-align: right;
+}
+@media (max-width: 900px) {
+  .receipt {
+    font-size: 13px;
+    max-width: 99vw;
+  }
+  .header-cell, .charges-table {
+    min-width: 70px;
+  }
+  .highlight-row {
+    font-size: 1em;
+  }
+}

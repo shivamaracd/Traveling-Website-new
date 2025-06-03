@@ -9,28 +9,28 @@ import { DeliveryService } from '../delivery.service';
   styleUrls: ['./delivery.component.scss']
 })
 export class DeliveryComponent implements OnInit {
-  data : any [] = []
-  constructor(private ngxLoader: NgxUiLoaderService,private router:Router, private service:DeliveryService) { }
+  data: any[] = []
+  constructor(private ngxLoader: NgxUiLoaderService, private router: Router, private service: DeliveryService) { }
 
   ngOnInit(): void {
-   this.getData();
+    this.getData();
   }
-  getData(){
+  getData() {
     this.ngxLoader.start();
-    this.service.getDeliveryData().subscribe(res=>{
+    this.service.getDeliveryData().subscribe(res => {
       console.log(res)
-    $('#myTable8').DataTable().clear();
-    $('#myTable8').DataTable().destroy();
-    this.data = res.data;
-    $.getScript('/assets/table/table.js');
-    this.ngxLoader.stop();
-  }, err => {
-    console.log(err)
-    $('#myTable8').DataTable().destroy();
-    $('#myTable8').DataTable().clear();
-    $.getScript('/assets/table/table.js');
-    this.ngxLoader.stop();
-  })
+      $('#myTable8').DataTable().clear();
+      $('#myTable8').DataTable().destroy();
+      this.data = res.data;
+      $.getScript('/assets/table/table.js');
+      this.ngxLoader.stop();
+    }, err => {
+      console.log(err)
+      $('#myTable8').DataTable().destroy();
+      $('#myTable8').DataTable().clear();
+      $.getScript('/assets/table/table.js');
+      this.ngxLoader.stop();
+    })
   }
 
   openClientModal() {
@@ -50,11 +50,11 @@ export class DeliveryComponent implements OnInit {
         return 'text-dark';      // default
     }
   }
-  
 
-  onDelete(id:any){
+
+  onDelete(id: any) {
     if (!confirm('Are you sure, you want to delete this Client!')) {
-      return ;
+      return;
     }
     if (id) {
       this.service.deleteDelivery(id).subscribe(res => {
@@ -70,7 +70,7 @@ export class DeliveryComponent implements OnInit {
       })
     }
   }
-  onEdit(id : any){
+  onEdit(id: any) {
     this.router.navigate(['/shipment/edit/' + id]);
   }
 

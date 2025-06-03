@@ -56,7 +56,7 @@ module.exports = function (app: any) {
   const task = new Task();
   app.post("/editDatda", task.editData)
   app.post("/editTask", task.editTask)
-  
+  app.post("/getDataPicupReport", task.getDataPicupReport)
   
   
   // Setting class and method

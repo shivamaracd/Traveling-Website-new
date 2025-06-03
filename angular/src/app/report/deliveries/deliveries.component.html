@@ -2,14 +2,17 @@
   <h2>View Details</h2>
 
   <div class="filter-bar" [formGroup]="onSearchForm">
-    <input type="text" placeholder="Tracking Number"  formControlName="trackingNumber"/>
-    <input type="text" placeholder="Forwading Number"  formControlName="forwardingNumber"/>
+    <input type="text" placeholder="Tracking Number" formControlName="trackingNumber" />
+    <input type="text" placeholder="Forwading Number" formControlName="forwardingNumber" />
     <button class="export-btn" type="button" (click)="onSubmit()">
       <i class=""></i> Search
     </button>
     <button (click)="printPage()" class="btn btn-primary">🖨️ Print</button>
 
   </div>
+
+  
+
   <div class="card shadow p-4 rounded-4" *ngIf="displayNull">
 
     <!-- Client Info -->

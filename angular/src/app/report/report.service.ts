@@ -20,6 +20,14 @@ export class ReportService extends AppService<any> {
     return result;
   }
 
+  getDataPicupReport(data: any): Observable<any> {
+    let tmp = this.appmod;
+    this.appmod = 'getDataPicupReport';
+    let result = super.saveService(data);
+    this.appmod = tmp;
+    return result;
+  }
+
 }
 
 
