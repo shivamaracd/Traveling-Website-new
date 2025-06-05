@@ -1,1 +1,58 @@
-<p>status-report works!</p>
+<section>
+  <div class="container">
+    <div class="row style-heading">
+      <div class="col-sm-12 col-md-4">
+        <h4>Status Report</h4>
+      </div>
+      <div class="col-sm-12 col-md-8">
+        <div class="row">
+          <div class="col-sm-12 col-md-4"></div>
+          <div class="col-sm-12 col-md-4 d-flex justify-content-end">
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <select class="form-select" aria-label="Default select example" (click)="getDataMISReport($event)">
+              <option value="">Select Tracking Number</option>
+              <option *ngFor="let item of trackingOptions" [value]="item.awb_no">{{item.awb_no}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card bg-white">
+      <div class="row" style="overflow-x: auto;">
+        <table id="myTable4" class="table table-responsive" style="width:100%">
+          <thead>
+            <tr>
+              <th>Tracking Number</th>
+              <th>Client Name</th>
+              <th>Booking Date</th>
+              <th>Destination Pincode</th>
+              <th>Destination</th>
+              <th>Consignor Name</th>
+              <th>Consignee Address</th>
+              <th>Consignee Mobile Number</th>
+              <th>Weight</th>
+              <th>Delivery Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data">
+              <td>{{ item.tracking_number || '-' }}</td>
+              <td>{{ item.client || '-' }}</td>
+              <td>{{ item.booking_date !== '0000-00-00' ? (item.booking_date | date:'dd/MM/yyyy') : '-' }}</td>
+              <td>{{ item.destination_pincode }}</td>
+              <td>{{ item.destination }}</td>
+              <td>{{ item.consignee_name }}</td>
+              <td>{{ item.consignee_address }}</td>
+              <td>{{ item.consignee_mobile_number }}</td>
+              <td>{{ item.weight }}</td>
+              <td>{{ item.delivery_date !== '0000-00-00' ? (item.delivery_date | date:'dd/MM/yyyy') : '-'}}</td>
+              <td>{{ item.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

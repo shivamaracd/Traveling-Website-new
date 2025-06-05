@@ -57,6 +57,7 @@ module.exports = function (app: any) {
   app.post("/editDatda", task.editData)
   app.post("/editTask", task.editTask)
   app.post("/getDataPicupReport", task.getDataPicupReport)
+  app.post("/getDataMISReport", task.getDataMISReport)
   
   
   // Setting class and method

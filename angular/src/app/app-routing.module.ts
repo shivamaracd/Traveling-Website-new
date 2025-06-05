@@ -127,14 +127,6 @@ const routes: Routes = [
         path: 'task',
         loadChildren: () => import('./task/task.module').then(m => m.TaskModule)
       },
-      // {
-      //   path: 'act',
-      //   loadChildren: () => import('./act/act.module').then(m => m.ActModule)
-      // },
-      {
-        path: 'notes',
-        loadChildren: () => import('./notes/notes.module').then(m => m.NotesModule)
-      },
       {
         path: 'setting',
         loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule)

@@ -16,8 +16,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from "ngx-ui-loader";
 import { NgToastModule } from 'ng-angular-popup';
 import { DataTablesModule } from 'angular-datatables';
-import { CaseListComponent } from './cases/case-list/case-list.component';
-import { CaseModule } from './cases/case.module';
 import { RouterModule } from '@angular/router';
 import { FeatherIconModule } from './core/feather-icon/feather-icon.module';
 import { SharedModule } from './shared/shared.module';
@@ -27,7 +25,6 @@ import { SharedModule } from './shared/shared.module';
     AppComponent,
     LoginComponent,
     // DashboardComponent,
-    CaseListComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +42,6 @@ import { SharedModule } from './shared/shared.module';
     NgxUiLoaderHttpModule,
     NgToastModule,
     DataTablesModule,
-    CaseModule,
     FeatherIconModule,
     SharedModule
   ],
