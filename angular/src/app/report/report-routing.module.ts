@@ -7,6 +7,7 @@ import { ReciptComponent } from './recipt/recipt.component';
 import { PickupComponent } from './pickup/pickup.component';
 import { MisReportComponent } from './mis-report/mis-report.component';
 import { StatusReportComponent } from './status-report/status-report.component';
+import { PrintReceiptComponent } from './print-receipt/print-receipt.component';
 
 const routes: Routes = [
   {path:'',component:ReportComponent},
@@ -17,6 +18,10 @@ const routes: Routes = [
   {path:'picup-report',component:PickupComponent},
   {path:'mis-report',component:MisReportComponent},
   {path:'status-report',component:StatusReportComponent},
+  {
+    path: 'status-report/print/:tracking_number',
+    component: PrintReceiptComponent
+  }
 ];
 
 @NgModule({

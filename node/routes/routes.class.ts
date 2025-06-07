@@ -32,7 +32,9 @@ module.exports = function (app: any) {
   app.post('/addexuctiveuserdata', team.executiveMapping);
   app.post("/getMemberbyid", team.getMemberById)
   app.post("/updateMember", team.updateMember)
-
+  app.post("/getFilterStatusdata", team.getFilterStatusdata)
+  app.post("/getFilterPicupdata", team.getFilterPicupdata)
+  app.post("/getFilterMISdata", team.getFilterMISdata)
   // app.get('/getcrmdata', team.updateMember);
 
 
@@ -45,6 +47,7 @@ module.exports = function (app: any) {
   app.post("/deleteDelivery", client.deleteDelivery)
   app.post("/getDataTracking", client.getDataTracking)
   app.post("/editDataShipment", client.editDataShipment); 
+  app.get("/getDeliveryStatus", client.getDeliveryStatus); 
   app.post("/getEditValuemanifest", client.getEditValuemanifest); 
   app.post("/editDataVendor", client.editDataVendor);
   app.post("/updateVendorData", client.updateVendorData);
@@ -55,8 +58,8 @@ module.exports = function (app: any) {
 
   const task = new Task();
   app.post("/editDatda", task.editData)
-  app.post("/editTask", task.editTask)
   app.post("/getDataPicupReport", task.getDataPicupReport)
+  app.post("/editTask", task.editTask)
   app.post("/getDataMISReport", task.getDataMISReport)
   
   

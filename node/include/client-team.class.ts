@@ -211,6 +211,32 @@ export class Client {
     });
   }
 
+  public getDeliveryStatus(req: Request, res: Response, next: NextFunction) {
+    let session = new SessionManagment(req, res, next);
+    session.GetSession((error: any, sessdata: any) => {
+      if (error == 1) {
+        let objs = new ModelRawQuery(req, res);
+        objs.qrysql = "SELECT `status`, `tracking_number` FROM delivery WHERE iduser='"+ sessdata.id +"'  ORDER BY `tracking_number` DESC LIMIT 10";
+        objs.prepare();
+        objs.execute((error: any, result: any) => {
+          if (error == 1) {
+            let objv = new RawView(res);
+            objv.prepare({status: error,message: "Data Get Successfully!",data: result,});
+            objv.execute();
+          } else {
+            let objv = new RawView(res);
+            objv.prepare({ status: error, message: result.sqlMessage });
+            objv.execute();
+          }
+        });
+      } else {
+        let objv = new Res406(res);
+        objv.prepare("No seesion found!");
+        objv.execute();
+      }
+    });
+  }
+
   public getEditValuemanifest(req: Request, res: Response, next: NextFunction) {
     let sdata = req.body.data;
     console.log("value", sdata);

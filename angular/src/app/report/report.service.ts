@@ -36,6 +36,30 @@ export class ReportService extends AppService<any> {
     return result;
   }
 
+  getFilterStatusdata(data: any): Observable<any> {
+    let tmp = this.appmod;
+    this.appmod = 'getFilterStatusdata';
+    let result = super.saveService(data);
+    this.appmod = tmp;
+    return result;
+  }
+
+  getFilterPicupdata(data: any): Observable<any> {
+    let tmp = this.appmod;
+    this.appmod = 'getFilterPicupdata';
+    let result = super.saveService(data);
+    this.appmod = tmp;
+    return result;
+  }
+
+  getFilterMISdata(data: any): Observable<any> {
+    let tmp = this.appmod;
+    this.appmod = 'getFilterMISdata';
+    let result = super.saveService(data);
+    this.appmod = tmp;
+    return result;
+  }
+
 }
 
 

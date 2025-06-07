@@ -50,7 +50,7 @@ export const MENU: MenuItem[] = [
   // {
   //   label: 'Branch',
   //   icon: 'calendar',
-  //   link: '/branch/branch',
+  //   link: '/vander/branch',
   // },
   {
     label: 'Vender',

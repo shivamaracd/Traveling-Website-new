@@ -5,11 +5,12 @@ import { ReportRoutingModule } from './report-routing.module';
 import { ReportComponent } from './report/report.component';
 import { AddReportComponent } from './add-report/add-report.component';
 import { DeliveriesComponent } from './deliveries/deliveries.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReciptComponent } from './recipt/recipt.component';
 import { PickupComponent } from './pickup/pickup.component';
 import { MisReportComponent } from './mis-report/mis-report.component';
 import { StatusReportComponent } from './status-report/status-report.component';
+import { PrintReceiptComponent } from './print-receipt/print-receipt.component';
 
 
 @NgModule({
@@ -20,12 +21,14 @@ import { StatusReportComponent } from './status-report/status-report.component';
     ReciptComponent,
     PickupComponent,
     MisReportComponent,
-    StatusReportComponent
+    StatusReportComponent,
+    PrintReceiptComponent
   ],
   imports: [
     CommonModule,
     ReportRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ReportModule { }

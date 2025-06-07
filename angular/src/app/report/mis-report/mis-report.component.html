@@ -4,15 +4,53 @@
       <div class="col-sm-12 col-md-4">
         <h4>MIS Report</h4>
       </div>
-      <div class="col-sm-12 col-md-8">
+      
+      <div class="col-sm-12 col-md-12">
         <div class="row">
-          <div class="col-sm-12 col-md-4"></div>
-          <div class="col-sm-12 col-md-4 d-flex justify-content-end">
+
+          <!-- Predefined Date Filter -->
+          <div class="col-sm-12 col-md-3 mb-2">
+            <select class="form-select" [(ngModel)]="predefinedRange" (change)="onPredefinedRangeChange($event)">
+              <option value="">Select Range</option>
+              <option value="today">Today</option>
+              <option value="yesterday">Yesterday</option>
+              <option value="quarter">This Quarter</option>
+              <option value="year">This Year</option>
+            </select>
           </div>
-          <div class="col-sm-12 col-md-4">
-            <select class="form-select" aria-label="Default select example" (click)="getDataMISReport($event)">
+
+          <!-- Start Date -->
+          <div class="col-sm-12 col-md-2 mb-2">
+            <input type="date" class="form-control" [(ngModel)]="startDate" (change)="onDateChange()"
+              placeholder="Start Date" />
+          </div>
+
+          <!-- End Date -->
+          <div class="col-sm-12 col-md-2 mb-2">
+            <input type="date" class="form-control" [(ngModel)]="endDate" (change)="onDateChange()"
+              placeholder="End Date" />
+          </div>
+
+          <!-- Tracking Number Selector -->
+          <!-- <div class="col-sm-12 col-md-3 mb-2">
+            <select class="form-select" aria-label="Default select example" (change)="getDataPicupReport($event)">
               <option value="">Select Tracking Number</option>
               <option *ngFor="let item of trackingOptions" [value]="item.awb_no">{{item.awb_no}}</option>
+            </select>
+          </div> -->
+
+          <div class="col-sm-12 col-md-2 mb-2">
+            <button class="btn btn-success w-100" (click)="exportToExcel()">Export</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-12">
+        <div class="row">
+          <div class="col-sm-12 col-md-3 mb-2">
+            <select class="form-select" aria-label="Default select example" (change)="getDataMISReport($event)">
+              <option value="">Select Client</option>
+              <option *ngFor="let item of clientData" [value]="item.client_name">{{item.client_name}}</option>
             </select>
           </div>
         </div>

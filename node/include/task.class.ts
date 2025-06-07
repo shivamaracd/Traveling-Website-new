@@ -106,7 +106,7 @@ export class Task {
     session.GetSession((error: any, sessdata: any) => {
       if (error == 1) {
         let objs = new ModelRawQuery(req, res);
-        objs.qrysql = "SELECT s.`client`, s.awb_no`tracking_number`, m.`destination`, m.`status`, s.created_at`order_date`, s.pin_code`destination_pincode`, s.consignor_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`, s.mobile_no`consignee_mobile_number`, s.actual_weight`weight` FROM `shipment2` s inner join `manifests` m on  m.`tracking_number`=s.`awb_no` where s.`awb_no`='"+ sdata  +"'";
+        objs.qrysql = "SELECT s.created_at, s.`client`, s.awb_no`tracking_number`, m.`destination`, m.`status`, s.created_at`order_date`, s.pin_code`destination_pincode`, s.consignor_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`, s.mobile_no`consignee_mobile_number`, s.actual_weight`weight` FROM `shipment2` s inner join `manifests` m on  m.`tracking_number`=s.`awb_no` where s.`client`='"+ sdata  +"'";
         objs.prepare();
         objs.execute((error: any, result: any) => {
           if (error == 1) {
@@ -135,7 +135,7 @@ export class Task {
     session.GetSession((error: any, sessdata: any) => {
       if (error == 1) {
         let objs = new ModelRawQuery(req, res);
-        objs.qrysql = "SELECT s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`,s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.`awb_no`='"+ sdata +"'";
+        objs.qrysql = "SELECT s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`,s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.`client`='"+ sdata +"'";
         objs.prepare();
         objs.execute((error: any, result: any) => {
           if (error == 1) {

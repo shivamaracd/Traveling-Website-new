@@ -20,6 +20,14 @@ export class DeliveryService extends AppService<any> {
     return result;
   }
 
+  getDeliveryStatus(): Observable<any> {
+    let tmp = this.appmod;
+    this.appmod = 'getDeliveryStatus';
+    let result = super.getService();
+    this.appmod = tmp;
+    return result;
+  }
+
   saveDeliverydata(data: any): Observable<any> {
     console.log(data)
     let tmp = this.appmod;

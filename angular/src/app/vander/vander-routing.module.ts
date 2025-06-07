@@ -6,6 +6,7 @@ import { AddVanderComponent } from './add-vander/add-vander.component';
 const routes: Routes = [
   {path : '', component:VanderComponent},
   {path : "vander", component:VanderComponent},
+  {path : "branch", component:VanderComponent},
   {path : "add", component:AddVanderComponent},
   {path : "edit/:id", component:AddVanderComponent}
 ];
