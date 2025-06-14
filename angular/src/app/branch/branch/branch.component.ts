@@ -56,7 +56,8 @@ export class BranchComponent implements OnInit {
     }
   }
   onEdit(id : any){
-    this.router.navigate(['/branch/edit/' + id]);
+    console.log(id);
+    this.router.navigate(['/branch/branch/' + id]);
   }
 
 

@@ -1,125 +1,235 @@
 <div class="container">
-  <h2>View Details</h2>
+  <h2>Shipment Tracking Details</h2>
 
   <div class="filter-bar" [formGroup]="onSearchForm">
-    <input type="text" placeholder="Tracking Number" formControlName="trackingNumber" />
-    <input type="text" placeholder="Forwading Number" formControlName="forwardingNumber" />
-    <button class="export-btn" type="button" (click)="onSubmit()">
-      <i class=""></i> Search
+    <input type="text" placeholder="Enter Tracking Number" formControlName="trackingNumber" />
+    <button class="search-btn" type="button" (click)="onSubmit()">
+      <i class="fas fa-search"></i> Search
     </button>
-    <button (click)="printPage()" class="btn btn-primary">🖨️ Print</button>
-
   </div>
 
-  
-
-  <div class="card shadow p-4 rounded-4" *ngIf="displayNull">
-
-    <!-- Client Info -->
-    <h5 class="mb-3 text-secondary border-bottom pb-2">Client Information</h5>
-    <div class="row mb-3">
-      <div class="col-md-4"><strong>Client Name:</strong> {{ data.client_name }}</div>
-      <div class="col-md-4"><strong>Client Department:</strong> {{ data.client_department }}</div>
-      <div class="col-md-4"><strong>Description:</strong> {{ data.client_description }}</div>
+  <div class="tracking-details" *ngIf="displayNull">
+    <!-- Shipment Basic Info -->
+    <div class="section">
+      <h3>Shipment Information</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Tracking Number:</label>
+          <span>{{data.tracking_number}}</span>
+        </div>
+        <div class="info-item">
+          <label>Booking Date:</label>
+          <span>{{data.booking_date | date}}</span>
+        </div>
+        <div class="info-item">
+          <label>Client:</label>
+          <span>{{data.client}}</span>
+        </div>
+        <div class="info-item">
+          <label>Service Type:</label>
+          <span>{{data.billing_service}}</span>
+        </div>
+        <div class="info-item">
+          <label>Indent No:</label>
+          <span>{{data.indent_no}}</span>
+        </div>
+        <div class="info-item">
+          <label>Packages:</label>
+          <span>{{data.packages}}</span>
+        </div>
+        <div class="info-item">
+          <label>Actual Weight:</label>
+          <span>{{data.actual_weight}} kg</span>
+        </div>
+      </div>
     </div>
-    <!-- <div class="row mb-3">
-      <div class="col-md-4"><strong>Address:</strong> {{ data.client_address }}</div>
-      <div class="col-md-4"><strong>Address 2:</strong> {{ data.client_address2 }}</div>
-      <div class="col-md-4"><strong>City:</strong> {{ data.city }}</div>
+
+    <!-- Origin Details -->
+    <div class="section">
+      <h3>Origin Information</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Pickup Point:</label>
+          <span>{{data.pickup_point}}</span>
+        </div>
+        <div class="info-item">
+          <label>Consignor Name:</label>
+          <span>{{data.consignor_name}}</span>
+        </div>
+        <div class="info-item">
+          <label>Company Name:</label>
+          <span>{{data.company_name}}</span>
+        </div>
+        <div class="info-item">
+          <label>City:</label>
+          <span>{{data.origin_city}}</span>
+        </div>
+        <div class="info-item">
+          <label>State:</label>
+          <span>{{data.state}}</span>
+        </div>
+        <div class="info-item">
+          <label>Country:</label>
+          <span>{{data.country}}</span>
+        </div>
+        <div class="info-item">
+          <label>PIN Code:</label>
+          <span>{{data.pin_code}}</span>
+        </div>
+        <div class="info-item">
+          <label>Mobile:</label>
+          <span>{{data.mobile_no}}</span>
+        </div>
+        <div class="info-item">
+          <label>Email:</label>
+          <span>{{data.email_id}}</span>
+        </div>
+      </div>
     </div>
-    <div class="row mb-3">
-      <div class="col-md-4"><strong>Pin Code:</strong> {{ data.pincode }}</div>
-      <div class="col-md-4"><strong>GST No:</strong> {{ data.gst_no }}</div>
-      <div class="col-md-4"><strong>Email:</strong> {{ data.email }}</div>
+
+    <!-- Manifest Details -->
+    <div class="section">
+      <h3>Manifest Information</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Manifest Number:</label>
+          <span>{{data.manifest_number}}</span>
+        </div>
+        <div class="info-item">
+          <label>Manifest Date:</label>
+          <span>{{data.manifest_date | date}}</span>
+        </div>
+        <div class="info-item">
+          <label>Forwarding Number:</label>
+          <span>{{data.forwarding_number}}</span>
+        </div>
+        <div class="info-item">
+          <label>Forwarding By:</label>
+          <span>{{data.forwarding_by}}</span>
+        </div>
+        <div class="info-item">
+          <label>Destination:</label>
+          <span>{{data.manifest_destination}}</span>
+        </div>
+        <div class="info-item">
+          <label>Branch:</label>
+          <span>{{data.branch}}</span>
+        </div>
+        <div class="info-item">
+          <label>Status:</label>
+          <span [ngClass]="{'status-pending': data.manifest_status === 'Pending', 'status-delivered': data.manifest_status === 'Delivered'}">
+            {{data.manifest_status}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transport Details -->
+    <div class="section">
+      <h3>Transport Information</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Vehicle Number:</label>
+          <span>{{data.vehicle_number}}</span>
+        </div>
+        <div class="info-item">
+          <label>Driver Name:</label>
+          <span>{{data.driver_name}}</span>
+        </div>
+        <div class="info-item">
+          <label>Driver Contact:</label>
+          <span>{{data.driver_contact}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delivery Details -->
+    <div class="section">
+      <h3>Delivery Information</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Delivery Date:</label>
+          <span>{{data.delivery_date | date}}</span>
+        </div>
+        <div class="info-item">
+          <label>Delivery Time:</label>
+          <span>{{data.delivery_time}}</span>
+        </div>
+        <div class="info-item">
+          <label>Consignee Name:</label>
+          <span>{{data.consignee_name}}</span>
+        </div>
+        <div class="info-item">
+          <label>Received By:</label>
+          <span>{{data.received_by}}</span>
+        </div>
+        <div class="info-item">
+          <label>Relation:</label>
+          <span>{{data.relation}}</span>
+        </div>
+        <div class="info-item">
+          <label>Receiver Mobile:</label>
+          <span>{{data.receiver_mobile}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vendor Details -->
+    <div class="section">
+      <h3>Vendor Information</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Vendor Name:</label>
+          <span>{{data.vandor_name}}</span>
+        </div>
+        <div class="info-item">
+          <label>Description:</label>
+          <span>{{data.vander_description}}</span>
+        </div>
+        <div class="info-item">
+          <label>Address:</label>
+          <span>{{data.vander_address}}</span>
+        </div>
+        <div class="info-item">
+          <label>Contact Person:</label>
+          <span>{{data.contact_person}}</span>
+        </div>
+        <div class="info-item">
+          <label>Email:</label>
+          <span>{{data.vendor_email}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Remarks Section -->
+    <div class="section">
+      <h3>Remarks</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Shipment Remarks:</label>
+          <span>{{data.shipment_remarks}}</span>
+        </div>
+        <div class="info-item">
+          <label>Manifest Remarks:</label>
+          <span>{{data.manifest_remarks}}</span>
+        </div>
+        <div class="info-item">
+          <label>Delivery Remarks:</label>
+          <span>{{data.delivery_remarks}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Print Button -->
+    <!-- <div class="action-buttons">
+      <button class="print-btn" (click)="printPage()">
+        <i class="fas fa-print"></i> Print Details
+      </button>
     </div> -->
-    <!-- <div class="row mb-3">
-      <div class="col-md-4"><strong>Mobile No:</strong> {{ data.mobile_no }}</div>
-    </div> -->
-
-    <!-- Bank Info -->
-    <!-- <h5 class="mb-3 mt-4 text-secondary border-bottom pb-2">Bank Information</h5>
-    <div class="row mb-3">
-      <div class="col-md-4"><strong>Bank Name:</strong> {{ data.bank_name }}</div>
-      <div class="col-md-4"><strong>Account Name:</strong> {{ data.account_name }}</div>
-      <div class="col-md-4"><strong>IFSC Code:</strong> {{ data.ifsc_code }}</div>
-    </div> -->
-
-    <!-- Shipment Details -->
-    <h5 class="mb-3 mt-4 text-secondary border-bottom pb-2">Shipment Details</h5>
-    <div class="row mb-3">
-      <div class="col-md-4"><strong>Origin:</strong> {{ data.origin }}</div>
-      <div class="col-md-4"><strong>Destination:</strong> {{ data.destinations }}</div>
-      <div class="col-md-4"><strong>Destination Pincode:</strong> {{ data.destination_pincode }}</div>
-    </div>
-    <div class="row mb-3">
-      <!-- <div class="col-md-4"><strong>Tracking Number:</strong> {{ data.tracking_number }}</div> -->
-      <div class="col-md-4"><strong>Forwarding Number:</strong> {{ data.forwarding_number }}</div>
-      <div class="col-md-4"><strong>Mode:</strong> {{ data.mode }}</div>
-      <div class="col-md-4"><strong>Booked On:</strong> {{ data.booked_on | date: 'dd/MM/yyyy' }}</div>
-      <!-- <div class="col-md-4"><strong>Order Date:</strong> {{ data.order_date | date:'dd/MM/yyyy' }}</div> -->
-    </div>
-    <div class="row mb-3">
-      <div class="col-md-4"><strong>Forwarded By:</strong> {{ data.forword_by }}</div>
-      <!-- <div class="col-md-4"><strong>Shipper:</strong> {{ data.shipper }}</div> -->
-    </div>
-    <!-- <div class="row mb-3">
-    </div> -->
-
-    <!-- Delivery Address & Config -->
-    <h5 class="mb-3 mt-4 text-secondary border-bottom pb-2">Destination & Consignee</h5>
-    <div class="row mb-3">
-      <div class="col-md-4"><strong>Consignee Name:</strong> {{ data.configurations_name }}</div>
-      <div class="col-md-4"><strong>Address 1:</strong> {{ data.configurations_address }}</div>
-      <div class="col-md-4"><strong>Address 2:</strong> {{ data.configurations_address1 }}</div>
-    </div>
-    <div class="row mb-3">
-      <div class="col-md-4"><strong>Landmark:</strong> {{ data.destination_landmark }}</div>
-      <div class="col-md-4"><strong>Consignee Mobile:</strong> {{ data.configurations_mobile_number }}</div>
-    </div>
-
-    <!-- Package & Pricing -->
-    <h5 class="mb-3 mt-4 text-secondary border-bottom pb-2">Package & Pricing</h5>
-    <div class="row mb-3">
-      <div class="col-md-3"><strong>Volumetric Weight:</strong> {{ data.volumetric_weight }}</div>
-      <div class="col-md-3"><strong>Weight:</strong> {{ data.weight }}</div>
-      <div class="col-md-3"><strong>Height:</strong> {{ data.height }}</div>
-      <div class="col-md-3"><strong>Width:</strong> {{ data.width }}</div>
-    </div>
-    <div class="row mb-3">
-      <div class="col-md-3"><strong>Normal Weight:</strong> {{ data.weight2 }}</div>
-      <div class="col-md-3"><strong>Shipping Cost:</strong> ₹{{ data.shipping_cost }}</div>
-    </div>
-
-    <!-- Remarks -->
-    <div class="row mb-3">
-      <div class="col-md-6"><strong>Remark:</strong> {{ data.remark }}</div>
-      <div class="col-md-6"><strong>Remark 2:</strong> {{ data.remark2 }}</div>
-    </div>
-
-    <!-- Delivery Status -->
-    <h5 class="mb-3 mt-4 text-secondary border-bottom pb-2">Delivery Info</h5>
-    <!-- <div class="row mb-3">
-      <div class="col-md-4"><strong>Consignee Name:</strong> {{ data.consignee_name }}</div>
-      <div class="col-md-4"><strong>Status:</strong> {{ data.status }}</div>
-      <div class="col-md-4"><strong>Delivery Date:</strong> {{ data.delivery_date }}</div>
-    </div> -->
-    <div class="row mb-3">
-      <div class="col-md-4"><strong>Delivery Time:</strong> {{ data.delivery_time }}</div>
-      <div class="col-md-4"><strong>Received By:</strong> {{ data.received_by }}</div>
-      <div class="col-md-4"><strong>Relation:</strong> {{ data.relation }}</div>
-    </div>
-    <div class="row">
-      <div class="col-md-4"><strong>Mobile Number:</strong> {{ data.mobile_number }}</div>
-    </div>
-
-    <!-- Footer -->
-    <div class="text-end mt-4 text-muted">
-      <small>Created at: {{ data.created_at | date:'dd/MM/yyyy' }}</small>
-    </div>
-
-
-
   </div>
 
-
+  <!-- No Data Message -->
+  <div class="no-data" *ngIf="!displayNull">
+    <p>No tracking information found. Please check the tracking number and try again.</p>
+  </div>
 </div>

@@ -100,6 +100,8 @@ export class modData {
 
         { table: "vander", fields: ["id", "iduser", "vandor_name", "vander_description", "vander_address", "vander_address2", "mobile_no", "city", "pincode", "gst_no", "email", "bank_name", "account_name", "ifsc_code", "branch", "country", "state", "contact_person", "bank_city", "bank_state", "bank_country", "bank_pincode", "bank_email", "account_number"], session: { "iduser": "id" }, path: "/vander", type: "vander" },
 
+        { table: "branch", fields: ["id", "iduser", "branch_name", "branch_description", "branch_address", "branch_address2", "mobile_no", "city", "pincode", "gst_no", "email", "bank_name", "account_name", "ifsc_code", "branch", "country", "state", "contact_person", "bank_city", "bank_state", "bank_country", "bank_pincode", "bank_email", "account_number"], session: { "iduser": "id" }, path: "/branch", type: "branch" },
+
         /**************************************shipment member module***************************************/
 
         // { table: "shipment", fields: ["id", "iduser", "client", "client_department", "tracking_number", "order_date", "destination_pincode", "destinations", "configurations_name", "configurations_address", "configurations_address1", "destination_landmark", "configurations_mobile_number", "remark", "remark2", "volumetric_weight", "weight", "height", "width", "weight2", "shipping_cost", "created_at"], session: { "iduser": "id" }, path: "/shipment", type: "shipment" },

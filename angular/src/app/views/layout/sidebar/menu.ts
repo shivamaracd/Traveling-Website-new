@@ -47,20 +47,29 @@ export const MENU: MenuItem[] = [
     icon: 'user',
     link: '/client/client',
   },
-  // {
-  //   label: 'Branch',
-  //   icon: 'calendar',
-  //   link: '/vander/branch',
-  // },
+  {
+    label: 'Branch',
+    icon: 'calendar',
+    link: '/branch/branch',
+  },
   {
     label: 'Vender',
     icon: 'users',
     link: '/vander/vander',
   },
   {
-    label: 'Booking',
+    label: 'Booking Master',
     icon: 'calendar',
-    link: '/shipment/shipment',
+    subItems: [
+      {
+        label: 'Booking',
+        link: '/shipment/shipment',
+      },
+      {
+        label: 'Booking Import',
+        link: '/report/mis-report'
+      },
+    ]
   },
 
   {
@@ -73,11 +82,7 @@ export const MENU: MenuItem[] = [
     icon: 'truck',
     link: '/delivery/delivery',
   },
-  // {
-  //   label: 'Views',
-  //   icon: 'eye',
-  //   link: '/report/deliveries',
-  // },
+  
   {
     label: 'Report',
     icon: 'bar-chart-2',
@@ -96,6 +101,35 @@ export const MENU: MenuItem[] = [
       }
     ]
     // link: '/report/report',
+  },
+  {
+    label: 'Print',
+    icon: 'printer',
+    subItems: [
+      {
+        label: 'Pickup Report Print',
+        link: '/report/picup-report',
+      },
+      {
+        label: 'MIS Report Print',
+        link: '/report/mis-report'
+      },
+      {
+        label: 'Status Report Print',
+        link: '/report/status-report'
+      }
+    ]
+    // link: '/report/report',
+  },
+  {
+    label: 'Views',
+    icon: 'eye',
+    link: '/report/deliveries',
+  },
+  {
+    label: 'Invoice',
+    icon: 'file-text',
+    link: '/report/deliveries',
   },
   // {
   //   label: 'Setting',

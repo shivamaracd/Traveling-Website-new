@@ -107,7 +107,7 @@ export class Client {
         objs.execute((error: any, result: any) => {
           if (error == 1) {
             let objv = new RawView(res);
-            objv.prepare({status: error, message: "Data Get Successfully!",data: result,});
+            objv.prepare({ status: error, message: "Data Get Successfully!", data: result, });
             objv.execute();
           } else {
             let objv = new RawView(res);
@@ -135,7 +135,7 @@ export class Client {
         objs.execute((error: any, result: any) => {
           if (error == 1) {
             let objv = new RawView(res);
-            objv.prepare({status: error, message: "Data Delete Successfully!"});
+            objv.prepare({ status: error, message: "Data Delete Successfully!" });
             objv.execute();
           } else {
             let objv = new RawView(res);
@@ -163,7 +163,7 @@ export class Client {
         objs.execute((error: any, result: any) => {
           if (error == 1) {
             let objv = new RawView(res);
-            objv.prepare({status: error, message: "Data Delete Successfully!",data:result});
+            objv.prepare({ status: error, message: "Data Delete Successfully!", data: result });
             objv.execute();
           } else {
             let objv = new RawView(res);
@@ -216,12 +216,12 @@ export class Client {
     session.GetSession((error: any, sessdata: any) => {
       if (error == 1) {
         let objs = new ModelRawQuery(req, res);
-        objs.qrysql = "SELECT `status`, `tracking_number` FROM delivery WHERE iduser='"+ sessdata.id +"'  ORDER BY `tracking_number` DESC LIMIT 10";
+        objs.qrysql = "SELECT `status`, `tracking_number` FROM delivery WHERE iduser='" + sessdata.id + "'  ORDER BY `tracking_number` DESC LIMIT 10";
         objs.prepare();
         objs.execute((error: any, result: any) => {
           if (error == 1) {
             let objv = new RawView(res);
-            objv.prepare({status: error,message: "Data Get Successfully!",data: result,});
+            objv.prepare({ status: error, message: "Data Get Successfully!", data: result, });
             objv.execute();
           } else {
             let objv = new RawView(res);
@@ -486,7 +486,7 @@ WHERE id='${sdata.id}';
       if (error == 1) {
         let objs = new ModelRawQuery(req, res);
         if (sdata.trackingNumber) {
-          objs.qrysql = "SELECT d.origin, d.booked_on,d.shipper, d.forwarding_no,d.consignee_name, d.status,d.delivery_date, d.delivery_time,d.received_by,d.relation,d.mobile_number,  d.created_at,d.updated_at, m.mode, m.forword_by, m.forwarding_number, c.client_name, c.client_description, c.client_address, c.client_address2, c.mobile_no, c.city, c.pincode, c.gst_no, c.email, c.bank_name, c.account_name, c.ifsc_code, s.id, s.client, s.client_department, s.tracking_number, s.tracking_number, s.order_date, s.destination_pincode, s.destinations, s.configurations_name, s.configurations_address, s.configurations_address1, s.destination_landmark, s.configurations_mobile_number, s.remark, s.remark2, s.volumetric_weight, s.weight, s.height, s.width, s.weight2, s.shipping_cost, d.status,  d.forwarding_no FROM shipment s INNER JOIN delivery d ON d.tracking_number = s.tracking_number INNER JOIN manifest m ON m.tracking_number = s.tracking_number INNER JOIN client c ON c.iduser = s.iduser WHERE s.iduser = '" + sessdata.id + "' AND s.tracking_number ='" + sdata.trackingNumber + "'";
+          objs.qrysql = "SELECT s.awb_no as tracking_number, s.booking_date,s.client, s.billing_service,   s.indent_no, s.pickup_point, s.consignor_name, s.company_name, s.origin_city, s.state, s.country, s.pin_code, s.mobile_no, s.email_id, s.pkgs as packages, s.actual_weight, s.remark as shipment_remarks, m.manifest_number, m.date as manifest_date, m.forwarding_number, m.forwarding_by, m.destination as manifest_destination, m.branch, m.status as manifest_status, m.remarks as manifest_remarks, m.driver_contact, m.vehicle_number, m.driver_name, d.delivery_date, d.delivery_time, d.consignee_name, d.received_by, d.relation, d.mobile_number as receiver_mobile, d.remark as delivery_remarks, v.vandor_name, v.vander_description, v.vander_address, v.mobile_no as vendor_email, v.email as vendor_email, v.contact_person FROM shipment2 s INNER JOIN manifests m ON s.awb_no = m.tracking_number AND s.iduser = m.iduser INNER JOIN delivery d ON s.awb_no = d.tracking_number AND s.iduser = d.iduser INNER JOIN vander v ON s.iduser = v.iduser WHERE s.iduser = '"+ sessdata.id +"' and s.awb_no = '"+ sdata.trackingNumber +"' limit 1; ";
         } else {
           objs.qrysql = "SELECT d.origin, d.booked_on,d.shipper, d.forwarding_no,d.consignee_name, d.status,d.delivery_date, d.delivery_time,d.received_by,d.relation,d.mobile_number,  d.created_at,d.updated_at, m.mode, m.forword_by, m.forwarding_number, c.client_name, c.client_description, c.client_address, c.client_address2, c.mobile_no, c.city, c.pincode, c.gst_no, c.email, c.bank_name, c.account_name, c.ifsc_code, s.id, s.client, s.client_department, s.tracking_number, s.tracking_number, s.order_date, s.destination_pincode, s.destinations, s.configurations_name, s.configurations_address, s.configurations_address1, s.destination_landmark, s.configurations_mobile_number, s.remark, s.remark2, s.volumetric_weight, s.weight, s.height, s.width, s.weight2, s.shipping_cost, d.status,  d.forwarding_no FROM shipment s INNER JOIN delivery d ON d.tracking_number = s.tracking_number INNER JOIN manifest m ON m.tracking_number = s.tracking_number INNER JOIN client c ON c.iduser = s.iduser WHERE s.iduser = '" + sessdata.id + "' AND m.forwarding_number ='" + sdata.forwardingNumber + "'";
         }
@@ -495,6 +495,64 @@ WHERE id='${sdata.id}';
           if (error == 1) {
             let objv = new RawView(res);
             objv.prepare({ status: error, message: "data get Successfully!", data: result });
+            objv.execute();
+          } else {
+            let objv = new RawView(res);
+            objv.prepare({ status: error, message: "Something went wrong!" });
+            objv.execute();
+          }
+        });
+      } else {
+        let objv = new Res406(res);
+        objv.prepare("No seesion found!");
+        objv.execute();
+      }
+    });
+  }
+
+
+
+  public saveBranchData(req: Request, res: Response, next: NextFunction) {
+    let sdata = req.body.data;
+    console.log("value", sdata);
+    let session = new SessionManagment(req, res, next);
+    session.GetSession((error: any, sessdata: any) => {
+      if (error == 1) {
+        let objs = new ModelRawQuery(req, res);
+        objs.qrysql = `INSERT INTO branch (branch_name, branch_description, branch_address, branch_address2, mobile_no, city, pincode, gst_no, email, bank_name, account_name, ifsc_code, account_number, bank_city, bank_state, bank_country, bank_pincode, bank_email, country, state, contact_person) VALUES ('${sdata.data.branch_name}', '${sdata.data.branch_description}', '${sdata.data.branch_address}', '${sdata.data.branch_address2}', '${sdata.data.mobile_no}', '${sdata.data.city}', '${sdata.data.pincode}', '${sdata.data.gst_no}', '${sdata.data.email}', '${sdata.data.bank_name}', '${sdata.data.account_name}', '${sdata.data.ifsc_code}', '${sdata.data.account_number}', '${sdata.data.bank_city}', '${sdata.data.bank_state}', '${sdata.data.bank_country}', '${sdata.data.bank_pincode}', '${sdata.data.bank_email}', '${sdata.data.country}', '${sdata.data.state}', '${sdata.data.contact_person}')`;
+        objs.prepare();
+        objs.execute((error: any, result: any) => { 
+          if (error == 1) {
+            let objv = new RawView(res);
+            objv.prepare({ status: error, message: "Branch Data Saved Successfully!" });
+            objv.execute();
+          } else {
+            let objv = new RawView(res);
+            objv.prepare({ status: error, message: "Something went wrong!" });
+            objv.execute();
+          }
+        });
+      } else {
+        let objv = new Res406(res);
+        objv.prepare("No seesion found!");
+        objv.execute();
+      }
+    });
+  }
+
+  public editDataBranch(req: Request, res: Response, next: NextFunction) {
+    let sdata = req.body.data;
+    console.log("value", sdata);
+    let session = new SessionManagment(req, res, next);
+    session.GetSession((error: any, sessdata: any) => {
+      if (error == 1) {
+        let objs = new ModelRawQuery(req, res);
+        objs.qrysql = `SELECT branch_name, branch_description, branch_address, branch_address2, mobile_no, city, pincode, gst_no, email, bank_name, account_name, ifsc_code, account_number, bank_city, bank_state, bank_country, bank_pincode, bank_email, country, state, contact_person FROM branch WHERE id='${sdata}'`;
+        objs.prepare();
+        objs.execute((error: any, result: any) => {
+          if (error == 1) {
+            let objv = new RawView(res);
+            objv.prepare({ status: error, message: "Branch Data Updated Successfully!", data: result });
             objv.execute();
           } else {
             let objv = new RawView(res);

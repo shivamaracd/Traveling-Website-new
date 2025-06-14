@@ -1,4 +1,169 @@
- 
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h2 {
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 500;
+  }
+}
+
+.filter-bar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  align-items: center;
+
+  input {
+    flex: 1;
+    max-width: 300px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+    }
+  }
+
+  .search-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    i {
+      font-size: 14px;
+    }
+  }
+}
+
+.tracking-details {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  h3 {
+    color: #444;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.info-item {
+  label {
+    display: block;
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  span {
+    display: block;
+    color: #333;
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+
+.status-pending {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.status-delivered {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.action-buttons {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+
+  .print-btn {
+    padding: 10px 20px;
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #4b5563;
+    }
+
+    i {
+      font-size: 14px;
+    }
+  }
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 20px;
+
+  p {
+    color: #666;
+    font-size: 16px;
+  }
+}
+
+// Print styles
+@media print {
+  .filter-bar,
+  .action-buttons {
+    display: none;
+  }
+
+  .tracking-details {
+    box-shadow: none;
+  }
+
+  .section {
+    break-inside: avoid;
+  }
+}
+  
   .filter-bar {
     display: flex;
     align-items: center;

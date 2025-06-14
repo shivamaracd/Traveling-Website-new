@@ -105,7 +105,7 @@ const routes: Routes = [
       },
       {
         path: 'branch',
-        loadChildren: () => import('./branch/branch-routing.module').then(m => m.BranchRoutingModule)
+        loadChildren: () => import('./branch/branch.module').then(m => m.BranchModule)
       },
       {
         path: 'manifest',

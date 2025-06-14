@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ReportService } from '../report.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-deliveries',
@@ -10,20 +12,25 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./deliveries.component.scss']
 })
 export class DeliveriesComponent implements OnInit {
-  onSearchForm : FormGroup
-  data: any = []
-  constructor(private ngxLoader: NgxUiLoaderService, private router: Router, private service: ReportService, private fb:FormBuilder) {
+  onSearchForm: FormGroup;
+  data: any = [];
+  displayNull: boolean = false;
+
+  constructor(
+    private ngxLoader: NgxUiLoaderService, 
+    private router: Router, 
+    private service: ReportService, 
+    private fb: FormBuilder
+  ) {
     this.onSearchForm = this.fb.group({
-      trackingNumber: 'ER12345',
-      forwardingNumber : ''
-    })
-   }
+      trackingNumber: '1234',
+      forwardingNumber: ''
+    });
+  }
 
   ngOnInit(): void {
     // this.getData();
   }
-  displayNull: boolean = false
-
 
   // getData() {
   //   this.service.getService().subscribe(res => {
@@ -40,25 +47,41 @@ export class DeliveriesComponent implements OnInit {
   //   })
   // }
 
-  onSubmit(){
-    console.log(this.onSearchForm.value)
-    this.service.saveSearch(this.onSearchForm.value).subscribe((res:any)=>{
-      console.log(res)
+  onSubmit() {
+    console.log(this.onSearchForm.value);
+    this.service.saveSearch(this.onSearchForm.value).subscribe((res: any) => {
+      console.log(res);
       this.data = res.data[0];
-      console.log(this.data)
+      console.log(this.data);
       if (this.data) {
-        this.displayNull = true
+        this.displayNull = true;
       } else {
-        this.displayNull = false
+        this.displayNull = false;
       }
-    })
+    });
   }
 
   printPage() {
     window.print();
   }
-  
 
+  downloadPDF() {
+    const receiptElement = document.getElementById('receipt');
+    if (receiptElement) {
+      html2canvas(receiptElement, {
+        scale: 2,
+        logging: false,
+        useCORS: true
+      }).then(canvas => {
+        const imgWidth = 208; // A4 width in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        const contentDataURL = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        pdf.addImage(contentDataURL, 'PNG', 0, 0, imgWidth, imgHeight);
+        pdf.save(`RV_Courier_Receipt_${this.data.tracking_number}.pdf`);
+      });
+    }
+  }
 }
 
 

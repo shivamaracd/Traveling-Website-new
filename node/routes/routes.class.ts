@@ -55,6 +55,8 @@ module.exports = function (app: any) {
   app.post("/updateShipment", client.updateShipment);
   app.post("/editClient", client.editClient)
   app.post("/saveSearch", client.saveSearch)
+  app.post("/saveBranchData", client.saveBranchData)
+  app.post("/editDataBranch", client.editDataBranch)
 
   const task = new Task();
   app.post("/editDatda", task.editData)
