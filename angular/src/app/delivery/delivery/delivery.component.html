@@ -2,10 +2,26 @@
   <div class="container">
     <div class="row style-heading">
       <div class="col-sm-12">
-        <div class="d-flex justify-content-between">
-          <h4>Delivery</h4>
-          <a class="btn btn-primarys mb-2" (click)="openClientModal()"><i
-              class="feather icon-plus icon-md items-plus"></i> Add Delivery</a>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div>
+            <h4 *ngIf="!hideTitle" class="app-primary-color fw-bold mb-2">Delivery Update</h4>
+            <h4 *ngIf="hideTitle" class="app-primary-color fw-bold mb-2">Delivery Report</h4>
+            
+            <!-- <a class="btn btn-primarys" (click)="openClientModal()"><i class="feather icon-plus icon-md items-plus"></i>
+              Add</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3" *ngIf="hideTitle">
+      <div class="col-sm-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center gap-3" style="width: 100%;">
+            <input type="text" class="form-control form-control-sm rounded-pill" placeholder="Enter Tracking Number" [(ngModel)]="trackingNumber" style="max-width: 300px;">
+            <button class="btn btn-primary btn-sm rounded-pill" (click)="searchByTracking()">
+              <i class="feather icon-search"></i> Search
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -14,7 +30,6 @@
         <table id="myTable8" class="table table-responsive" style="width:100%">
           <thead>
             <tr>
-              <!-- <th>S.No</th> -->
               <th>Tracking No.</th>
               <th>Origin</th>
               <th>Shipper</th>
@@ -26,7 +41,6 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of data; let i = index">
-              <!-- <td style="font-weight: bold; color: #2c7be5; padding: 4px;">{{ i + 1 }}</td> -->
               <td>{{ item.tracking_number || '-' }}</td>
               <td>{{ item.origin || '-' }}</td>
               <td>{{ item.shipper || '-' }}</td>
@@ -36,11 +50,6 @@
                 {{ item.status || 'Pending' }}
               </td>
               <td>
-                <!-- Uncomment if you want edit -->
-
-                <!-- <i class="feather icon-edit me-2 items-icon text-primary" ngbTooltip="Edit" container="body"
-                  (click)="onEdit(item.id)"></i> -->
-
                 <i class="feather icon-trash me-2 items-icon text-danger" ngbTooltip="Delete" container="body"
                   (click)="onDelete(item.id)"></i>
               </td>

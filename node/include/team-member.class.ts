@@ -6,7 +6,7 @@ import { SessionManagment } from "../lib/model/Session";
 import { Res406 } from "../lib/view/406";
 import { RawView } from "../lib/view/RawView";
 import { start } from "repl";
-
+import { ModelCsvUpload } from "../lib/model/ModelCsvUpload";
 
 export class team_member {
 
@@ -185,19 +185,19 @@ export class team_member {
 		session.GetSession((error: any, sessdata: any) => {
 			if (error == 1) {
 				let objs = new ModelRawQuery(req, res);
-				objs.qrysql = "SELECT s.created_at, s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`, s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.created_at BETWEEN '"+ sdata.start +"' AND '"+ sdata.end +"'";
+				objs.qrysql = "SELECT s.created_at, s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`, s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.created_at BETWEEN '" + sdata.start + "' AND '" + sdata.end + "'";
 				objs.prepare();
 				objs.execute((error: any, result: any) => {
 					if (error == 1) {
-							if (error == 1) {
-								let objv = new RawView(res);
-								objv.prepare({ status: error, message: "filter data get Successfully!", data: result });
-								objv.execute();
-							} else {
-								let objv = new RawView(res);
-								objv.prepare({ status: error, message: "Something went wrong!" });
-								objv.execute();
-							}
+						if (error == 1) {
+							let objv = new RawView(res);
+							objv.prepare({ status: error, message: "filter data get Successfully!", data: result });
+							objv.execute();
+						} else {
+							let objv = new RawView(res);
+							objv.prepare({ status: error, message: "Something went wrong!" });
+							objv.execute();
+						}
 					} else {
 						let objv = new Res406(res);
 						objv.prepare("No seesion found!");
@@ -216,19 +216,19 @@ export class team_member {
 		session.GetSession((error: any, sessdata: any) => {
 			if (error == 1) {
 				let objs = new ModelRawQuery(req, res);
-				objs.qrysql = "SELECT s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`,s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.created_at BETWEEN '"+ sdata.start +"' AND '"+ sdata.end +"'";
+				objs.qrysql = "SELECT s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`,s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.created_at BETWEEN '" + sdata.start + "' AND '" + sdata.end + "'";
 				objs.prepare();
 				objs.execute((error: any, result: any) => {
 					if (error == 1) {
-							if (error == 1) {
-								let objv = new RawView(res);
-								objv.prepare({ status: error, message: "filter data get Successfully!", data: result });
-								objv.execute();
-							} else {
-								let objv = new RawView(res);
-								objv.prepare({ status: error, message: "Something went wrong!" });
-								objv.execute();
-							}
+						if (error == 1) {
+							let objv = new RawView(res);
+							objv.prepare({ status: error, message: "filter data get Successfully!", data: result });
+							objv.execute();
+						} else {
+							let objv = new RawView(res);
+							objv.prepare({ status: error, message: "Something went wrong!" });
+							objv.execute();
+						}
 					} else {
 						let objv = new Res406(res);
 						objv.prepare("No seesion found!");
@@ -247,19 +247,19 @@ export class team_member {
 		session.GetSession((error: any, sessdata: any) => {
 			if (error == 1) {
 				let objs = new ModelRawQuery(req, res);
-				objs.qrysql = "SELECT s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`,s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.created_at BETWEEN '"+ sdata.start +"' AND '"+ sdata.end +"'";
+				objs.qrysql = "SELECT s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`,s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.created_at BETWEEN '" + sdata.start + "' AND '" + sdata.end + "'";
 				objs.prepare();
 				objs.execute((error: any, result: any) => {
 					if (error == 1) {
-							if (error == 1) {
-								let objv = new RawView(res);
-								objv.prepare({ status: error, message: "filter data get Successfully!", data: result });
-								objv.execute();
-							} else {
-								let objv = new RawView(res);
-								objv.prepare({ status: error, message: "Something went wrong!" });
-								objv.execute();
-							}
+						if (error == 1) {
+							let objv = new RawView(res);
+							objv.prepare({ status: error, message: "filter data get Successfully!", data: result });
+							objv.execute();
+						} else {
+							let objv = new RawView(res);
+							objv.prepare({ status: error, message: "Something went wrong!" });
+							objv.execute();
+						}
 					} else {
 						let objv = new Res406(res);
 						objv.prepare("No seesion found!");
@@ -269,5 +269,220 @@ export class team_member {
 			}
 		})
 
+	}
+
+
+	public uploadDeliveryFile(req: Request, res: Response, next: NextFunction) {
+		console.log(req.file)
+		let type = req.body.type;
+		let extence = req.body.extance;
+		console.log("dasd", extence, type);
+		let session = new SessionManagment(req, res, next);
+		session.GetSession((error: number, sessdata: any) => {
+			if (error == 1) {
+				let nvalue: any = req.file
+				let objfile = new ModelCsvUpload(req, res);
+				let fdata: any = objfile.fileUpload();
+				let size = (fdata[3] / 1024 / 1024).toFixed(3);
+				// let obja = new ModelRawNonQuery(req, res);
+				// obja.nonqrysql = `INSERT INTO cel_uploads_contact(iduser, filename, file_type, filepath, size) VALUES ("${sessdata.id}","${fdata[0]}", "${req.body.type}", "${fdata[1]}", ${size})`;
+				// obja.prepare();
+				// obja.execute((error: any, result: any) => {
+				// 	let lastid = result.insertId;
+				let obj = new ModelRawNonQuery(req, res)
+				obj.nonqrysql = "LOAD DATA LOCAL INFILE  '" + fdata[1] + fdata[0] + "' INTO TABLE shipment2  FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES (@cal1,@cal2,@cal3,@cal4,@cal5,@cal6,@cal7,@cal8,@cal9,@cal10,@cal11,@cal12,@cal13,@cal14,@cal15,@cal16,@cal17,@cal18,@cal19,@cal20,@cal21,@cal22,@cal23,@cal24,@cal25,@cal26,@cal27) SET awb_no=@cal1, booking_date=@cal2, ref_no=@cal3, po_no=@cal4, client=@cal5, services=@cal6, indent_no=@cal7, pickup_point=@cal8, consignor_name=@cal9, consignor_address1=@cal10, consignor_address2=@cal11, landmark=@cal12, destinations=@cal13, state=@cal14, country=@cal15, pin_code=@cal16, mobile_no=@cal17, alt_mobile_no=@cal18, weight_unit=@cal19, email_id=@cal20, gstin=@cal21, aadhaar_no=@cal22, warehousing_receipt_no=@cal23, challan_no=@cal24, delivery_no=@cal25, actual_weight=@cal26, volumetric_weight=@cal27, iduser = '" + sessdata.id + "'";
+				obj.prepare();
+				obj.execute((error: number, result: any) => {
+					// let objd = new ModelRawQuery(req, res);
+					// objd.qrysql = "SELECT COUNT(upload_id)`total` FROM cel_leads WHERE upload_id = '" + lastid + "'";
+					// objd.prepare();
+					// objd.execute((error: any, resultss: any) => {
+					// 	console.log("count:::", resultss)
+					// 	let totalcount = resultss[0].total
+					// 	let obj = new ModelRawNonQuery(req, res);
+					// 	obj.nonqrysql = "UPDATE `cel_uploads_contact` SET `total_count`= '" + totalcount + "' WHERE id = '" + lastid + "'";
+					// 	obj.prepare();
+					// 	obj.execute((error: any, result: any) => {
+					if (error == 1) {
+						let objv = new RawView(res);
+						objv.prepare({ status: 200, message: `Booking File Uploaded Successfully!`, data: { filename: fdata[0] } });
+						objv.execute();
+					}
+					else {
+						let objv = new RawView(res);
+						objv.prepare({ status: 501, message: `Booking Files Uploads Failed !`, data: {} });
+						objv.execute();
+					}
+				});
+				// 	});
+				// });
+
+				// })
+			}
+			else {
+				let objv = new Res406(res);
+				objv.prepare({ status: 401, message: "Invalid Authentication!" });
+				objv.execute();
+			}
+		});
+	}
+
+	public importDeliveryFile(req: Request, res: Response, next: NextFunction) {
+		console.log(req.file)
+		let type = req.body.type;
+		let extence = req.body.extance;
+		console.log("dasd", extence, type);
+		let session = new SessionManagment(req, res, next);
+		session.GetSession((error: number, sessdata: any) => {
+			if (error == 1) {
+				let nvalue: any = req.file
+				let objfile = new ModelCsvUpload(req, res);
+				let fdata: any = objfile.fileUpload();
+				let size = (fdata[3] / 1024 / 1024).toFixed(3);
+				let obj = new ModelRawNonQuery(req, res)
+				obj.nonqrysql = "LOAD DATA LOCAL INFILE  '" + fdata[1] + fdata[0] + "' INTO TABLE delivery  FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES (@cal1,@cal2,@cal3,@cal4,@cal5,@cal6,@cal7,@cal8) SET tracking_number=@cal1, status=@cal2, delivery_date=@cal3, delivery_time=@cal4, received_by=@cal5, relation=@cal6, mobile_number=@cal7, remark=@cal8, iduser = '" + sessdata.id + "'";
+				obj.prepare();
+				obj.execute((error: number, result: any) => {
+					if (error == 1) {
+						let objv = new RawView(res);
+						objv.prepare({ status: 200, message: `Delivery File Uploaded Successfully!`, data: { filename: fdata[0] } });
+						objv.execute();
+					}
+					else {
+						let objv = new RawView(res);
+						objv.prepare({ status: 501, message: `Delivery Files Uploads Failed !`, data: {} });
+						objv.execute();
+					}
+				});
+			}
+			else {
+				let objv = new Res406(res);
+				objv.prepare({ status: 401, message: "Invalid Authentication!" });
+				objv.execute();
+			}
+		});
+	}
+
+	public saveDRSData(req: Request, res: Response, next: NextFunction) {
+		let sdata = req.body.data;
+		console.log("value", sdata);
+		let session = new SessionManagment(req, res, next);
+		session.GetSession((error: any, sessdata: any) => {
+			if (error == 1) {
+				let objs = new ModelRawQuery(req, res);
+				objs.qrysql = "INSERT INTO drs_manifest (iduser,manifest_number, origin, drs_sheet_date, drs_sheet_no, delivery_boys_name, delivery_boys_contact, shipment_status, tracking_number) VALUES ('" + sessdata.id + "', '" + sdata.manifest_number + "', '" + sdata.origin + "', '" + sdata.drs_sheet_date + "', '" + sdata.drs_sheet_no + "', '" + sdata.delivery_boys_name + "', '" + sdata.delivery_boys_contact + "', '" + sdata.shipment_status + "', '" + sdata.tracking_number + "')";	
+				objs.prepare();
+				objs.execute((error: any, result: any) => {
+					if (error == 1) {
+						let objv = new RawView(res);
+						objv.prepare({ status: 200, message: "DRS Data Saved Successfully!" });
+						objv.execute();
+					}
+					else {
+						let objv = new RawView(res);
+						objv.prepare({ status: 500, message: "Something went wrong!" });
+						objv.execute();
+					}
+				});
+			}
+		});
+	}
+
+	public getDrsManifest(req: Request, res: Response, next: NextFunction) {
+		let session = new SessionManagment(req, res, next);
+		session.GetSession((error: any, sessdata: any) => {
+			if (error == 1) {
+				let objs = new ModelRawQuery(req, res);
+				objs.qrysql = "SELECT id, manifest_number, drs_sheet_date, origin, drs_sheet_no, delivery_boys_name, delivery_boys_contact, shipment_status, tracking_number FROM drs_manifest WHERE iduser = '" + sessdata.id + "'";
+				objs.prepare();
+				objs.execute((error: any, result: any) => {
+					if (error == 1) {
+						let objv = new RawView(res);
+						objv.prepare({ status: 200, message: "DRS Manifest Data Fetched Successfully!", data: result });
+						objv.execute();
+					}
+					else {
+						let objv = new RawView(res);
+						objv.prepare({ status: 500, message: "Something went wrong!" });
+						objv.execute();
+					}
+				});
+			}
+		});
+	}
+
+	public getEditValuedrs(req: Request, res: Response, next: NextFunction) {
+		let sdata = req.body.data;
+		console.log("value", sdata);
+		let session = new SessionManagment(req, res, next);
+		session.GetSession((error: any, sessdata: any) => {
+			if (error == 1) {
+				let objs = new ModelRawQuery(req, res);
+				objs.qrysql = "SELECT * FROM drs_manifest WHERE id = '" + sdata + "'";	
+				objs.prepare();
+				objs.execute((error: any, result: any) => {
+					if (error == 1) {
+						let objv = new RawView(res);
+						objv.prepare({ status: 200, message: "DRS Manifest Data Fetched Successfully!", data: result });
+						objv.execute();
+					}
+					else {
+						let objv = new RawView(res);
+						objv.prepare({ status: 500, message: "Something went wrong!" });
+						objv.execute();
+					}
+				});
+			}
+		});
+	}
+
+	public updateDRSData(req: Request, res: Response, next: NextFunction) {
+		let sdata = req.body.data;
+		console.log("value", sdata);
+		let session = new SessionManagment(req, res, next);
+		session.GetSession((error: any, sessdata: any) => {
+			if (error == 1) {
+				let objs = new ModelRawQuery(req, res);
+				objs.qrysql = "UPDATE drs_manifest SET manifest_number = '" + sdata.manifest_number + "', origin = '" + sdata.origin + "', drs_sheet_date = '" + sdata.drs_sheet_date + "', drs_sheet_no = '" + sdata.drs_sheet_no + "', delivery_boys_name = '" + sdata.delivery_boys_name + "', delivery_boys_contact = '" + sdata.delivery_boys_contact + "', shipment_status = '" + sdata.shipment_status + "', tracking_number = '" + sdata.tracking_number + "' WHERE id = '" + sdata.id + "'";		
+				objs.prepare();
+				objs.execute((error: any, result: any) => {
+					if (error == 1) {
+						let objv = new RawView(res);
+						objv.prepare({ status: 200, message: "DRS Manifest Data Updated Successfully!" });
+						objv.execute();
+					}
+					else {
+						let objv = new RawView(res);
+						objv.prepare({ status: 500, message: "Something went wrong!" });
+						objv.execute();
+					}
+				});
+			}
+		});
+	}
+
+	public deleteDRSData(req: Request, res: Response, next: NextFunction) {
+		let sdata = req.body.data;
+		console.log("value", sdata);
+		let session = new SessionManagment(req, res, next);
+		session.GetSession((error: any, sessdata: any) => {
+			if (error == 1) {
+				let objs = new ModelRawQuery(req, res);
+				objs.qrysql = "DELETE FROM drs_manifest WHERE id = '" + sdata + "'";	
+				objs.prepare();
+				objs.execute((error: any, result: any) => {
+					if (error == 1) {
+						let objv = new RawView(res);
+						objv.prepare({ status: 200, message: "DRS Manifest Data Deleted Successfully!" });
+						objv.execute();
+					}
+					else {
+						let objv = new RawView(res);
+						objv.prepare({ status: 500, message: "Something went wrong!" });
+						objv.execute();
+					}
+				});
+			}
+		});
 	}
 }

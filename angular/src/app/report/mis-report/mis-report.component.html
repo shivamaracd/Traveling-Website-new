@@ -2,7 +2,8 @@
   <div class="container">
     <div class="row style-heading">
       <div class="col-sm-12 col-md-4">
-        <h4>MIS Report</h4>
+        <h4 *ngIf="!isPrint">MIS Report</h4>
+        <h4 *ngIf="isPrint">MIS Report Print</h4>
       </div>
       
       <div class="col-sm-12 col-md-12">
@@ -40,7 +41,10 @@
           </div> -->
 
           <div class="col-sm-12 col-md-2 mb-2">
-            <button class="btn btn-success w-100" (click)="exportToExcel()">Export</button>
+            <button class="btn btn-success w-100" (click)="exportToExcel()" *ngIf="!isPrint">Export</button>
+            <button  *ngIf="isPrint"class="btn btn-success w-100"   (click)="printReceipt()">
+              <i class="fas fa-print"></i> Print Receipt
+            </button>
           </div>
         </div>
       </div>
@@ -56,6 +60,7 @@
         </div>
       </div>
     </div>
+    
     <div class="card bg-white">
       <div class="row" style="overflow-x: auto;">
         <table id="summary3" class="table table-responsive" style="width:100%">

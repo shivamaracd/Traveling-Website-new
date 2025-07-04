@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {ShipmentService} from '../shipment.service'
+import { ShipmentService } from '../shipment.service'
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
@@ -9,28 +9,34 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
   styleUrls: ['./shipment.component.scss']
 })
 export class ShipmentComponent implements OnInit {
-  data : any [] = []
-  constructor(private ngxLoader: NgxUiLoaderService,private router:Router, private service:ShipmentService) { }
+  data: any[] = []
+  hideTitle: boolean = false;
+  trackingNumber: string = '';
+  constructor(private ngxLoader: NgxUiLoaderService, private router: Router, private service: ShipmentService) { }
 
   ngOnInit(): void {
-   this.getData();
+    console.log('Current route:', this.router.url);
+    if(this.router.url == '/shipment/shipment'){
+      this.hideTitle = true;
+    }
+    this.getData();
   }
-  getData(){
+  getData() {
     this.ngxLoader.start();
-    this.service.getService().subscribe(res=>{
+    this.service.getService().subscribe(res => {
       console.log(res)
-    $('#campainPassbookTable').DataTable().clear();
-    $('#campainPassbookTable').DataTable().destroy();
-    this.data = res;
-    $.getScript('/assets/table/table.js');
-    this.ngxLoader.stop();
-  }, err => {
-    console.log(err)
-    $('#campainPassbookTable').DataTable().destroy();
-    $('#campainPassbookTable').DataTable().clear();
-    $.getScript('/assets/table/table.js');
-    this.ngxLoader.stop();
-  })
+      $('#campainPassbookTable').DataTable().clear();
+      $('#campainPassbookTable').DataTable().destroy();
+      this.data = res;
+      $.getScript('/assets/table/table.js');
+      this.ngxLoader.stop();
+    }, err => {
+      console.log(err)
+      $('#campainPassbookTable').DataTable().destroy();
+      $('#campainPassbookTable').DataTable().clear();
+      $.getScript('/assets/table/table.js');
+      this.ngxLoader.stop();
+    })
   }
 
   openClientModal() {
@@ -38,9 +44,9 @@ export class ShipmentComponent implements OnInit {
     this.router.navigate(['shipment/add']);
   }
 
-  onDelete(id:any){
+  onDelete(id: any) {
     if (!confirm('Are you sure, you want to delete this Client!')) {
-      return ;
+      return;
     }
     if (id) {
       this.service.deleteService(id).subscribe(res => {
@@ -56,8 +62,19 @@ export class ShipmentComponent implements OnInit {
       })
     }
   }
-  onEdit(id : any){
+  onEdit(id: any) {
     this.router.navigate(['/shipment/edit/' + id]);
+  }
+
+  searchByTracking() {
+    console.log(this.trackingNumber);
+    let data = this.data.find((item: any) => item.awb_no == this.trackingNumber);
+    console.log(data);
+    if(data){
+      this.data = [data];
+    }else{
+      alert('Tracking Number not found');
+    }
   }
 
 

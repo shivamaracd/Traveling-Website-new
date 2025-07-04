@@ -1,57 +1,116 @@
 <div class="login-container">
-  <div class="login-wrapper">
-    <div class="login-card">
-      <div class="logo-container">
-        <div class="delivery-truck">
-          <i class="truck-icon" [featherIcon]="'truck'"></i>
-          <div class="wheels">
-            <span class="wheel"></span>
-            <span class="wheel"></span>
-          </div>
+  <div class="left-section">
+    <h1 class="main-heading">Your Gateway To<br>RV Courier & Logistics</h1>
+    <div class="sub-heading">
+      Master Shipping Across <span>196+ Countries</span>
+    </div>
+
+    <div class="country-flags">
+      <div class="flag-row">
+        <div class="flag-item">
+          <img [src]="'./assets/flags/au.png'" alt="Australia">
+          <span>Australia</span>
         </div>
-        <h1 class="company-name">RV Courier & Logistics</h1>
-        <p class="company-tagline">Delivering Excellence, Every Time</p>
+        <div class="flag-item">
+          <img [src]="'./assets/flags/us.png'" alt="USA">
+          <span>USA</span>
+        </div>
+        <div class="flag-item">
+          <img [src]="'./assets/flags/nz.png'" alt="New Zealand">
+          <span>New Zealand</span>
+        </div>
+        <div class="flag-item">
+          <img [src]="'./assets/flags/hk.png'" alt="Hong Kong">
+          <span>Hong Kong</span>
+        </div>
+        <div class="flag-item">
+          <img [src]="'./assets/flags/za.png'" alt="South Africa">
+          <span>South Africa</span>
+        </div>
+        <div class="flag-item">
+          <img [src]="'./assets/flags/ae.png'" alt="UAE">
+          <span>UAE</span>
+        </div>
       </div>
-      
-      <div class="login-form-container">
-        <h2 class="login-title">Welcome Back</h2>
-        <p class="login-subtitle">Please sign in to continue</p>
+      <div class="flag-row">
+        <div class="flag-item">
+          <img [src]="'./assets/flags/gb.png'" alt="UK">
+          <span>UK</span>
+        </div>
+        <div class="flag-item">
+          <img [src]="'./assets/flags/ca.png'" alt="Canada">
+          <span>Canada</span>
+        </div>
+        <div class="flag-item">
+          <img [src]="'./assets/flags/jp.png'" alt="Japan">
+          <span>Japan</span>
+        </div>
+        <div class="flag-item">
+          <img [src]="'./assets/flags/ru.png'" alt="Russia">
+          <span>Russia</span>
+        </div>
+        <div class="flag-item">
+          <img [src]="'./assets/flags/sg.png'" alt="Singapore">
+          <span>Singapore</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-          <div class="form-group">
-            <label for="username" class="form-label">
-              <i class="icon" [featherIcon]="'user'"></i>
-              Username
-            </label>
-            <input
-              type="text"
-              id="username"
-              class="form-control"
-              formControlName="username"
-              placeholder="Enter your username"
-            />
-          </div>
+  <div class="right-section">
+    <div class="login-card">
+      <h2 class="login-title">Login Across Borders</h2>
+      <p class="login-subtitle">Connecting you to the world!</p>
 
-          <div class="form-group">
-            <label for="password" class="form-label">
-              <i class="icon" [featherIcon]="'lock'"></i>
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              class="form-control"
-              formControlName="password"
-              placeholder="Enter your password"
-            />
-          </div>
+      <!-- <div class="user-type">
+        <label>Select User: *</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="userType" value="branch" checked>
+            <span>Branch</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="userType" value="franchisee">
+            <span>Franchisee</span>
+          </label>
+        </div>
+      </div> -->
 
-          <button type="submit" class="login-button">
-            <span>{{btn}}</span>
-            <i class="icon" [featherIcon]="'arrow-right'"></i>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <div class="form-group">
+          <input
+            type="text"
+            formControlName="username"
+            placeholder="User ID"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+            class="form-control"
+          />
+        </div>
+
+        <!-- <div class="captcha-group">
+          <div class="captcha-image">8A0</div>
+          <button type="button" class="refresh-captcha">
+            <i [featherIcon]="'refresh-cw'"></i>
           </button>
-        </form>
-      </div>
+          <input
+            type="text"
+            placeholder="Enter captcha"
+            class="form-control captcha-input"
+          />
+        </div> -->
+
+        <button type="submit" class="login-button">
+          LOGIN
+        </button>
+      </form>
     </div>
   </div>
 </div>

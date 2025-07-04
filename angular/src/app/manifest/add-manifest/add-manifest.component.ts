@@ -14,16 +14,17 @@ import { VanderService } from 'src/app/vander/vander.service';
 })
 export class AddManifestComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
-  manifestForm!: FormGroup;
-  trackingOptions: any
-  emailError: string = '';
-  profilePic: string | null = null;
+  public manifestForm!: FormGroup;
+  public trackingOptions: any
+  public emailError: string = '';
+  public profilePic: string | null = null;
   defaultPic: string = '../../../assets/images/image/user-profile.png';
-  data: any;
-  nidds: any;
-  packages: any[] = [];
-  availableShipments: any[] = [];
-  vendorList: any = []
+  public data: any;
+  public nidds: any;
+  public packages: any[] = [];
+  public availableShipments: any[] = [];
+  public vendorList: any = []
+  public isDRS: boolean = false;
   constructor(private toest: NgToastService, private ngxLoader: NgxUiLoaderService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private service: ManifestService, private shipment: ShipmentService, private vanderservice: VanderService
   ) {
     this.manifestForm = this.fb.group({
@@ -42,7 +43,7 @@ export class AddManifestComponent implements OnInit {
       total_packages: [{ value: 0 }, [Validators.required, Validators.min(1)]],
       total_weight: [{ value: 0 }, [Validators.required, Validators.min(0.1)]],
       vehicle_number: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]*$')]],
-      driver_name: ['', Validators.required]
+      
     });
 
   }
@@ -59,6 +60,7 @@ export class AddManifestComponent implements OnInit {
   get driver_name() { return this.manifestForm.get('driver_name'); }
 
   ngOnInit(): void {
+   
     this.data = this.route.snapshot.paramMap.get('id');
     console.log("data", this.data)
     if (this.data) {
@@ -86,7 +88,11 @@ export class AddManifestComponent implements OnInit {
             remarks: manifest.remarks || '',
             forwarding_number: manifest.forwarding_number || '',
             forwarding_by: manifest.forwarding_by || '',
-            tracking_number: manifest.tracking_number || ''
+            tracking_number: manifest.tracking_number || '',
+            drs_sheet_no: manifest.drs_sheet_no || '',
+            drs_sheet_date: manifest.drs_sheet_date || '',
+            delivery_boys_name: manifest.delivery_boys_name || '',
+            delivery_boys_contact: manifest.delivery_boys_contact || ''
           });
 
           // Patch conditional field based on destination

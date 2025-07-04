@@ -16,7 +16,9 @@ const routes: Routes = [
   {path:'deliveries',component:DeliveriesComponent},
   {path:'recipt',component:ReciptComponent},
   {path:'picup-report',component:PickupComponent},
+  {path:'pickup-report-print',component:PickupComponent},
   {path:'mis-report',component:MisReportComponent},
+  {path:'mis-report-print',component:MisReportComponent},
   {path:'status-report',component:StatusReportComponent},
   {
     path: 'status-report/print/:tracking_number',

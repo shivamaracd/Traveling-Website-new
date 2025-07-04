@@ -58,7 +58,8 @@ export class AddShipmentComponent implements OnInit {
       height: [''],
       divisor: [1],
       remark: ['Yes'],
-      final_volumetric_weight: []
+      final_volumetric_weight: [],
+      type: ['']
     });
 
   }

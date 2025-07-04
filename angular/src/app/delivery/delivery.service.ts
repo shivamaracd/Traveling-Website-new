@@ -2,6 +2,7 @@ import { AppService } from '../shared/service/AppService.class';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { importDeliveryFile } from '../app-routing.module';
 
 @Injectable({
   providedIn: 'root',
@@ -59,6 +60,23 @@ export class DeliveryService extends AppService<any> {
     let result = super.saveService(data);
     this.appmod = tmp;
     return result;
+  }
+
+
+  public previewDeliveryFile(data: any): Observable<any> {
+    return this.http.post(`${importDeliveryFile}`, data)
+  }
+
+  // importDeliveryFile(data:any): Observable<any> {
+  //   let tmp = this.appmod;
+  //   this.appmod = '';
+  //   let result = super.saveService(data);
+  //   this.appmod = tmp;
+  //   return result;
+  // }
+
+  public importDeliveryFile(data: any): Observable<any> {
+    return this.http.post(`${importDeliveryFile}`, data)
   }
 }
 

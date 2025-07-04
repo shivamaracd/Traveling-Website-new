@@ -193,7 +193,7 @@
 
     </div>
 
-    <div class="form-row">
+    <!-- <div class="form-row">
       <label>Indent No.:</label>
       <div class="w-100">
         <input formControlName="indent_no" class="form-control form-control-sm rounded-pill"
@@ -204,18 +204,35 @@
         <input formControlName="pickup_point" class="form-control form-control-sm rounded-pill"
           placeholder="Pickup Point" />
       </div>
+    </div> -->
+
+    <div class="form-row">
+      <label>Type.:</label>
+      <div class="w-100">
+       <select formControlName="type" class="form-control form-control-sm rounded-pill">
+        <option value="" disabled selected>Select Type</option>
+        <option value="Document">Document</option>
+        <option value="Non Document">Non Document</option>
+        <option value="Other">Others</option>
+       </select>
+      </div>
+      <label>Pickup Point:</label>
+      <div class="w-100">
+        <input formControlName="pickup_point" class="form-control form-control-sm rounded-pill"
+          placeholder="Pickup Point" />
+      </div>
     </div>
 
     <div class="form-row">
-      <label>Consignor Name:</label>
+      <label>Consignee Name:</label>
       <div class="w-100">
         <input formControlName="consignor_name" class="form-control form-control-sm rounded-pill"
-          placeholder="New Consignor Name" />
+          placeholder="New Consignee Name" />
       </div>
-      <label>Company Name:</label>
+      <label>Consignee Address:</label>
       <div class="w-100">
         <input formControlName="company_name" class="form-control form-control-sm rounded-pill"
-          placeholder="Company Name" />
+          placeholder="Consignee Address" />
       </div>
     </div>
 

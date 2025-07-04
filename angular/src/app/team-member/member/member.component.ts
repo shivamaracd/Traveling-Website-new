@@ -5,9 +5,18 @@ import { NgToastService } from 'ng-angular-popup';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { FormsModule } from '@angular/forms';
 
 import 'datatables.net';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
+interface ComponentPermission {
+  id: number;
+  name: string;
+  canEdit: boolean;
+  canDelete: boolean;
+}
+
 @Component({
   selector: 'app-member',
   templateUrl: './member.component.html',
@@ -24,6 +33,16 @@ export class MemberComponent implements OnInit {
     allowSearchFilter: true,
     itemsShowLimit: 10,
   };
+
+  components: ComponentPermission[] = [
+    { id: 1, name: 'Dashboard', canEdit: false, canDelete: false },
+    { id: 2, name: 'Clients', canEdit: false, canDelete: false },
+    { id: 3, name: 'Team Members', canEdit: false, canDelete: false },
+    { id: 4, name: 'Shipments', canEdit: false, canDelete: false },
+    { id: 5, name: 'Deliveries', canEdit: false, canDelete: false },
+    { id: 6, name: 'Reports', canEdit: false, canDelete: false },
+    { id: 7, name: 'Settings', canEdit: false, canDelete: false }
+  ];
 
   roles = [
       { value: 1, label: 'admin | log enter | can add log enter' },
@@ -146,5 +165,16 @@ export class MemberComponent implements OnInit {
 
   onEdit(id : any){
     this.router.navigate(['/team/edit/' + id]);
+  }
+
+  openComponentPermissions(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
+
+  saveComponentPermissions() {
+    // Here you can implement the logic to save the permissions
+    console.log('Saving permissions:', this.components);
+    this.toaster.success({detail:"Permissions saved successfully!"});
+    this.modalService.dismissAll();
   }
 }

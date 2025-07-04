@@ -63,24 +63,60 @@ export const MENU: MenuItem[] = [
     subItems: [
       {
         label: 'Booking',
-        link: '/shipment/shipment',
+        link: '/shipment/add',
       },
       {
         label: 'Booking Import',
-        link: '/report/mis-report'
+        link: '/shipment/import'
+      },
+      {
+        label: 'Booking Report',
+        link: '/shipment/shipment'
+      },
+      {
+        label: 'Booking Update',
+        link: '/shipment/update'
       },
     ]
   },
 
   {
-    label: 'Manifest',
+    label: 'Manifest Master',
     icon: 'file-text',
-    link: '/manifest/manifest',
+    // link: '/manifest/manifest',
+    subItems: [
+      {
+        label: 'Manifest',
+        link: '/manifest/manifest',
+      },
+      {
+        label: 'Manifest DRS',
+        link: '/manifest/manifest-drs',
+      }
+    ]
   },
   {
-    label: 'Delivery',
+    label: 'Delivery Master',
     icon: 'truck',
-    link: '/delivery/delivery',
+    // link: '/delivery/delivery',
+    subItems: [
+      {
+        label: 'Delivery',
+        link: '/delivery/add',
+      },
+      {
+        label: 'Delivery Import',
+        link: '/delivery/delivery-import'
+      },
+      {
+        label: 'Delivery Report',
+        link: '/delivery/delivery-report'
+      },
+      {
+        label: 'Delivery Update',
+        link: '/delivery/delivery-update'
+      }
+    ]
   },
   
   {
@@ -107,15 +143,15 @@ export const MENU: MenuItem[] = [
     icon: 'printer',
     subItems: [
       {
-        label: 'Pickup Report Print',
-        link: '/report/picup-report',
+        label: 'Receipt Report Print',
+        link: '/report/pickup-report-print',
       },
       {
         label: 'MIS Report Print',
-        link: '/report/mis-report'
+        link: '/report/mis-report-print'
       },
       {
-        label: 'Status Report Print',
+        label: 'DRS Print',
         link: '/report/status-report'
       }
     ]

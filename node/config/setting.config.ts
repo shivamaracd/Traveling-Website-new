@@ -77,7 +77,7 @@ export class VoiceServer {
 export class API { }
 
 export class UploadDirectory {
-    public UPLOADSDIR = '/Users/shivamagrahari/project/adv/Advocate/node/ploads/';
+    public UPLOADSDIR = 'C:/Users/Admin/Desktop/rvTrack/node/uploads/bookingfile/';
     public UPLOADSDTMFDIR = 'C:/Users/Admin/Desktop/celetel/angular/src/assets/audiofiles/';
     public UPLOADSVOICEDIR = 'C:/Users/Admin/Desktop/celetel/angular/src/assets/audiofiles/';
     public SETTINGDIR = 'C:/Users/Admin/Desktop/celetel/angular/src/assets/audiofiles/';

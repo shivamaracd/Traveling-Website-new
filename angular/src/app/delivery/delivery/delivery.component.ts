@@ -10,9 +10,14 @@ import { DeliveryService } from '../delivery.service';
 })
 export class DeliveryComponent implements OnInit {
   data: any[] = []
+  hideTitle: boolean = false;
+  trackingNumber: string = '';  
   constructor(private ngxLoader: NgxUiLoaderService, private router: Router, private service: DeliveryService) { }
 
   ngOnInit(): void {
+    if(this.router.url == '/delivery/delivery-report'){
+      this.hideTitle = true;
+    }
     this.getData();
   }
   getData() {
@@ -72,6 +77,16 @@ export class DeliveryComponent implements OnInit {
   }
   onEdit(id: any) {
     this.router.navigate(['/shipment/edit/' + id]);
+  }
+
+  searchByTracking() {
+    console.log(this.trackingNumber);
+    let data = this.data.find((item: any) => item.tracking_number == this.trackingNumber);
+    if(data){
+      this.data = [data];
+    }else{
+      alert('Tracking Number not found');
+    }
   }
 
 

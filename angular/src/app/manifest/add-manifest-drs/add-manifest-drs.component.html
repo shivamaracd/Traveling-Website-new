@@ -1,0 +1,95 @@
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center">
+          <button type="button" class="btn btn-outline-secondary me-3 rounded-pill shadow-sm" (click)="onBack();onCancel()">
+            <i class="fas fa-arrow-left"></i> Back
+          </button>
+          <h3 class="text-primary fw-bold mb-0">DRS Manifest </h3>
+        </div>
+      </div>
+      
+      <div class="custom-card p-4 shadow-sm">
+        <form [formGroup]="manifestDrsForm" class="needs-validation" novalidate>
+          <h5 class="text-primary mb-3 border-bottom pb-2 fw-bold">
+            <i class="fas fa-file-alt me-2"></i>Manifest Details
+          </h5>
+          <div class="form-row">
+            <label>Manifest Number:</label>
+            <div class="w-100">
+              <input formControlName="manifest_number" class="form-control form-control-sm rounded-pill"
+                placeholder="Auto-generated manifest number"  />
+              <!-- <small class="text-muted">This number is automatically generated</small> -->
+              
+            </div>
+            <label>Origin:</label>
+            <div class="w-100">
+              <input formControlName="origin" class="form-control form-control-sm rounded-pill" placeholder="Enter origin" />
+              
+            </div>
+          </div>
+          <div class="form-row">
+            <!-- <label>Tracking Number:</label>
+            <div class="w-100">
+              <select formControlName="tracking_number" class="form-control form-control-sm rounded-pill">
+                <option value="" disabled>Select Tracking number</option>
+                <option [value]="item.awb_no" *ngFor="let item of trackingOptions">{{item.awb_no}}</option>
+              </select>
+            </div> -->
+            <label>DRS Sheet Date:</label>
+            <div class="w-100">
+              <input formControlName="drs_sheet_date" type="date" class="form-control form-control-sm rounded-pill" />
+              
+            </div>
+            <label>DRS Sheet No:</label>
+            <div class="w-100">
+              <input formControlName="drs_sheet_no" class="form-control form-control-sm rounded-pill"
+                placeholder="Enter DRS Sheet No" />
+            </div>
+          </div>
+      
+          <div class="form-row">
+
+            <label>Shipment Status:</label>
+            <div class="w-100">
+              <select formControlName="shipment_status" class="form-control form-control-sm rounded-pill">
+                <option value="" disabled>Select Shipment Status</option>
+                <option value="Outfor delivery">Outfor delivery</option>
+                <option value="In transit">In transit</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+                <option value="Returned">Returned</option>
+                <option value="Lost">Lost</option>
+                <option value="Damaged">Damaged</option>
+              </select>
+            </div>
+            <label>Delivery Boys Name:</label>
+            <div class="w-100">
+              <input formControlName="delivery_boys_name" class="form-control form-control-sm rounded-pill"
+                placeholder="Enter Delivery Boys Name" />
+            </div>
+          </div>
+      
+          <div class="form-row">
+           
+            <label>Delivery Boys Contact:</label>
+            <div class="w-100">
+              <input formControlName="delivery_boys_contact" class="form-control form-control-sm rounded-pill"
+                placeholder="Enter Delivery Boys Contact" />
+            </div>
+          </div>
+          
+          <div class="d-flex justify-content-start mt-4">
+            <button type="submit" class="btn btn-primary rounded-pill shadow-sm" (click)="onSubmit()">
+              <i class="fas fa-save me-1"></i> Submit
+            </button>
+          </div>
+          <div class="d-flex justify-content-start mt-4"> 
+            <div class="w-100">
+              <label>Tracking Numbers (Comma Separated):</label>
+              <textarea formControlName="tracking_number" class="form-control form-control-sm"
+                placeholder="Enter multiple tracking numbers separated by commas (e.g., TR001, TR002, TR003)" rows="3"
+                style="border-radius: 10px;"></textarea>
+              <small class="text-muted">Enter multiple tracking numbers separated by commas. Example: TR001, TR002, TR003</small>
+            </div>
+          </div>
+        </form>
+      </div>

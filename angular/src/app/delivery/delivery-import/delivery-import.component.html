@@ -1,0 +1,54 @@
+<section>
+    <div class="container">
+        <div class="row style-heading">
+            <div class="col-sm-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="app-primary-color fw-bold mb-2">Import Delivery</h4>
+                        <div class="d-flex align-items-center">
+                            <input type="file" #fileInput class="d-none" (change)="onFileSelected($event)"
+                                accept=".xlsx,.xls,.csv">
+                            <button class="btn btn-primarys me-2" (click)="fileInput.click()">
+                                <i class="feather icon-upload icon-md items-plus"></i> Select File
+                            </button>
+                            <button class="btn btn-success" [disabled]="!selectedFile" (click)="uploadFile()">
+                                <i class="feather icon-check icon-md"></i> Import
+                            </button>
+                            <a href="assets/templates/delivery_template.csv" download class="btn btn-outline-primary ms-2">
+                                <i class="feather icon-download icon-md"></i> Download Template
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> &nbsp;
+
+        <div class="card bg-white">
+            <div class="row" style="overflow-x: auto;">
+                <table id="myTable8" class="table table-responsive" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Tracking No.</th>
+                            <th>Origin</th>
+                            <th>Shipper</th>
+                            <th>Mobile Number</th>
+                            <th>Delivery Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data; let i = index">
+                            <td>{{ item.tracking_number || '-' }}</td>
+                            <td>{{ item.origin || '-' }}</td>
+                            <td>{{ item.shipper || '-' }}</td>
+                            <td>{{ item.mobile_number || '-' }}</td>
+                            <td>{{ item.delivery_date !== '0000-00-00' ? (item.delivery_date | date:'dd/MM/yyyy') : '-'
+                                }}</td>
+                            <td>{{ item.status || '-' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

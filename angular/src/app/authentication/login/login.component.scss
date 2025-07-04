@@ -1,181 +1,200 @@
 .login-container {
+  display: flex;
   min-height: 100vh;
+  background: #fff;
+}
+
+.left-section {
+  flex: 1;
+  padding: 4rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .main-heading {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #212529;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .sub-heading {
+    font-size: 1.5rem;
+    color: #495057;
+    margin-bottom: 3rem;
+
+    span {
+      color: #0d6efd;
+      font-weight: 600;
+    }
+  }
+}
+
+.country-flags {
+  .flag-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .flag-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+
+    img {
+      width: 48px;
+      height: 32px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    span {
+      font-size: 0.875rem;
+      color: #6c757d;
+    }
+  }
+}
+
+.right-section {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   padding: 2rem;
-}
-
-.login-wrapper {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: center;
 }
 
 .login-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
-  overflow: hidden;
-}
+  max-width: 440px;
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 
-.logo-container {
-  background: #2c3e50;
-  color: white;
-  padding: 2rem;
-  text-align: center;
-  position: relative;
-  
-  .delivery-truck {
-    position: relative;
-    width: 80px;
-    height: 40px;
-    margin: 0 auto 1.5rem;
-    
-    .truck-icon {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
-      color: #fff;
-      animation: truckBounce 2s infinite;
-    }
-    
-    .wheels {
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 5px;
-      
-      .wheel {
-        width: 10px;
-        height: 10px;
-        background: #fff;
-        border-radius: 50%;
-        animation: wheelRotate 1s linear infinite;
-      }
-    }
-  }
-  
-  .company-name {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin: 0;
-    color: #fff;
-  }
-  
-  .company-tagline {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    margin: 0.5rem 0 0;
-  }
-}
-
-@keyframes truckBounce {
-  0%, 100% {
-    transform: translate(-50%, -50%) translateY(0);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-5px);
-  }
-}
-
-@keyframes wheelRotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.login-form-container {
-  padding: 2rem;
-  
   .login-title {
-    font-size: 1.5rem;
-    color: #2c3e50;
-    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 0.5rem;
   }
-  
+
   .login-subtitle {
-    color: #7f8c8d;
-    margin: 0 0 2rem;
-    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 2rem;
   }
 }
 
-.login-form {
-  .form-group {
-    margin-bottom: 1.5rem;
-    
-    .form-label {
-      display: flex;
-      align-items: center;
-      color: #2c3e50;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      
-      .icon {
-        margin-right: 0.5rem;
-        width: 16px;
-        height: 16px;
-      }
+.user-type {
+  margin-bottom: 2rem;
+
+  label {
+    display: block;
+    color: #212529;
+    margin-bottom: 0.75rem;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+
+    input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
     }
-    
-    .form-control {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid #e0e0e0;
-      border-radius: 6px;
-      font-size: 1rem;
-      transition: border-color 0.2s;
-      
-      &:focus {
-        outline: none;
-        border-color: #3498db;
-        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-      }
-      
-      &::placeholder {
-        color: #bdc3c7;
-      }
+
+    span {
+      color: #495057;
     }
   }
-  
-  .login-button {
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+
+  .form-control {
     width: 100%;
-    padding: 0.75rem;
-    background: #2c3e50;
-    color: white;
-    border: none;
-    border-radius: 6px;
+    padding: 0.75rem 1rem;
     font-size: 1rem;
-    font-weight: 500;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #0d6efd;
+    }
+
+    &::placeholder {
+      color: #adb5bd;
+    }
+  }
+}
+
+.captcha-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+
+  .captcha-image {
+    background: #f8f9fa;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 1.25rem;
+    color: #212529;
+  }
+
+  .refresh-captcha {
+    background: none;
+    border: none;
+    color: #0d6efd;
+    cursor: pointer;
+    padding: 0.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    
+
     &:hover {
-      background: #34495e;
+      color: #0b5ed7;
     }
-    
-    .icon {
-      margin-left: 0.5rem;
-      width: 16px;
-      height: 16px;
-    }
+  }
+
+  .captcha-input {
+    flex: 1;
+  }
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.875rem;
+  background: #0d6efd;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: #0b5ed7;
   }
 }
 

@@ -10,19 +10,22 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./manifest.component.scss']
 })
 export class ManifestComponent implements OnInit {
-  data: any[] = [];
-  selectedManifest: any = null;
-  showViewModal: boolean = false;
+  public data: any[] = [];
+  public selectedManifest: any = null;
+  public showViewModal: boolean = false;
+  public isDRS: boolean = false;
 
   constructor(
     private ngxLoader: NgxUiLoaderService,
     private router: Router,
     private service: ManifestService,
     private toast: NgToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+
     this.loadManifests();
+
   }
 
   loadManifests() {
@@ -48,6 +51,7 @@ export class ManifestComponent implements OnInit {
   }
 
   openClientModal() {
+
     this.router.navigate(['manifest/add']);
   }
 
@@ -69,7 +73,8 @@ export class ManifestComponent implements OnInit {
   }
 
   onEdit(id: any) {
-    this.router.navigate(['/shipment/edit/' + id]);
+
+    this.router.navigate(['manifest/edit/' + id]);
   }
 
   viewManifest(manifest: any) {

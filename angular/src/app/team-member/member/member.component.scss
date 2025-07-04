@@ -183,3 +183,48 @@ ul.list {
     background:transparent;
     width: 100%;
 }
+
+.component-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+
+  .component-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .component-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .checkbox-group {
+      display: flex;
+      gap: 15px;
+
+      .form-check {
+        margin: 0;
+      }
+
+      .form-check-input {
+        cursor: pointer;
+        
+        &:checked {
+          background-color: #d4491d;
+          border-color: #d4491d;
+        }
+      }
+
+      .form-check-label {
+        cursor: pointer;
+        font-size: 13px;
+        color: #666;
+      }
+    }
+  }
+}

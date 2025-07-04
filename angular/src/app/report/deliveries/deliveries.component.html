@@ -6,6 +6,9 @@
     <button class="search-btn" type="button" (click)="onSubmit()">
       <i class="fas fa-search"></i> Search
     </button>
+    <button class="print-receipt-btn" type="button" (click)="printReceipt()">
+      <i class="fas fa-print"></i> Print Receipt
+    </button>
   </div>
 
   <div class="tracking-details" *ngIf="displayNull">
@@ -13,114 +16,63 @@
     <div class="section">
       <h3>Shipment Information</h3>
       <div class="info-grid">
-        <div class="info-item">
-          <label>Tracking Number:</label>
-          <span>{{data.tracking_number}}</span>
-        </div>
-        <div class="info-item">
-          <label>Booking Date:</label>
-          <span>{{data.booking_date | date}}</span>
-        </div>
-        <div class="info-item">
-          <label>Client:</label>
-          <span>{{data.client}}</span>
-        </div>
-        <div class="info-item">
-          <label>Service Type:</label>
-          <span>{{data.billing_service}}</span>
-        </div>
-        <div class="info-item">
-          <label>Indent No:</label>
-          <span>{{data.indent_no}}</span>
-        </div>
-        <div class="info-item">
-          <label>Packages:</label>
-          <span>{{data.packages}}</span>
-        </div>
-        <div class="info-item">
-          <label>Actual Weight:</label>
-          <span>{{data.actual_weight}} kg</span>
-        </div>
+          <label>Tracking Number:  <span class="text-primary fw-bold">{{data?.tracking_number}}</span></label>
+          <label>Client Name:  <span class="text-primary fw-bold">{{data?.client}}</span></label>
+          <label>Pickup Point:  <span class="text-primary fw-bold">{{data?.pickup_point}}</span></label>
+          <label>Service Type:  <span class="text-primary fw-bold">{{data?.billing_service}}</span></label>
+          <label>Client Address:  <span class="text-primary fw-bold">{{data?.client_address}}</span></label>
+          <label>Client City:  <span class="text-primary fw-bold">{{data?.client_city}}</span></label>
+          <label>Client State:  <span class="text-primary fw-bold">{{data?.client_state}}</span></label>
+          <label>Client Country:  <span class="text-primary fw-bold">{{data?.client_country}}</span></label>
+          <label>Client PIN Code:  <span class="text-primary fw-bold">{{data?.client_pin_code}}</span></label>
+          <label>Client Mobile:  <span class="text-primary fw-bold">{{data?.client_mobile}}</span></label>
+          <label>Client Email:  <span class="text-primary fw-bold">{{data?.client_email}}</span></label>
+          <!-- <label>Indent No:  <span class="text-primary fw-bold">{{data.indent_no}}</span></label>
+          <label>Packages:  <span class="text-primary fw-bold">{{data.packages}}</span></label>
+          <label>Actual Weight:  <span class="text-primary fw-bold">{{data.actual_weight}} kg</span></label>
+          <label>Weight Unit:  <span class="text-primary fw-bold">{{data.weight_unit}}</span></label>
+          <label>Length:  <span class="text-primary fw-bold">{{data.length}} cm</span></label>
+          <label>Client:  <span class="text-primary fw-bold">{{data.client}}</span></label>
+          
+          <label>Service Type:  <span class="text-primary fw-bold">{{data.billing_service}}</span></label>
+          <label>Indent No: <span class="text-primary fw-bold">{{data.indent_no}}</span></label>
+          <label>Packages:  <span class="text-primary fw-bold">{{data.packages}}</span></label>
+          <label>Actual Weight:  <span class="text-primary fw-bold">{{data.actual_weight}} kg</span></label> -->
       </div>
     </div>
-
+    
     <!-- Origin Details -->
     <div class="section">
-      <h3>Origin Information</h3>
+      <!-- <h3>Origin Information</h3> -->
       <div class="info-grid">
-        <div class="info-item">
-          <label>Pickup Point:</label>
-          <span>{{data.pickup_point}}</span>
+        <label>Booking Date:  <span class="text-primary fw-bold">{{data?.booking_date | date}}</span></label>
+          <label>Consignee Name:  <span class="text-primary fw-bold">{{data?.consignor_name}}</span></label>
+          <label>Consignee Address:  <span class="text-primary fw-bold">{{data?.company_name}}</span></label>
+          <label>Consignee City:  <span class="text-primary fw-bold">{{data?.origin_city}}</span></label>
+          <label>Consignee State:  <span class="text-primary fw-bold">{{data?.state}}</span></label>
+          <label>Consignee Country:  <span class="text-primary fw-bold">{{data?.country}}</span></label>
+          <label>Consignee PIN Code:  <span class="text-primary fw-bold">{{data?.pin_code}}</span></label>
+          <label>Consignee Mobile:  <span class="text-primary fw-bold">{{data?.mobile_no}}</span></label>
+          <label>Consignee Email:  <span class="text-primary fw-bold">{{data?.email_id}}</span></label>
+          <label>Type:  <span class="text-primary fw-bold">{{data?.type}}</span></label>
         </div>
-        <div class="info-item">
-          <label>Consignor Name:</label>
-          <span>{{data.consignor_name}}</span>
-        </div>
-        <div class="info-item">
-          <label>Company Name:</label>
-          <span>{{data.company_name}}</span>
-        </div>
-        <div class="info-item">
-          <label>City:</label>
-          <span>{{data.origin_city}}</span>
-        </div>
-        <div class="info-item">
-          <label>State:</label>
-          <span>{{data.state}}</span>
-        </div>
-        <div class="info-item">
-          <label>Country:</label>
-          <span>{{data.country}}</span>
-        </div>
-        <div class="info-item">
-          <label>PIN Code:</label>
-          <span>{{data.pin_code}}</span>
-        </div>
-        <div class="info-item">
-          <label>Mobile:</label>
-          <span>{{data.mobile_no}}</span>
-        </div>
-        <div class="info-item">
-          <label>Email:</label>
-          <span>{{data.email_id}}</span>
-        </div>
-      </div>
     </div>
 
     <!-- Manifest Details -->
     <div class="section">
       <h3>Manifest Information</h3>
       <div class="info-grid">
-        <div class="info-item">
-          <label>Manifest Number:</label>
-          <span>{{data.manifest_number}}</span>
-        </div>
-        <div class="info-item">
-          <label>Manifest Date:</label>
-          <span>{{data.manifest_date | date}}</span>
-        </div>
-        <div class="info-item">
-          <label>Forwarding Number:</label>
-          <span>{{data.forwarding_number}}</span>
-        </div>
-        <div class="info-item">
-          <label>Forwarding By:</label>
-          <span>{{data.forwarding_by}}</span>
-        </div>
-        <div class="info-item">
-          <label>Destination:</label>
-          <span>{{data.manifest_destination}}</span>
-        </div>
-        <div class="info-item">
-          <label>Branch:</label>
-          <span>{{data.branch}}</span>
-        </div>
-        <div class="info-item">
-          <label>Status:</label>
-          <span [ngClass]="{'status-pending': data.manifest_status === 'Pending', 'status-delivered': data.manifest_status === 'Delivered'}">
-            {{data.manifest_status}}
-          </span>
-        </div>
+        <label>Manifest Number:  <span class="text-primary fw-bold">{{data?.manifest_number}}</span></label>
+        <label>Manifest Date:  <span class="text-primary fw-bold">{{data?.manifest_date | date}}</span></label>
+        <label>Forwarding Number:  <span class="text-primary fw-bold">{{data?.forwarding_number}}</span></label>
+        <label>Forwarding By:  <span class="text-primary fw-bold">{{data?.forwarding_by}}</span></label>
+        <label>Destination:  <span class="text-primary fw-bold">{{data?.manifest_destination}}</span></label>
+        <label>Branch:  <span class="text-primary fw-bold">{{data?.branch}}</span></label>
+        <label>Status:  <span class="text-primary fw-bold">{{data?.manifest_status}}</span></label>
+        <label>Forwarding By:  <span class="text-primary fw-bold">{{data?.forwarding_by}}</span></label>
+        <label>Destination:  <span class="text-primary fw-bold">{{data?.manifest_destination}}</span></label>
+        <label>Branch:  <span class="text-primary fw-bold">{{data?.branch}}</span></label>
+        <label>Status:  <span class="text-primary fw-bold">{{data?.manifest_status}}</span></label>
       </div>
     </div>
 
@@ -128,18 +80,10 @@
     <div class="section">
       <h3>Transport Information</h3>
       <div class="info-grid">
-        <div class="info-item">
-          <label>Vehicle Number:</label>
-          <span>{{data.vehicle_number}}</span>
-        </div>
-        <div class="info-item">
-          <label>Driver Name:</label>
-          <span>{{data.driver_name}}</span>
-        </div>
-        <div class="info-item">
-          <label>Driver Contact:</label>
-          <span>{{data.driver_contact}}</span>
-        </div>
+        <label>Vehicle Number:  <span class="text-primary fw-bold">{{data?.vehicle_number}}</span></label>
+        <label>Driver Name:  <span class="text-primary fw-bold">{{data?.driver_name}}</span></label>
+        <label>Driver Contact:  <span class="text-primary fw-bold">{{data?.driver_contact}}</span></label>
+        <label>Driver Contact:  <span class="text-primary fw-bold">{{data?.driver_contact}}</span></label>
       </div>
     </div>
 
@@ -147,30 +91,15 @@
     <div class="section">
       <h3>Delivery Information</h3>
       <div class="info-grid">
-        <div class="info-item">
-          <label>Delivery Date:</label>
-          <span>{{data.delivery_date | date}}</span>
-        </div>
-        <div class="info-item">
-          <label>Delivery Time:</label>
-          <span>{{data.delivery_time}}</span>
-        </div>
-        <div class="info-item">
-          <label>Consignee Name:</label>
-          <span>{{data.consignee_name}}</span>
-        </div>
-        <div class="info-item">
-          <label>Received By:</label>
-          <span>{{data.received_by}}</span>
-        </div>
-        <div class="info-item">
-          <label>Relation:</label>
-          <span>{{data.relation}}</span>
-        </div>
-        <div class="info-item">
-          <label>Receiver Mobile:</label>
-          <span>{{data.receiver_mobile}}</span>
-        </div>
+        <label>Delivery Date:  <span class="text-primary fw-bold">{{data?.delivery_date | date}}</span></label>
+        <label>Delivery Time:  <span class="text-primary fw-bold">{{data?.delivery_time}}</span></label>
+        <!-- <label>Consignee Name:  <span class="text-primary fw-bold">{{data.consignee_name}}</span></label> -->
+        <!-- <label>Received By:  <span class="text-primary fw-bold">{{data.received_by}}</span></label> -->
+        <label>Relation:  <span class="text-primary fw-bold">{{data?.relation}}</span></label>
+        <label>Receiver Mobile:  <span class="text-primary fw-bold">{{data?.receiver_mobile}}</span></label>
+        <label>Received By:  <span class="text-primary fw-bold">{{data?.received_by}}</span></label>
+        <label>Relation:  <span class="text-primary fw-bold">{{data?.relation}}</span></label>
+        <!-- <label>Receiver Mobile:  <span class="text-primary fw-bold">{{data.receiver_mobile}}</span></label> -->
       </div>
     </div>
 
@@ -178,26 +107,11 @@
     <div class="section">
       <h3>Vendor Information</h3>
       <div class="info-grid">
-        <div class="info-item">
-          <label>Vendor Name:</label>
-          <span>{{data.vandor_name}}</span>
-        </div>
-        <div class="info-item">
-          <label>Description:</label>
-          <span>{{data.vander_description}}</span>
-        </div>
-        <div class="info-item">
-          <label>Address:</label>
-          <span>{{data.vander_address}}</span>
-        </div>
-        <div class="info-item">
-          <label>Contact Person:</label>
-          <span>{{data.contact_person}}</span>
-        </div>
-        <div class="info-item">
-          <label>Email:</label>
-          <span>{{data.vendor_email}}</span>
-        </div>
+        <label>Vendor Name:  <span class="text-primary fw-bold">{{data?.vandor_name}}</span></label>
+        <label>Description:  <span class="text-primary fw-bold">{{data?.vander_description}}</span></label>
+        <label>Address:  <span class="text-primary fw-bold">{{data?.vander_address}}</span></label>
+        <label>Contact Person:  <span class="text-primary fw-bold">{{data?.contact_person}}</span></label>
+        <label>Email:  <span class="text-primary fw-bold">{{data?.vendor_email}}</span></label>
       </div>
     </div>
 
@@ -205,27 +119,51 @@
     <div class="section">
       <h3>Remarks</h3>
       <div class="info-grid">
-        <div class="info-item">
-          <label>Shipment Remarks:</label>
-          <span>{{data.shipment_remarks}}</span>
-        </div>
-        <div class="info-item">
-          <label>Manifest Remarks:</label>
-          <span>{{data.manifest_remarks}}</span>
-        </div>
-        <div class="info-item">
-          <label>Delivery Remarks:</label>
-          <span>{{data.delivery_remarks}}</span>
-        </div>
+        <label>Shipment Remarks:  <span class="text-primary fw-bold">{{data?.shipment_remarks}}</span></label>
+        <label>Manifest Remarks:  <span class="text-primary fw-bold">{{data?.manifest_remarks}}</span></label>
+        <label>Delivery Remarks:  <span class="text-primary fw-bold">{{data?.delivery_remarks}}</span></label>
       </div>
     </div>
 
-    <!-- Print Button -->
-    <!-- <div class="action-buttons">
-      <button class="print-btn" (click)="printPage()">
-        <i class="fas fa-print"></i> Print Details
-      </button>
-    </div> -->
+   
+  </div>
+
+  <div class="section">
+    <!-- <h3>Origin Information</h3> -->
+    <div class="info-grid" style="font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif; background: #f8fafc; border-radius: 10px; padding: 18px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+      <label style="color: #1e293b; font-weight: 600; font-size: 1.08rem; margin-bottom: 8px;">
+        Created By:  
+        <span style="color: #0ea5e9; font-weight: bold; font-family: 'Montserrat', 'Segoe UI', sans-serif;">{{data?.created_by}}</span>
+      </label>
+      <label style="color: #1e293b; font-weight: 600; font-size: 1.08rem; margin-bottom: 8px;">
+        Module:  
+        <span style="color: #6366f1; font-weight: bold; font-family: 'Montserrat', 'Segoe UI', sans-serif;">{{data?.module}}</span>
+      </label>
+      <label style="color: #1e293b; font-weight: 600; font-size: 1.08rem; margin-bottom: 8px;">
+        Created Date:  
+        <span style="color: #16a34a; font-weight: bold; font-family: 'Montserrat', 'Segoe UI', sans-serif;">{{data?.created_date | date}}</span>
+      </label>
+      <label style="color: #1e293b; font-weight: 600; font-size: 1.08rem; margin-bottom: 8px;">
+        Created Time:  
+        <span style="color: #16a34a; font-weight: bold; font-family: 'Montserrat', 'Segoe UI', sans-serif;">{{data?.created_time}}</span>
+      </label>
+      <label style="color: #1e293b; font-weight: 600; font-size: 1.08rem; margin-bottom: 8px;">
+        Updated By:  
+        <span style="color: #f59e42; font-weight: bold; font-family: 'Montserrat', 'Segoe UI', sans-serif;">{{data?.updated_by}}</span>
+      </label>
+      <label style="color: #1e293b; font-weight: 600; font-size: 1.08rem; margin-bottom: 8px;">
+        Updated Module:  
+        <span style="color: #f59e42; font-weight: bold; font-family: 'Montserrat', 'Segoe UI', sans-serif;">{{data?.updated_module}}</span>
+      </label>
+      <label style="color: #1e293b; font-weight: 600; font-size: 1.08rem; margin-bottom: 8px;">
+        Updated Date:  
+        <span style="color: #e11d48; font-weight: bold; font-family: 'Montserrat', 'Segoe UI', sans-serif;">{{data?.updated_date | date}}</span>
+      </label>
+      <label style="color: #1e293b; font-weight: 600; font-size: 1.08rem; margin-bottom: 8px;">
+        Updated Time:  
+        <span style="color: #e11d48; font-weight: bold; font-family: 'Montserrat', 'Segoe UI', sans-serif;">{{data?.updated_time}}</span>
+      </label>
+    </div>
   </div>
 
   <!-- No Data Message -->

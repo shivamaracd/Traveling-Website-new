@@ -1,0 +1,54 @@
+<section>
+    <div class="container">
+      <div class="row style-heading">
+        <div class="col-sm-12">
+          <div class="d-flex justify-content-between">
+            <h4>Manifest DRS</h4>
+            <a class="btn btn-primarys mb-2" (click)="openClientModal()"><i
+                class="feather icon-plus icon-md items-plus"></i> Add Manfest DRS</a>
+          </div>
+        </div>
+      </div>
+      <div class="card bg-white">
+        <div class="row" style="overflow-x: auto;">
+          <table id="drsmanifest" class="table table-responsive" style="width:100%">
+            <thead>
+              <tr>
+                <th>Manifest Number</th>
+                <th>DRS Sheet Date</th>
+                <th>Origin</th>
+                <th>DRS Sheet No</th>
+                <th>Delivery Boys Name</th>
+                <th>Delivery Boys Contact</th>
+                <th>Shipment Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data">
+                <td>{{ item.manifest_number }}</td>
+                <td>{{ item.drs_sheet_date | date:'dd/MM/yyyy' }}</td>
+                <td>{{ item.origin }}</td>
+                <td>{{ item.drs_sheet_no }}</td>
+                <td>{{ item.delivery_boys_name }}</td>
+                <td>{{ item.delivery_boys_contact }}</td>
+                <td>{{ item.shipment_status || '-' }}</td>
+                <td>
+                  <i class="feather icon-edit me-2 items-icon text-primary" ngbTooltip="Edit" container="body"
+                    (click)="editManifest(item.id)">
+                  </i>
+                  <i class="feather icon-trash me-2 items-icon text-danger" ngbTooltip="Delete" container="body"
+                    (click)="deleteManifest(item.id)">
+                  </i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+  </section>
+  
+ 
+  <!-- <div class="modal-backdrop fade" [class.show]="showViewModal" [style.display]="showViewModal ? 'block' : 'none'"></div> -->

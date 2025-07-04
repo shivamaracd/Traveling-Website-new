@@ -2,7 +2,8 @@
   <div class="container">
     <div class="row style-heading">
       <div class="col-sm-12 col-md-4">
-        <h4>Pickup Report</h4>
+        <h4 *ngIf="!isPrint">Pickup Report</h4>
+        <h4 *ngIf="isPrint">Pickup Report Print</h4>
       </div>
       <div class="col-sm-12 col-md-12">
         <div class="row">
@@ -39,7 +40,10 @@
           </div> -->
 
           <div class="col-sm-12 col-md-2 mb-2">
-            <button class="btn btn-success w-100" (click)="exportToExcel()">Export</button>
+            <button class="btn btn-success w-100" (click)="exportToExcel()" *ngIf="!isPrint">Export</button>
+            <button  *ngIf="isPrint"class="btn btn-success w-100"  (click)="printReceipt()">
+              <i class="fas fa-print"></i> Print Receipt
+            </button>
           </div>
         </div>
       </div>

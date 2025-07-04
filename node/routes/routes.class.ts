@@ -35,6 +35,13 @@ module.exports = function (app: any) {
   app.post("/getFilterStatusdata", team.getFilterStatusdata)
   app.post("/getFilterPicupdata", team.getFilterPicupdata)
   app.post("/getFilterMISdata", team.getFilterMISdata)
+  app.post("/uploaddelivery", type, team.uploadDeliveryFile);
+  app.post("/importDeliveryFile", type, team.importDeliveryFile);
+  app.post("/saveDRSData", team.saveDRSData);
+  app.get("/getDrsManifest", team.getDrsManifest);
+  app.post("/getEditValuedrs", team.getEditValuedrs);
+  app.post("/updateDRSData", team.updateDRSData);
+  app.post("/deleteDRSData", team.deleteDRSData);
   // app.get('/getcrmdata', team.updateMember);
 
 

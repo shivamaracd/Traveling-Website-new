@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   btn: any = "Login"
+  isLoading: boolean = false;
+
   constructor(private toest:NgToastService,private fb: FormBuilder, private router: Router, public service:AuthenticatonService) {
     // Create login form with form controls
     this.loginForm = this.fb.group({
@@ -29,9 +31,8 @@ export class LoginComponent implements OnInit {
   }
 
   // Handle form submission
-  onSubmit() {
+  async onSubmit() {
     this.btn = "Logging..."
-
     this.submitted = true;
 
     // If form is invalid, return

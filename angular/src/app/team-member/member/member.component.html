@@ -40,6 +40,9 @@
                   (click)="openDialog(Addexuctivegroup)" ngbTooltip="Add Roles" container="body">
                   <!-- <span>Add Executive</span> -->
                 </i>
+                <i class="feather icon-settings me-2 items-icon text-info" 
+                   ngbTooltip="Component Permissions" container="body" (click)="openComponentPermissions(componentPermissions)">
+                </i>
                 <i class="feather icon-trash me-2 items-icon text-danger"
                    ngbTooltip="Delete" container="body" (click)="deleteMember(i.id)">
                   <!-- <span>Delete</span> -->
@@ -84,3 +87,47 @@
     </div>
   </ng-template>
 </section>
+
+<ng-template #componentPermissions let-modal>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row style-heading">
+        <div class="col-12">
+          <div class="d-flex justify-content-between my-3">
+            <h4 class="">Component Permissions</h4>
+            <button type="button" class="close text-danger" id="closePermissionsButton" aria-label="Close"
+              (click)="modal.dismiss()"> X </button>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="component-list">
+            <div class="component-item" *ngFor="let component of components">
+              <div class="d-flex align-items-center justify-content-between">
+                <span class="component-name">{{component.name}}</span>
+                <div class="checkbox-group">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" 
+                           [id]="'edit_' + component.id" 
+                           [(ngModel)]="component.canEdit">
+                    <label class="form-check-label" [for]="'edit_' + component.id">Edit</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" 
+                           [id]="'delete_' + component.id" 
+                           [(ngModel)]="component.canDelete">
+                    <label class="form-check-label" [for]="'delete_' + component.id">Delete</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-div py-3 px-2">
+          <button type="button" class="btn btn-primary btn-sm" (click)="saveComponentPermissions()">Save</button>
+          &nbsp;
+          <button type="button" class="btn btn-danger btn-sm me-2" (click)="modal.dismiss()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
