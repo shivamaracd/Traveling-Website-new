@@ -1,0 +1,118 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="logo">
+      <!-- <i class="fas fa-shipping-fast"></i> -->
+       <img src="assets/images/image/logo.png" alt="logo" class="logo-img" style="width: 50px; height: 30px;">&nbsp;
+      <span>RV Courier <b>&</b> Logistics</span>
+    </div>
+    
+    <!-- Mobile menu button -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <i class="feather icon-menu"></i>
+    </button>
+
+    <div class="menu-items" [class.active]="isMenuOpen">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a routerLink="/track" routerLinkActive="active">Track Order</a>
+      <a routerLink="/services" routerLinkActive="active">Services</a>
+      <a routerLink="/about" routerLinkActive="active">About Us</a>
+      <a routerLink="/contact" routerLinkActive="active">Contact</a>
+      <a routerLink="/login" class="login-btn">
+        <i class="feather icon-user"></i>
+        Login
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section with Tracking -->
+<div class="hero-section">
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Logistics Hero">
+    <div class="overlay"></div>
+  </div>
+  
+  <div class="container">
+    <div class="tracking-container">
+      <div class="tracking-box">
+        <h2>Track Your Shipment</h2>
+        <p>Enter your tracking number to get real-time updates</p>
+        
+        <div class="search-box">
+          <div class="input-group">
+            <i class="feather icon-search"></i>
+            <input 
+              type="text" 
+              [(ngModel)]="trackingNumber" 
+              placeholder="Enter tracking number (e.g., RV123456789)"
+            >
+          </div>
+          <button class="track-button" (click)="trackShipment()">
+            Track Now
+            <i class="feather icon-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="services">
+  <div class="container">
+    <div class="section-header">
+      <h2>Our Premium Services</h2>
+      <p>Choose the service that fits your needs</p>
+    </div>
+    <div class="service-cards">
+      <div class="card">
+        <div class="icon">
+          <i class="feather icon-send"></i>
+        </div>
+        <h3>Air Freight</h3>
+        <p>Fast international shipping via air</p>
+        <a href="#" class="learn-more">Learn More <i class="feather icon-chevron-right"></i></a>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <i class="feather icon-anchor"></i>
+        </div>
+        <h3>Ocean Freight</h3>
+        <p>Cost-effective sea shipping solutions</p>
+        <a href="#" class="learn-more">Learn More <i class="feather icon-chevron-right"></i></a>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <i class="feather icon-truck"></i>
+        </div>
+        <h3>Land Transport</h3>
+        <p>Reliable ground delivery services</p>
+        <a href="#" class="learn-more">Learn More <i class="feather icon-chevron-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container">
+    <div class="stat-item">
+      <i class="feather icon-globe"></i>
+      <h3>200+</h3>
+      <p>Countries Served</p>
+    </div>
+    <div class="stat-item">
+      <i class="feather icon-users"></i>
+      <h3>1M+</h3>
+      <p>Happy Customers</p>
+    </div>
+    <div class="stat-item">
+      <i class="feather icon-package"></i>
+      <h3>50M+</h3>
+      <p>Packages Delivered</p>
+    </div>
+    <div class="stat-item">
+      <i class="feather icon-clock"></i>
+      <h3>24/7</h3>
+      <p>Support Available</p>
+    </div>
+  </div>
+</section>

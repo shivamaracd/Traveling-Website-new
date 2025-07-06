@@ -31,13 +31,7 @@
               placeholder="End Date" />
           </div>
 
-          <!-- Tracking Number Selector -->
-          <!-- <div class="col-sm-12 col-md-3 mb-2">
-            <select class="form-select" aria-label="Default select example" (change)="getDataPicupReport($event)">
-              <option value="">Select Tracking Number</option>
-              <option *ngFor="let item of trackingOptions" [value]="item.awb_no">{{item.awb_no}}</option>
-            </select>
-          </div> -->
+          
 
           <div class="col-sm-12 col-md-2 mb-2">
             <button class="btn btn-success w-100" (click)="exportToExcel()" *ngIf="!isPrint">Export</button>
@@ -55,6 +49,21 @@
               <option value="">Select Client</option>
               <option *ngFor="let item of clientData" [value]="item.client_name">{{item.client_name}}</option>
             </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-12">
+        <div class="row">
+          <!-- Multiple Tracking Numbers Input -->
+          <div class="col-sm-12 col-md-6 mb-2">
+            <textarea 
+              class="form-control" 
+              [(ngModel)]="trackingNumbersInput"
+              (change)="onTrackingNumbersChange()"
+              placeholder="Enter tracking numbers separated by comma (e.g. TR12345,TR123411)"
+              rows="2"
+            ></textarea>
           </div>
         </div>
       </div>

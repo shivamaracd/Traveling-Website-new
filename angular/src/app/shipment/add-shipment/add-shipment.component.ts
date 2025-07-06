@@ -19,6 +19,7 @@ export class AddShipmentComponent implements OnInit {
   defaultPic: string = '../../../assets/images/image/user-profile.png';
   clientData: any
   finalResult: number = 0;
+  isAutoGenerate: boolean = false;
   constructor(private toest: NgToastService,private ngxLoader: NgxUiLoaderService,private route: ActivatedRoute,private fb: FormBuilder,private router: Router,private service: ShipmentService,private clientService: ClientService
   ) {
     this.clientService.getService().subscribe(res => {
@@ -251,6 +252,33 @@ export class AddShipmentComponent implements OnInit {
 
   onBack(): void {
     this.router.navigate(['/shipment/shipment']); // Navigate back to member list or previous page
+  }
+
+  onAutoGenerateChange(event: any) {
+    if (event.target.checked) {
+      // Get today's date in YYMMDD format
+      const today = new Date();
+      const year = today.getFullYear().toString().slice(-2);
+      const month = (today.getMonth() + 1).toString().padStart(2, '0');
+      const day = today.getDate().toString().padStart(2, '0');
+      const datePrefix = `${year}${month}${day}`;
+      
+      // Generate a random 4-digit number
+      const randomNum = Math.floor(1000 + Math.random() * 9000);
+      
+      // Create the AWB number
+      const newAwbNumber = `TR${datePrefix}${randomNum}`;
+      
+      // Update the form
+      this.shipmentForm.patchValue({
+        awb_no: newAwbNumber
+      });
+    } else {
+      // Clear the AWB number when unchecked
+      this.shipmentForm.patchValue({
+        awb_no: ''
+      });
+    }
   }
 
   // Form control getters

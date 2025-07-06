@@ -2,6 +2,7 @@ import { AppService } from '../shared/service/AppService.class';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -58,6 +59,18 @@ export class ReportService extends AppService<any> {
     let result = super.saveService(data);
     this.appmod = tmp;
     return result;
+  }
+
+  getFilterDRSdata(data: any): Observable<any> {
+    let tmp = this.appmod;
+    this.appmod = 'getFilterDRSdata';
+    let result = super.saveService(data);
+    this.appmod = tmp;
+    return result;
+  }
+
+  getDataByTrackingNumbers(trackingNumbers: string[]): Observable<any> {
+    return this.http.post(`${environment.SERVERURL}/report/pickup/tracking-numbers`, { trackingNumbers });
   }
 
 }

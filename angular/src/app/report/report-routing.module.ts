@@ -8,6 +8,7 @@ import { PickupComponent } from './pickup/pickup.component';
 import { MisReportComponent } from './mis-report/mis-report.component';
 import { StatusReportComponent } from './status-report/status-report.component';
 import { PrintReceiptComponent } from './print-receipt/print-receipt.component';
+import { DrsReportComponent } from './drs-report/drs-report.component';
 
 const routes: Routes = [
   {path:'',component:ReportComponent},
@@ -20,10 +21,8 @@ const routes: Routes = [
   {path:'mis-report',component:MisReportComponent},
   {path:'mis-report-print',component:MisReportComponent},
   {path:'status-report',component:StatusReportComponent},
-  {
-    path: 'status-report/print/:tracking_number',
-    component: PrintReceiptComponent
-  }
+  {path: 'status-report/print/:tracking_number',component: PrintReceiptComponent},
+  {path: 'drs-report',component: DrsReportComponent}
 ];
 
 @NgModule({

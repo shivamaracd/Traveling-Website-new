@@ -1,0 +1,117 @@
+<section>
+    <div class="container">
+      <div class="row style-heading">
+        <div class="col-sm-12 col-md-4">
+          <h4>DRS Report</h4>
+        </div>
+        
+        <div class="col-sm-12 col-md-12">
+          <div class="row">
+  
+            <!-- Predefined Date Filter -->
+            <div class="col-sm-12 col-md-3 mb-2">
+              <select class="form-select" [(ngModel)]="predefinedRange" (change)="onPredefinedRangeChange($event)">
+                <option value="">Select Range</option>
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="quarter">This Quarter</option>
+                <option value="year">This Year</option>
+              </select>
+            </div>
+  
+            <!-- Start Date -->
+            <div class="col-sm-12 col-md-2 mb-2">
+              <input type="date" class="form-control" [(ngModel)]="startDate" (change)="onDateChange()"
+                placeholder="Start Date" />
+            </div>
+  
+            <!-- End Date -->
+            <div class="col-sm-12 col-md-2 mb-2">
+              <input type="date" class="form-control" [(ngModel)]="endDate" (change)="onDateChange()"
+                placeholder="End Date" />
+            </div>
+  
+  
+            <div class="col-sm-12 col-md-2 mb-2">
+              <button  class="btn btn-success w-100"   (click)="printReceipt()">
+                <i class="fas fa-print"></i> Print Receipt
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        <!-- <div class="col-sm-12 col-md-12">
+          <div class="row">
+            <div class="col-sm-12 col-md-3 mb-2">
+              <select class="form-select" aria-label="Default select example" (change)="getDataDRSReport($event)">
+                <option value="">Select Client</option>
+                <option *ngFor="let item of clientData" [value]="item.client_name">{{item.client_name}}</option>
+              </select>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      
+      <!-- DRS Report Table -->
+      <div class="drs-report-container mt-4">
+        <div class="drs-header">
+          <div class="header-row">
+            <!-- Left Section -->
+            <div class="left-section">
+              <div class="logo-title">
+                <img src="assets/images/image/logo.png" alt="RV Courier and Logistics">
+                <h2>RV Courier and Logistics</h2>
+              </div>
+              <!-- <div class="address">
+                <p>Address and Details</p>
+                <p>Email Id and website</p>
+              </div> -->
+            </div>
+
+            <!-- Center Section -->
+            <div class="center-section">
+              <h2>Delivery Run Sheet</h2>
+              <p class="run-sheet">Run Sheet No:- <span>{{runSheetNo || 'RS20250701001'}}</span></p>
+            </div>
+
+            <!-- Right Section -->
+            <div class="right-section">
+              <p>Date:- <span>{{currentDate | date:'dd/MM/yyyy'}}</span></p>
+              <p>Delivery Boy Name:- <span>{{deliveryBoyName || ''}}</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive mt-4">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>SR. NO.</th>
+                <th>CONSIGNEE DETAILS</th>
+                <th>TRACKING NO.</th>
+                <th>TYPE</th>
+                <th>FORWARDING BY</th>
+                <th>FORWARDING NO.</th>
+                <th>RECEIVER SIGN</th>
+                <th>RECEIVER MOB NO.</th>
+                <th>REMARKS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{item.consignor_name || ''}}</td>
+                <td>{{item.tracking_no || ''}}</td>
+                <td>{{item.type || ''}}</td>
+                <td>{{item.forwarding_by || ''}}</td>
+                <td>{{item.forwarding_number || ''}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>

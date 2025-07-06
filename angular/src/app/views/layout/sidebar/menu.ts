@@ -53,7 +53,7 @@ export const MENU: MenuItem[] = [
     link: '/branch/branch',
   },
   {
-    label: 'Vender',
+    label: 'Vendor',
     icon: 'users',
     link: '/vander/vander',
   },
@@ -152,7 +152,7 @@ export const MENU: MenuItem[] = [
       },
       {
         label: 'DRS Print',
-        link: '/report/status-report'
+        link: '/report/drs-report'
       }
     ]
     // link: '/report/report',
@@ -162,11 +162,11 @@ export const MENU: MenuItem[] = [
     icon: 'eye',
     link: '/report/deliveries',
   },
-  {
-    label: 'Invoice',
-    icon: 'file-text',
-    link: '/report/deliveries',
-  },
+  // {
+  //   label: 'Invoice',
+  //   icon: 'file-text',
+  //   link: '/report/deliveries',
+  // },
   // {
   //   label: 'Setting',
   //   icon: 'settings',

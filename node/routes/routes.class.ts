@@ -42,6 +42,7 @@ module.exports = function (app: any) {
   app.post("/getEditValuedrs", team.getEditValuedrs);
   app.post("/updateDRSData", team.updateDRSData);
   app.post("/deleteDRSData", team.deleteDRSData);
+  app.post("/getFilterDRSdata", team.getFilterDRSdata)
   // app.get('/getcrmdata', team.updateMember);
 
 

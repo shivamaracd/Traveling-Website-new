@@ -17,6 +17,7 @@ import jsPDF from 'jspdf';
 export class PickupComponent implements OnInit {
   public data: any = []
   public trackingOptions: any = []
+  public trackingNumbersInput: string = '';
 
   startDate: string = '';
   endDate: string = '';
@@ -123,6 +124,40 @@ export class PickupComponent implements OnInit {
     this.onDateChange();
   }
 
+  onTrackingNumbersChange() {
+    // If input is empty, reset to show all data
+    if (!this.trackingNumbersInput.trim()) {
+      this.getDataPicupReport({ target: { value: '' } });
+      return;
+    }
+
+    // Split the input by comma and clean up each tracking number
+    const trackingNumbers = this.trackingNumbersInput
+      .split(',')
+      .map(num => num.trim())
+      .filter(num => num.length > 0); // Remove empty entries
+
+    if (trackingNumbers.length === 0) {
+      return;
+    }
+
+    // Filter data based on tracking numbers
+    this.__service.getDataByTrackingNumbers(trackingNumbers).subscribe(
+      (res: any) => {
+        console.log('Filtered data:', res);
+        $('#summary1').DataTable().clear();
+        $('#summary1').DataTable().destroy();
+        this.data = res.data;
+        $.getScript('/assets/table/table.js');
+      },
+      (err: any) => {
+        console.error('Error filtering by tracking numbers:', err);
+        $('#summary1').DataTable().destroy();
+        $('#summary1').DataTable().clear();
+        $.getScript('/assets/table/table.js');
+      }
+    );
+  }
 
   exportToExcel(): void {
     // Replace this.dataToExport with your actual filtered data list (array of objects)
@@ -192,7 +227,7 @@ export class PickupComponent implements OnInit {
                   <div style="font-size: 12px;">
                     Office No. 301/1, Sec-17, Khandasa Dhani, Gurugram, Haryana 122006<br>
                     <strong>Domestic & International</strong> | <strong>Contact us: +91 9654162328</strong><br>
-                    GSTIN: 06A********B1ZT &nbsp; | &nbsp;
+                    Email:rvcourierlogistics@gmail.com &nbsp; | &nbsp;
                     <a href="https://www.rvcourierlogistics.com"
                       style="text-decoration: none; color: black;">www.rvcourierlogistics.com</a>
                   </div>
@@ -212,13 +247,13 @@ export class PickupComponent implements OnInit {
                 <div style="flex: 3; display: flex; align-items: center; border-right: 1px solid #000;">
                   <div style="padding: 10px;">
                     <strong>Mode(✓)</strong> &nbsp;
-                    <label style="margin-right: 15px;">Surface <input type="checkbox" ${item.mode === 'Surface' ? 'checked' : ''}></label>
-                    <label style="margin-right: 15px;">Air Cargo <input type="checkbox" ${item.mode === 'Air Cargo' ? 'checked' : ''}></label>
-                    <label>Express <input type="checkbox" ${item.mode === 'Express' ? 'checked' : ''}></label>
+                    <label style="margin-right: 15px;">Surface <input type="checkbox" ${item.billing_service === 'Surface' ? 'checked' : ''}></label>
+                    <label style="margin-right: 15px;">Air Cargo <input type="checkbox" ${item.billing_service === 'Air Cargo' ? 'checked' : ''}></label>
+                    <label>Express <input type="checkbox" ${item.billing_service === 'Express' ? 'checked' : ''}></label>
                   </div>
                 </div>
                 <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
-                  <strong>Weight - ${item.weight || ''}Kg</strong><br>
+                  <strong>Weight - ${item.volumetric_weight || ''}Kg</strong><br>
                 </div>
               </div>
             </div>
@@ -315,7 +350,7 @@ export class PickupComponent implements OnInit {
                     Date - ${item.booking_date ? new Date(item.booking_date).toLocaleDateString() : ''}</th>
                 </tr>
                 <tr>
-                  <td colspan="2" style="border:1px solid #000; padding:20px;">&nbsp; ${item.tracking_number || ''}</td>
+                  <td colspan="2" style="border:1px solid #000; padding:20px;">&nbsp; Forwarding No. <br> ${item.forwarding_number || ''}</td>
                 </tr>
                 <tr>
                   <th style="border:1px solid #000; padding:8px; background-color:#ffffff; font-size: 14px;">ORIGIN</th>

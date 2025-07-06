@@ -1,3 +1,5 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 .style-heading {
     display: flex;
     align-items: baseline;
@@ -206,6 +208,15 @@
   }
   .fw-bold {
     font-weight: bold;
+  }
+  
+  textarea.form-control {
+    resize: none;
+    font-size: 14px;
+    &::placeholder {
+      font-size: 12px;
+      color: #6c757d;
+    }
   }
   
   

@@ -92,7 +92,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         res => {
           localStorage.clear();
           sessionStorage.clear();
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/home']);
+          // this.router.navigate(['/auth/login']);
         },
         err => {
         }

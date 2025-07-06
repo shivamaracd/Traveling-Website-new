@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { ReportRoutingModule } from './report-routing.module';
 import { ReportComponent } from './report/report.component';
@@ -11,6 +12,7 @@ import { PickupComponent } from './pickup/pickup.component';
 import { MisReportComponent } from './mis-report/mis-report.component';
 import { StatusReportComponent } from './status-report/status-report.component';
 import { PrintReceiptComponent } from './print-receipt/print-receipt.component';
+import { DrsReportComponent } from './drs-report/drs-report.component';
 
 
 @NgModule({
@@ -22,13 +24,15 @@ import { PrintReceiptComponent } from './print-receipt/print-receipt.component';
     PickupComponent,
     MisReportComponent,
     StatusReportComponent,
-    PrintReceiptComponent
+    PrintReceiptComponent,
+    DrsReportComponent
   ],
   imports: [
     CommonModule,
     ReportRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgSelectModule
   ]
 })
 export class ReportModule { }

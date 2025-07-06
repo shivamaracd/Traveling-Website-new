@@ -72,11 +72,17 @@ export const companyDoc = environment.SERVER + "companyDoc";
 
 
 const routes: Routes = [
+  // {
+  //   path: 'auth', loadChildren: () => import('./authentication/auth.module').then(m => m.AuthenticationModule)
+  // },
+  // {
+  //   path:'',loadChildren:()=> import('./authentication/auth.module').then(m => m.AuthenticationModule)
+  // },
   {
-    path: 'auth', loadChildren: () => import('./authentication/auth.module').then(m => m.AuthenticationModule)
+    path: 'home', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)
   },
   {
-    path:'',loadChildren:()=> import('./authentication/auth.module').then(m => m.AuthenticationModule)
+    path:'',loadChildren:()=> import('./blog/blog.module').then(m => m.BlogModule)
   },
   {
     path: '',
@@ -135,6 +141,10 @@ const routes: Routes = [
       {
        path: 'profile',
        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+      },
+      {
+        path: 'blog',
+        loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)
       },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }

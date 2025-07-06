@@ -30,3 +30,37 @@
     padding: 5px 8px;
   }
   
+  .input-with-checkbox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .form-control {
+        flex: 1;
+    }
+
+    .form-check {
+        position: absolute;
+        right: 10px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+
+        input {
+            width: auto;
+            margin: 0;
+        }
+
+        label {
+            margin: 0;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+    }
+  }
+  

@@ -216,7 +216,9 @@ export class team_member {
 		session.GetSession((error: any, sessdata: any) => {
 			if (error == 1) {
 				let objs = new ModelRawQuery(req, res);
-				objs.qrysql = "SELECT s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`,s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.created_at BETWEEN '" + sdata.start + "' AND '" + sdata.end + "'";
+				// objs.qrysql = "SELECT s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`,s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.created_at BETWEEN '" + sdata.start + "' AND '" + sdata.end + "'";
+
+				objs.qrysql = "SELECT s.po_no,s.ref_no,s.volumetric_weight,d.origin, d.destination,s.awb_no as tracking_number, s.booking_date,s.client, s.billing_service, s.consignor_name, s.indent_no, s.pickup_point, s.consignor_name, s.company_name, s.origin_city, s.state, s.country, s.pin_code, s.mobile_no, s.email_id, s.pkgs as packages, s.actual_weight, s.remark as shipment_remarks, m.manifest_number, m.date as manifest_date, m.forwarding_number, m.forwarding_by, m.destination as manifest_destination, m.branch, m.status as manifest_status, m.remarks as manifest_remarks, m.driver_contact, m.vehicle_number, m.driver_name, d.delivery_date, d.delivery_time, d.consignee_name, d.received_by, d.relation, d.mobile_number as receiver_mobile, d.remark as delivery_remarks, v.vandor_name, v.vander_description, v.vander_address, v.mobile_no as vendor_email, v.email as vendor_email, v.contact_person FROM shipment2 s INNER JOIN manifests m ON s.awb_no = m.tracking_number AND s.iduser = m.iduser INNER JOIN delivery d ON s.awb_no = d.tracking_number AND s.iduser = d.iduser INNER JOIN vander v ON s.iduser = v.iduser WHERE s.created_at BETWEEN '" + sdata.start + "' AND '" + sdata.end + "'";
 				objs.prepare();
 				objs.execute((error: any, result: any) => {
 					if (error == 1) {
@@ -240,6 +242,35 @@ export class team_member {
 
 	}
 
+	public getFilterDRSdata(req: Request, res: Response, next: NextFunction) {
+		let sdata = req.body.data;
+		console.log("value", sdata);
+		let session = new SessionManagment(req, res, next);
+		session.GetSession((error: any, sessdata: any) => {
+			if (error == 1) {
+				let objs = new ModelRawQuery(req, res);		
+				// objs.qrysql = "SELECT dm.id, dm.manifest_number, dm.drs_sheet_date, dm.origin, dm.drs_sheet_no, dm.delivery_boys_name, dm.delivery_boys_contact, dm.shipment_status, dm.tracking_number, s.client, s.consignor_name, s.consignor_address1, s.consignor_address2, s.landmark, s.destinations, s.state, s.country, s.pin_code, s.mobile_no, s.email_id, s.pkgs as packages, s.actual_weight, s.remark as shipment_remarks, s.booking_date, s.ref_no, s.po_no, s.awb_no FROM drs_manifest dm INNER JOIN shipment2 s ON dm.tracking_number = s.awb_no WHERE dm.iduser = '" + sessdata.id + "' AND dm.drs_sheet_date BETWEEN '" + sdata.start + "' AND '" + sdata.end + "'";
+
+				objs.qrysql = "SELECT s.consignor_name, s.awb_no AS tracking_no, s.`type`, m.forwarding_by, m.forwarding_number, dm.drs_sheet_date, dm.drs_sheet_no, dm.delivery_boys_name FROM `shipment2` s INNER JOIN `manifests` m ON m.tracking_number=s.awb_no INNER JOIN `drs_manifest` dm ON dm.origin=s.awb_no  WHERE dm.iduser = '" + sessdata.id + "' AND dm.drs_sheet_date BETWEEN '" + sdata.start + "' AND '" + sdata.end + "'";
+				objs.prepare();
+				objs.execute((error: any, result: any) => {
+					if (error == 1) {
+						if (error == 1) {
+							let objv = new RawView(res);
+							objv.prepare({ status: error, message: "filter data get Successfully!", data: result });
+							objv.execute();
+						} else {
+							let objv = new RawView(res);
+							objv.prepare({ status: error, message: "Something went wrong!" });
+							objv.execute();
+						}
+					}
+				});
+			}
+		})
+
+	}
+
 	public getFilterMISdata(req: Request, res: Response, next: NextFunction) {
 		let sdata = req.body.data;
 		console.log("value", sdata);
@@ -247,7 +278,9 @@ export class team_member {
 		session.GetSession((error: any, sessdata: any) => {
 			if (error == 1) {
 				let objs = new ModelRawQuery(req, res);
-				objs.qrysql = "SELECT s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`,s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.created_at BETWEEN '" + sdata.start + "' AND '" + sdata.end + "'";
+				// objs.qrysql = "SELECT s.awb_no`tracking_number`, s.`client`, d.`forwarding_by`, d.`forwarding_no`, d.booked_on`booking_date`, s.pin_code`destination_pincode`, d.`destination`, d.consignee_name,CONCAT(s.`state`, ', ', s.`country`, ', ', s.`pin_code`)`consignee_address`,d.mobile_number`consignee_mobile_number`,s.actual_weight`weight`, d.`status`, d.delivery_date FROM `shipment2` s INNER JOIN `delivery` d ON  d.`tracking_number`=s.`awb_no` WHERE s.created_at BETWEEN '" + sdata.start + "' AND '" + sdata.end + "'";
+
+				objs.qrysql = "SELECT s.po_no,s.ref_no,s.volumetric_weight,d.origin, d.destination,s.awb_no as tracking_number, s.booking_date,s.client, s.billing_service, s.consignor_name, s.indent_no, s.pickup_point, s.consignor_name, s.company_name, s.origin_city, s.state, s.country, s.pin_code, s.mobile_no, s.email_id, s.pkgs as packages, s.actual_weight, s.remark as shipment_remarks, m.manifest_number, m.date as manifest_date, m.forwarding_number, m.forwarding_by, m.destination as manifest_destination, m.branch, m.status as manifest_status, m.remarks as manifest_remarks, m.driver_contact, m.vehicle_number, m.driver_name, d.delivery_date, d.delivery_time, d.consignee_name, d.received_by, d.relation, d.mobile_number as receiver_mobile, d.remark as delivery_remarks, v.vandor_name, v.vander_description, v.vander_address, v.mobile_no as vendor_email, v.email as vendor_email, v.contact_person FROM shipment2 s INNER JOIN manifests m ON s.awb_no = m.tracking_number AND s.iduser = m.iduser INNER JOIN delivery d ON s.awb_no = d.tracking_number AND s.iduser = d.iduser INNER JOIN vander v ON s.iduser =  v.iduser WHERE s.created_at BETWEEN '" + sdata.start + "' AND '" + sdata.end + "'";
 				objs.prepare();
 				objs.execute((error: any, result: any) => {
 					if (error == 1) {
@@ -369,21 +402,32 @@ export class team_member {
 		let session = new SessionManagment(req, res, next);
 		session.GetSession((error: any, sessdata: any) => {
 			if (error == 1) {
-				let objs = new ModelRawQuery(req, res);
-				objs.qrysql = "INSERT INTO drs_manifest (iduser,manifest_number, origin, drs_sheet_date, drs_sheet_no, delivery_boys_name, delivery_boys_contact, shipment_status, tracking_number) VALUES ('" + sessdata.id + "', '" + sdata.manifest_number + "', '" + sdata.origin + "', '" + sdata.drs_sheet_date + "', '" + sdata.drs_sheet_no + "', '" + sdata.delivery_boys_name + "', '" + sdata.delivery_boys_contact + "', '" + sdata.shipment_status + "', '" + sdata.tracking_number + "')";	
-				objs.prepare();
-				objs.execute((error: any, result: any) => {
-					if (error == 1) {
-						let objv = new RawView(res);
-						objv.prepare({ status: 200, message: "DRS Data Saved Successfully!" });
-						objv.execute();
-					}
-					else {
-						let objv = new RawView(res);
-						objv.prepare({ status: 500, message: "Something went wrong!" });
-						objv.execute();
-					}
-				});
+				// sdata.tracking_numbers is an array, insert one row per tracking number
+				if (Array.isArray(sdata.tracking_numbers) && sdata.tracking_numbers.length > 0) {
+					let valuesArr = sdata.tracking_numbers.map((tracking_number: string) => {
+						return `('${sessdata.id}', '${sdata.manifest_number}', '${sdata.origin}', '${sdata.drs_sheet_date}', '${sdata.drs_sheet_no}', '${sdata.delivery_boys_name}', '${sdata.delivery_boys_contact}', '${sdata.shipment_status}', '${tracking_number}')`;
+					});
+					let valuesStr = valuesArr.join(", ");
+					let objs = new ModelRawQuery(req, res);
+					objs.qrysql = `INSERT INTO drs_manifest (iduser, manifest_number, origin, drs_sheet_date, drs_sheet_no, delivery_boys_name, delivery_boys_contact, shipment_status, tracking_number) VALUES ${valuesStr}`;
+					objs.prepare();
+					objs.execute((error: any, result: any) => {
+						if (error == 1) {
+							let objv = new RawView(res);
+							objv.prepare({ status: 200, message: "DRS Data Saved Successfully!" });
+							objv.execute();
+						}
+						else {
+							let objv = new RawView(res);
+							objv.prepare({ status: 500, message: "Something went wrong!" });
+							objv.execute();
+						}
+					});
+				} else {
+					let objv = new RawView(res);
+					objv.prepare({ status: 400, message: "No tracking numbers provided!" });
+					objv.execute();
+				}
 			}
 		});
 	}
