@@ -1,10 +1,9 @@
 
 export const environment = {
   production: false,
-  appurl: "http://localhost:4200/",
-  SERVER: "http://localhost:4220/",
-  SERVERURL: "",
-  RECORDRURL: "",
+  SERVER: 'https://your-backend-url.com/api/',
+  SERVERURL: 'https://your-backend-url.com/',
+  RECORDRURL: 'https://your-backend-url.com/recordings/'
   // appurl: "https://portal.celetel.com/api/",
   // SERVER: "https://portal.celetel.com/api/",
   // SERVERURL: "",
